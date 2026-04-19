@@ -15,7 +15,6 @@ export function ServiceWorkerRegister() {
       navigator.serviceWorker
         .register("/sw.js", { scope: "/" })
         .catch((err) => {
-          // eslint-disable-next-line no-console
           console.warn("SW registration failed:", err);
         });
     };
