@@ -33,7 +33,7 @@ export function ArtifactCard({
       {chips.map((c) => (
         <span
           key={c}
-          className="rounded-full border border-[color:var(--color-hairline)] px-2.5 py-0.5 text-[10px] normal-case tracking-normal text-[color:var(--color-muted)]"
+          className="rounded-full border border-[color:var(--color-hairline)] bg-[color:var(--color-bg)] px-2.5 py-0.5 text-[10.5px] font-normal normal-case tracking-normal text-[color:var(--color-muted)]"
         >
           {c}
         </span>
