@@ -3,6 +3,7 @@ import { CTA } from "@/components/CTA";
 import { ArtifactCard } from "@/components/ArtifactCard";
 import { HeroSignals } from "@/components/HeroSignals";
 import { HeroStatus } from "@/components/HeroStatus";
+import { ProofsCarousel } from "@/components/ProofsCarousel";
 import { SectionReveal } from "@/components/SectionReveal";
 import { loadArtifacts } from "@/lib/artifacts";
 import { site } from "@/lib/site";
@@ -101,17 +102,13 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Mobile: horizontal snap rail */}
-            <ul className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden">
-              {artifacts.map((a) => (
-                <li
-                  key={a.slug}
-                  className="w-[82%] shrink-0 snap-start last:mr-2"
-                >
-                  <ArtifactCard artifact={a} variant="card" />
-                </li>
-              ))}
-            </ul>
+            {/* Mobile: carousel with dots + prev/next + progress */}
+            <ProofsCarousel
+              items={artifacts.map((a) => ({
+                key: a.slug,
+                node: <ArtifactCard artifact={a} variant="card" />,
+              }))}
+            />
 
             {/* Desktop: vertical comparison list */}
             <div className="hidden border-b border-[color:var(--color-hairline)] md:block">
