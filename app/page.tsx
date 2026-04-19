@@ -191,8 +191,8 @@ export default async function HomePage() {
             </ul>
           </div>
 
-          {/* Deliverables collapsed */}
-          <details className="group mt-8 border-t border-[color:var(--color-hairline)] pt-6">
+          {/* Deliverables — open by default */}
+          <details open className="group mt-8 border-t border-[color:var(--color-hairline)] pt-6">
             <summary className="flex cursor-pointer items-center justify-between gap-4 text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               <span>What you get</span>
               <span className="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">
