@@ -19,7 +19,7 @@ const assert = (name, cond, detail = "") => {
   else results.failed.push({ name, detail });
 };
 const safe = async (fn, fallback) => {
-  try { return await fn(); } catch (err) { return fallback; }
+  try { return await fn(); } catch { return fallback; }
 };
 
 const browser = await chromium.launch();
