@@ -1,6 +1,8 @@
 import { Container } from "@/components/Container";
 import { CTA } from "@/components/CTA";
 import { ArtifactCard } from "@/components/ArtifactCard";
+import { HeroSignals } from "@/components/HeroSignals";
+import { HeroStatus } from "@/components/HeroStatus";
 import { SectionReveal } from "@/components/SectionReveal";
 import { loadArtifacts } from "@/lib/artifacts";
 import { site } from "@/lib/site";
@@ -55,13 +57,13 @@ export default async function HomePage() {
       {/* Hero */}
       <section id="top" className="pt-10 pb-12 sm:pt-24 sm:pb-24">
         <Container>
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[color:var(--color-ink)] sm:text-xs">
-            {site.location} · Remote · Async
-          </p>
+          <HeroStatus />
           <h1 className="mt-6 text-[clamp(2.75rem,10.5vw,6rem)] font-semibold leading-[0.96] tracking-[-0.025em]">
-            {site.name}.
+            {site.heroTitleLine1}
             <br />
-            {site.tagline}
+            <span className="text-[color:var(--color-muted)]">
+              {site.heroTitleLine2}
+            </span>
           </h1>
           <p className="mt-7 max-w-[56ch] text-lg text-[color:var(--color-ink)]/85 sm:text-xl">
             Ten years turning behavioural, product and marketing data into
@@ -74,6 +76,7 @@ export default async function HomePage() {
               Work with me
             </CTA>
           </div>
+          <HeroSignals />
         </Container>
       </section>
 
