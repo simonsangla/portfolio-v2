@@ -180,11 +180,11 @@ export default async function HomePage() {
             <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               Who it&rsquo;s for
             </h3>
-            <ul className="mt-3 space-y-1.5 text-[color:var(--color-ink)]/85">
-              <li>— B2C scale-ups, €5M–€100M ARR range</li>
-              <li>— Data warehoused on Snowflake (or ready to land there)</li>
-              <li>— A KPI that moved and nobody can cleanly explain why</li>
-              <li>— Comfortable with async, written, decision-led work</li>
+            <ul className="who-list mt-3 text-base">
+              <li>B2C scale-ups, €5M–€100M ARR range</li>
+              <li>Data warehoused on Snowflake (or ready to land there)</li>
+              <li>A KPI that moved and nobody can cleanly explain why</li>
+              <li>Comfortable with async, written, decision-led work</li>
             </ul>
           </div>
 
@@ -309,11 +309,11 @@ export default async function HomePage() {
               <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
                 Who it&rsquo;s for
               </h3>
-              <ul className="mt-3 space-y-1.5 text-[color:var(--color-ink)]/85">
-                <li>— Founders, PMs, analysts — operators who skip fluff courses</li>
-                <li>— People who tried ChatGPT, hit the wall, want prompts that work</li>
-                <li>— Teams who need one person fluent enough to fluency-bomb the rest</li>
-                <li>— Anyone tired of paying for a model they don&rsquo;t know how to drive</li>
+              <ul className="who-list mt-3 text-base">
+                <li>Founders, PMs, analysts — operators who skip fluff courses</li>
+                <li>People who tried ChatGPT, hit the wall, want prompts that work</li>
+                <li>Teams who need one person fluent enough to fluency-bomb the rest</li>
+                <li>Anyone tired of paying for a model they don&rsquo;t know how to drive</li>
               </ul>
             </div>
 
