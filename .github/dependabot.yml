@@ -9,6 +9,14 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+    # Major bumps are opt-in. Stack is locked on current majors
+    # (next@15, react@19, eslint@9, typescript@5, etc.); majors break
+    # peer deps or require explicit migration work. Open them manually
+    # when ready.
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
     groups:
       minor-and-patch:
         applies-to: version-updates
