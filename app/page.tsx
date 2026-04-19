@@ -239,6 +239,150 @@ export default async function HomePage() {
         </SectionReveal>
       </section>
 
+      {/* Training — Tame ChatGPT (new) */}
+      <section
+        id="training"
+        className="scroll-mt-16 border-t border-[color:var(--color-hairline)] py-10 sm:py-20"
+      >
+        <SectionReveal>
+          <Container narrow>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[color:var(--color-muted)] sm:text-xs">
+                One session · Fixed price
+              </p>
+              <span className="inline-flex items-center rounded-full border border-[color:var(--color-accent)]/25 bg-[color:var(--color-accent)]/8 px-2.5 py-0.5 text-[10.5px] font-medium uppercase tracking-[0.14em] text-[color:var(--color-accent)]">
+                New · €249
+              </span>
+            </div>
+            <h2 className="mt-4 text-4xl font-medium leading-[1.02] tracking-[-0.025em] sm:text-5xl">
+              Make ChatGPT Your Slave.
+            </h2>
+            <p className="mt-5 text-lg text-[color:var(--color-muted)] sm:text-xl">
+              A 90-minute working session plus two weeks of async follow-up,
+              for operators who are done wrestling with ChatGPT and want it
+              producing real output before the week ends.
+            </p>
+
+            {/* Price panel */}
+            <div className="mt-10 rounded-xl border border-[color:var(--color-hairline)] bg-[color:var(--color-bg)] p-6 shadow-card sm:p-10">
+              <div className="grid grid-cols-1 gap-8 border-b border-[color:var(--color-hairline)] pb-6 sm:grid-cols-2 sm:gap-12 sm:pb-8">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
+                    Price
+                  </p>
+                  <p className="mt-3 text-[2.5rem] font-medium leading-[1.02] tracking-[-0.025em] tabular-nums text-[color:var(--color-ink-soft)] sm:text-[3rem]">
+                    €249
+                  </p>
+                  <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+                    One-off · No subscription.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
+                    Format
+                  </p>
+                  <p className="mt-3 text-[1.75rem] font-medium leading-[1.05] tracking-[-0.02em] text-[color:var(--color-ink-soft)] sm:text-[2rem]">
+                    90 min · +2 wks async
+                  </p>
+                  <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+                    One video call, then written-only.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-wrap gap-3">
+                  <CTA
+                    href={`mailto:${site.email}?subject=Book%20ChatGPT%20Training%20Session`}
+                    external
+                  >
+                    Book a session
+                  </CTA>
+                  <CTA href="/proofs/chatgpt-training" variant="ghost">
+                    Read the write-up
+                  </CTA>
+                </div>
+                <p className="text-sm text-[color:var(--color-muted)]">
+                  Reply within 48h · Booked within the week.
+                </p>
+              </div>
+            </div>
+
+            {/* Who */}
+            <div className="mt-10">
+              <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
+                Who it&rsquo;s for
+              </h3>
+              <ul className="mt-3 space-y-1.5 text-[color:var(--color-ink)]/85">
+                <li>— Founders, PMs, analysts — operators who skip fluff courses</li>
+                <li>— People who tried ChatGPT, hit the wall, want prompts that work</li>
+                <li>— Teams who need one person fluent enough to fluency-bomb the rest</li>
+                <li>— Anyone tired of paying for a model they don&rsquo;t know how to drive</li>
+              </ul>
+            </div>
+
+            {/* What you leave with */}
+            <details
+              open
+              className="group mt-8 border-t border-[color:var(--color-hairline)] pt-6"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-xl font-medium tracking-[-0.02em] sm:text-2xl">
+                <span>What you leave with</span>
+                <span className="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="mt-4 divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
+                <div className="py-4">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
+                    A live diagnostic of your current prompts
+                  </h4>
+                  <p className="mt-1.5 text-[color:var(--color-muted)]">
+                    We open your actual ChatGPT history. I show you where it&rsquo;s
+                    slipping and why the model is ignoring half of what you write.
+                  </p>
+                </div>
+                <div className="py-4">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
+                    A prompt system you&rsquo;ll actually reuse
+                  </h4>
+                  <p className="mt-1.5 text-[color:var(--color-muted)]">
+                    Role, context, constraints, output spec. A scaffold you apply
+                    to every task. No more blank-page prompt anxiety.
+                  </p>
+                </div>
+                <div className="py-4">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
+                    Three real workflows, rebuilt on the call
+                  </h4>
+                  <p className="mt-1.5 text-[color:var(--color-muted)]">
+                    Pick three weekly tasks. We rebuild them as ChatGPT workflows
+                    during the session. You walk out with them running.
+                  </p>
+                </div>
+                <div className="py-4">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
+                    Two weeks of async backup
+                  </h4>
+                  <p className="mt-1.5 text-[color:var(--color-muted)]">
+                    Stuck on a prompt? Send it. I reply within a working day.
+                    Fourteen days of unblocking, included.
+                  </p>
+                </div>
+                <div className="py-4">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
+                    Your personal cheat-sheet
+                  </h4>
+                  <p className="mt-1.5 text-[color:var(--color-muted)]">
+                    A one-page PDF with the patterns that matter — yours to keep,
+                    pinned above your monitor.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </Container>
+        </SectionReveal>
+      </section>
+
       {/* About — compacted */}
       <section
         id="about"
