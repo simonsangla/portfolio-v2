@@ -1,0 +1,407 @@
+/* =============================================================================
+   Simon Sangla — Portable Design Theme
+   Version: 1.0 · Pays basque default · 2026-04-16
+   -----------------------------------------------------------------------------
+   Single-file drop-in. All visual tokens, base element styles, motion, and
+   reusable components live here. Consume by linking this file in <head>:
+     <link rel="stylesheet" href="/theme/theme.css">
+
+   Swap palette at the root element via the data-theme attribute:
+     <html data-theme="teal">   (alternate: cool dark teal + rouge)
+     (default)                  (Pays basque: forest green + rouge)
+
+   Token naming aligns with Tailwind v4 @theme convention for easy port.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   1. TOKENS — Design primitives
+   ----------------------------------------------------------------------------- */
+
+:root {
+  /* ---------- Palette — Pays basque (default) ---------- */
+  --color-bg:             #FFFFFF;
+  --color-ink:            #2A493F;  /* main: body, logo, primary button bg */
+  --color-ink-soft:       #1E332C;  /* display headings (slightly deeper) */
+  --color-muted:          #5D7569;  /* secondary text, author/meta */
+  --color-hairline:       #E2EBE6;  /* dividers, card borders */
+  --color-surface-invert: #2A493F;  /* dark card surface */
+  --color-on-invert:      #F7FBF8;  /* primary text on dark */
+  --color-on-invert-soft: #D8E4DD;  /* secondary text on dark */
+  --color-accent:         #753539;  /* focus rings, MDX links, rouge basque */
+
+  /* RGB triplet of --color-ink, for rgba() composition in shadows */
+  --color-ink-rgb:        42, 73, 63;
+
+  /* ---------- Fonts ---------- */
+  --font-sans:  "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-mono:  ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Variable-font axes for Fraunces display */
+  --font-serif-axes: "opsz" 144, "SOFT" 50, "WONK" 1;
+
+  /* ---------- Type scale (mobile-first; *-md / *-lg are breakpoint upgrades) ---------- */
+  --fs-eyebrow:      11px;
+  --fs-eyebrow-md:   12px;
+  --fs-body-sm:      14px;
+  --fs-body-sm-md:   16px;
+  --fs-body:         16px;
+  --fs-body-md:      18px;
+  --fs-lead:         18px;
+  --fs-lead-md:      20px;
+  --fs-display-s:    22px;
+  --fs-display-s-md: 24px;
+  --fs-display-m:    32px;
+  --fs-display-m-md: 40px;
+  --fs-display-m-lg: 44px;
+  --fs-display-l:    48px;
+  --fs-display-l-md: 64px;
+  --fs-display-l-lg: 80px;
+
+  --lh-body:       1.65;
+  --lh-lead:       1.55;
+  --lh-display:    1.1;
+  --lh-display-l:  1.05;
+
+  --tracking-eyebrow: 0.16em;
+  --tracking-tight:   -0.02em;
+  --tracking-body:    -0.005em;
+  --tracking-lead:    -0.01em;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-1:  0.25rem;   /*   4 */
+  --space-2:  0.5rem;    /*   8 */
+  --space-3:  0.75rem;   /*  12 */
+  --space-4:  1rem;      /*  16 */
+  --space-5:  1.25rem;   /*  20 */
+  --space-6:  1.5rem;    /*  24 */
+  --space-7:  1.75rem;   /*  28 */
+  --space-8:  2rem;      /*  32 */
+  --space-10: 2.5rem;    /*  40 */
+  --space-12: 3rem;      /*  48 */
+  --space-16: 4rem;      /*  64 */
+  --space-20: 5rem;      /*  80 */
+  --space-24: 6rem;      /*  96 */
+  --space-32: 8rem;      /* 128 */
+  --space-48: 12rem;     /* 192 */
+
+  /* ---------- Radius ---------- */
+  --radius-xl:   12px;
+  --radius-2xl:  16px;
+  --radius-32:   32px;
+  --radius-40:   40px;
+  --radius-full: 9999px;
+
+  /* ---------- Shadows (all ink-tinted shadows derive from --color-ink-rgb) ---------- */
+  --shadow-primary:
+    0 1px  2px 0 rgba(var(--color-ink-rgb), 0.10),
+    0 4px  4px 0 rgba(var(--color-ink-rgb), 0.09),
+    0 9px  6px 0 rgba(var(--color-ink-rgb), 0.05),
+    0 17px 7px 0 rgba(var(--color-ink-rgb), 0.01),
+    0 26px 7px 0 rgba(var(--color-ink-rgb), 0.00),
+    inset 0 2px 8px 0 rgba(255, 255, 255, 0.50);
+  --shadow-secondary:
+    0 0   0  0.5px rgba(0, 0, 0, 0.05),
+    0 4px 30px    rgba(0, 0, 0, 0.08);
+  --shadow-card:
+    0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-float:
+    0 8px 24px rgba(var(--color-ink-rgb), 0.10),
+    0 2px  6px rgba(var(--color-ink-rgb), 0.06);
+
+  /* ---------- Motion ---------- */
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   800ms;
+
+  --ease-out:    cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --marquee-duration-desktop: 30s;
+  --marquee-duration-mobile:  10s;
+  --carousel-interval:        3000ms;
+
+  /* ---------- Layout ---------- */
+  --container-hero:    440px;
+  --container-prose:   42rem;    /* ~672px */
+  --container-content: 1200px;
+  --container-pricing: 56rem;    /* ~896px */
+  --page-px:           1.5rem;   /* 24px */
+
+  /* ---------- Breakpoints (documentation — CSS media queries use literal values) ---------- */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}
+
+
+/* ---------- Alternate palette: Teal (prior phase) ------------------------- */
+
+[data-theme="teal"] {
+  --color-ink:            #051A24;
+  --color-ink-soft:       #0D212C;
+  --color-muted:          #273C46;
+  --color-hairline:       #E0EBF0;
+  --color-surface-invert: #051A24;
+  --color-on-invert:      #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+  --color-accent:         #B8341A;
+  --color-ink-rgb:        5, 26, 36;
+}
+
+
+/* -----------------------------------------------------------------------------
+   2. BASE — Resets + element defaults
+   ----------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tracking-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-variation-settings: var(--font-serif-axes);
+  font-weight: 400;
+  color: var(--color-ink-soft);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+}
+
+p   { margin: 0; }
+a   { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+
+/* -----------------------------------------------------------------------------
+   3. MOTION — Keyframes + animate utilities + reduced-motion guard
+   ----------------------------------------------------------------------------- */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration-desktop) linear infinite;
+}
+@media (max-width: 767px) {
+  .animate-marquee { animation-duration: var(--marquee-duration-mobile); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. UTILITY HELPERS — Composable primitives
+   ----------------------------------------------------------------------------- */
+
+.serif {
+  font-family: var(--font-serif);
+  font-variation-settings: var(--font-serif-axes);
+  color: var(--color-ink-soft);
+  letter-spacing: var(--tracking-tight);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+@media (min-width: 768px) {
+  .eyebrow { font-size: var(--fs-eyebrow-md); }
+}
+
+.mx-auto  { margin-left: auto; margin-right: auto; }
+.px-page  { padding-left: var(--page-px); padding-right: var(--page-px); }
+
+.container-hero    { max-width: var(--container-hero); }
+.container-prose   { max-width: var(--container-prose); }
+.container-content { max-width: var(--container-content); }
+.container-pricing { max-width: var(--container-pricing); }
+
+
+/* -----------------------------------------------------------------------------
+   5. COMPONENTS — Reusable UI primitives
+   ----------------------------------------------------------------------------- */
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-7);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1;
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+.btn:hover            { opacity: 0.9; }
+.btn:active           { transform: translateY(1px); }
+.btn:disabled         { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+.btn-primary   { background: var(--color-ink);        color: var(--color-on-invert); box-shadow: var(--shadow-primary); }
+.btn-secondary { background: var(--color-bg);         color: var(--color-ink);       box-shadow: var(--shadow-secondary); }
+.btn-tertiary  { background: var(--color-bg);         color: var(--color-ink);       box-shadow: var(--shadow-card); padding: var(--space-2) var(--space-6); font-size: 14px; }
+.btn-inverted  { background: var(--color-on-invert);  color: var(--color-ink);       box-shadow: var(--shadow-primary); }
+.btn-accent    { background: var(--color-accent);     color: var(--color-on-invert); box-shadow: var(--shadow-primary); }
+
+.btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(var(--color-ink-rgb), 0.2);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+.btn-icon:hover { background: var(--color-hairline); }
+
+/* ---------- Cards ---------- */
+
+.card {
+  border-radius: var(--radius-32);
+  padding: var(--space-3) var(--space-10) var(--space-10) var(--space-10);
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .card { border-radius: var(--radius-40); padding-right: var(--space-24); }
+}
+
+.card-light { background: var(--color-bg);             color: var(--color-ink);        box-shadow: var(--shadow-card); }
+.card-dark  { background: var(--color-surface-invert); color: var(--color-on-invert);  box-shadow: var(--shadow-primary); }
+
+/* ---------- Marquee ---------- */
+
+.marquee { overflow: hidden; }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration-desktop) linear infinite;
+}
+@media (max-width: 767px) {
+  .marquee-track { animation-duration: var(--marquee-duration-mobile); }
+}
+@media (min-width: 768px) {
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  width: 280px;
+  height: 280px;
+  margin: 0 var(--space-3);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-float);
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .marquee-item { width: 500px; height: 500px; }
+}
+
+/* ---------- Secondary surface (price panel, intake box) ---------- */
+
+.surface-secondary {
+  background: var(--color-bg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+@media (min-width: 640px) {
+  .surface-secondary { padding: var(--space-8); }
+}
+
+/* ---------- Bottom nav pill ---------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: var(--color-bg);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-6);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* ---------- Carousel scaffold ---------- */
+
+.carousel { overflow: hidden; padding: var(--space-2) 0; }
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-6);
+  transition: transform var(--duration-slow) var(--ease-in-out);
+}

@@ -1,0 +1,50 @@
+---
+slug: prompt-optimizer
+name: Prompt Optimizer
+tagline: Paste a rough prompt, get a scored, optimized one. Local-only. BYOK Gemini.
+category: Tool
+promise: A PWA prompt-optimization coach that chats with you to refine a draft prompt, streams Gemini tokens through a thin Vercel Edge proxy, and keeps your API key and history in localStorage only.
+business_value: Strips the three prompt-tool frictions — no account, no server-side key storage, no vendor lock-in. Your prompts and chat history never leave the browser.
+status: in-progress
+protection_level: public
+date: 2026-04-15
+tech_stack: [Vite, React 19, TypeScript, PWA, Vercel Edge]
+links:
+  - label: Live
+    url: https://promptoptim.vercel.app
+    primary: true
+  - label: Source
+    url: https://github.com/simonsangla/prompt-optimizer
+role: solo
+highlights:
+  - Multi-turn chat rewrite streams Gemini tokens through a Vercel Edge SSE handler at /api/chat (PR #6)
+  - BYOK — key and conversation history persist in localStorage only, never server-side
+  - Edit-and-resubmit on any user bubble with one-time v1→v2 persistence auto-migration
+  - Dark-only indigo-violet design system with Inter Variable + JetBrains Mono (PR #3, #4)
+demo:
+  kind: iframe
+  url: https://promptoptim.vercel.app
+related:
+  - prompto
+---
+
+## Problem
+
+Prompt tooling forces three frictions: create an account, store your API key server-side, commit to one provider. Most "optimizer" apps are also black-box rubrics you can't audit or tune.
+
+## Approach
+
+Vite + React 19 PWA. Multi-turn chat UI coaches the prompt live, streaming Gemini tokens through a thin Vercel Edge SSE handler at `/api/chat`. The user's key travels as a Bearer header, never stored server-side. All state (chats, key) persists in `localStorage` — fresh browser = fresh state.
+
+The loop is small:
+
+- Paste a draft prompt.
+- Chat with the coach model until the prompt is sharp.
+- Edit-and-resubmit on any past user bubble to branch.
+- Install as a PWA for offline-first behaviour.
+
+Stack: Vite 7, React 19, strict TypeScript, vite-plugin-pwa, Vercel Edge. No database, no accounts, no server-side key storage.
+
+## Outcome
+
+PR #6 (chat rewrite) merged and deployed at [promptoptim.vercel.app](https://promptoptim.vercel.app). v2 persistence with one-time auto-migration from v1 sentinel-guarded. First-boot seeds a canned demo chat so new visitors can try without pasting a key. Dark-only indigo-violet design system (PR #3/#4) shipped alongside.

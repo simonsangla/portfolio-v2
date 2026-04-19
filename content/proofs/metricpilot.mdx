@@ -1,0 +1,57 @@
+---
+slug: metricpilot
+name: MetricPilot
+tagline: Revenue Root Cause Engine for B2C scale-ups on Snowflake.
+category: Engagement
+promise: Productized four-week engagement that explains why a revenue metric moved and leaves a Streamlit workbook your team keeps.
+business_value: Turns a two-week analyst scramble into a fixed-scope, fully-async, outcome-priced consulting loop anchored on a self-serve tool.
+status: in-progress
+protection_level: public
+date: 2026-02-20
+tech_stack: [Python, Streamlit, Snowflake, STL, Theil-Sen]
+links:
+  - label: Start intake
+    url: /services
+    primary: true
+  - label: Demo factory (public)
+    url: https://github.com/simonsangla/metricpilot-demo-factory
+role: solo
+highlights:
+  - Fixed-scope four-week engagement anchored on a self-serve Streamlit workbook
+  - Additive KPI decomposition — the metric moved by X, driver A contributed +Y, driver B contributed −Z
+  - Change-point detection via Theil-Sen slopes + STL decomposition to isolate when/where the break happened
+  - Precursor system at TripAdvisor cut KPI investigation time by 80% across five product teams
+metrics:
+  - label: Engagement
+    value: "4 weeks"
+  - label: Price (fixed)
+    value: "€15–25K"
+  - label: Precursor speed-up at TripAdvisor
+    value: "−80%"
+---
+
+## Problem
+
+Every B2C scale-up eventually hits the same wall: a revenue metric moves, the dashboard shows it moved, and nobody can cleanly answer why. The analyst team gets pulled off roadmap work for two weeks of ad-hoc SQL. The answer, when it lands, is neither reproducible nor owned by anyone.
+
+I lived this at TripAdvisor scale for ten years. I built the tool I wanted to exist.
+
+## Approach
+
+MetricPilot is a Revenue Root Cause Engine wrapped in a fixed-scope consulting engagement. You don&rsquo;t buy a license — you buy an outcome.
+
+The technical spine:
+
+- **KPI decomposition** — additive driver analysis. The metric moved by X. Driver A contributed +Y, driver B contributed −Z.
+- **Change-point detection** — Theil-Sen slopes and STL-based decomposition to isolate *when* and *where* the break happened (cohort, channel, platform, geography).
+- **Self-serve workbook** — delivered as a Streamlit app your team runs against your Snowflake warehouse forever after.
+
+A public demo-factory repo runs the full pipeline on proxy data from Club Med&rsquo;s repeat-guest rate — deterministic, auditable, ready to show before we engage.
+
+## Outcome
+
+The precursor system I built at TripAdvisor (the &ldquo;Business Metric Wizard&rdquo;) cut KPI investigation time by 80% across five product teams. The downstream Insight Bot scaled to 500+ self-service queries per month.
+
+MetricPilot takes that same engine, extracts the general logic, and ships it as a packaged engagement any B2C data team can buy without a sales call.
+
+→ [See the engagement on /services](/services).

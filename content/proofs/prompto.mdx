@@ -1,0 +1,59 @@
+---
+slug: prompto
+name: Prompto
+tagline: Daily training app for practical prompting.
+category: App
+promise: Short daily missions with instant scoring and a visible progress loop — a Duolingo-style practice surface for prompt engineering.
+business_value: Turns an abstract meta-skill into a compounding habit. The highest-leverage skill of the decade, taught through behaviour design instead of lecture videos.
+status: in-progress
+protection_level: limited
+date: 2026-03-05
+tech_stack: [React 18, Vite 5, TypeScript (strict), Vitest]
+links:
+  - label: Live
+    url: https://prompto-iota.vercel.app
+    primary: true
+  - label: Source
+    url: https://github.com/simonsangla/prompto
+role: solo
+highlights:
+  - 9-domain cavekit with 36 tasks mapped before code
+  - Daily mission loop with client-side rubric scoring
+  - Hash-based routing keeps the bundle tiny; no backend, no account
+  - Progress persists entirely in localStorage — fresh browser, fresh state
+metrics:
+  - label: Core loop
+    value: Daily
+  - label: Spec coverage
+    value: 9 domains · 36 tasks mapped
+  - label: Persistence
+    value: localStorage only
+demo:
+  kind: iframe
+  url: https://prompto-iota.vercel.app
+related:
+  - prompt-optimizer
+---
+
+## Problem
+
+Prompt engineering is arguably the highest-leverage skill of the decade and almost nobody is teaching it well. The existing material is either six-hour YouTube lectures or glorified cheat sheets. Neither builds intuition. Neither makes you come back tomorrow.
+
+Duolingo solved this for languages using behaviour design, not content volume. Prompt engineering deserves the same treatment.
+
+## Approach
+
+Prompto is a mobile-first daily training app. The whole shell is React 18 + Vite 5 + strict TypeScript — no CSS framework, no router dependency, no backend. Progress lives entirely in `localStorage`.
+
+The loop is deliberately small:
+
+- **Daily mission** — five minutes, one concept, one measurable attempt.
+- **Instant scoring** — the mission ships with a structured rubric the app runs client-side.
+- **Retry** — you get the same scaffold back with diffable feedback on what moved the score.
+- **Streak** — visible progress so tomorrow costs less willpower than today.
+
+Hash-based routing keeps the bundle tiny; Vitest keeps the core scoring logic deterministic.
+
+## Outcome
+
+Public beta at [prompto-iota.vercel.app](https://prompto-iota.vercel.app). The repo is now scaffolded with Cavekit — 9 domain kits (5 reverse-engineered from Loop 1, 4 drafted for Loop 2: AI scoring seam, mission history, streak calendar, CI) and a 36-task build site with full acceptance-criteria coverage. Next: freemium monetization — free daily missions, Pro unlocks red-team mode and "Explain My Error."

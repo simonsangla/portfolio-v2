@@ -1,0 +1,31 @@
+{
+  "name": "simonsangla-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@serwist/next": "^9.0.14",
+    "@vercel/analytics": "^1.4.1",
+    "gray-matter": "^4.0.3",
+    "next": "^15.5.15",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.3",
+    "remark-gfm": "^4.0.0",
+    "serwist": "^9.0.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}

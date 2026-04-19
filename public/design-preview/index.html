@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+<title>DESIGN.md preview — simonsangla.com</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..500,50,0..1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Portable theme (tokens + base + motion + components) -->
+<link rel="stylesheet" href="/theme/theme.css">
+
+<!-- Preview-page-specific layout -->
+<link rel="stylesheet" href="./preview.css">
+</head>
+<body>
+
+<!-- =============================================== -->
+<!--        TOKEN PANEL (dev reference)              -->
+<!-- =============================================== -->
+<div class="token-panel">
+  <div class="container-content mx-auto">
+    <h3>Color palette</h3>
+    <div class="swatch-row" style="margin-bottom: var(--space-8);">
+      <div class="swatch"><div class="chip" style="background: var(--color-bg); border-bottom: 1px solid var(--color-hairline)"></div><div class="meta">--color-bg<br>#FFFFFF</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-ink)"></div><div class="meta">--color-ink<br>#2A493F</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-ink-soft)"></div><div class="meta">--color-ink-soft<br>#1E332C</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-muted)"></div><div class="meta">--color-muted<br>#5D7569</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-hairline)"></div><div class="meta">--color-hairline<br>#E2EBE6</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-on-invert)"></div><div class="meta">--color-on-invert<br>#F7FBF8</div></div>
+      <div class="swatch"><div class="chip" style="background: var(--color-accent)"></div><div class="meta">--color-accent<br>#753539</div></div>
+    </div>
+
+    <h3>Shadows</h3>
+    <div class="swatch-row" style="margin-bottom: var(--space-8); padding: var(--space-4) 0;">
+      <div class="shadow-demo" style="box-shadow: var(--shadow-card);">shadow-card</div>
+      <div class="shadow-demo" style="box-shadow: var(--shadow-secondary);">shadow-secondary</div>
+      <div class="shadow-demo" style="box-shadow: var(--shadow-float);">shadow-float</div>
+      <div class="shadow-demo dark" style="box-shadow: var(--shadow-primary);">shadow-primary</div>
+    </div>
+
+    <h3>Typography</h3>
+    <div class="type-row">
+      <div><span class="type-label">Eyebrow</span><span class="eyebrow">Shipped, not pitched</span></div>
+      <div><span class="type-label">Body</span><span style="font-size: var(--fs-body);">Ten years turning data signals into decisions teams can make themselves.</span></div>
+      <div><span class="type-label">Lead</span><span style="font-size: var(--fs-lead); letter-spacing: var(--tracking-lead);">Four weeks, fixed scope, zero meetings.</span></div>
+      <div><span class="type-label">Display-S</span><span class="serif" style="font-size: var(--fs-display-s-md);">€15–25K</span></div>
+      <div><span class="type-label">Display-M</span><span class="serif" style="font-size: var(--fs-display-m-md);">Revenue Root Cause</span></div>
+      <div><span class="type-label">Display-L</span><span class="serif" style="font-size: var(--fs-display-l-md); line-height: var(--lh-display-l);">Partner with me</span></div>
+    </div>
+
+    <h3 style="margin-top: var(--space-8);">Buttons</h3>
+    <div class="demo-buttons">
+      <button class="btn btn-primary">Start the intake</button>
+      <button class="btn btn-secondary">See the proofs</button>
+      <button class="btn btn-tertiary">View details</button>
+      <button class="btn btn-accent">Rouge accent</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+      <button class="btn-icon" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="btn-icon" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================== -->
+<!--                    HERO                          -->
+<!-- =============================================== -->
+<div class="section-label">1 · Hero</div>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="logo animate-fadeInUp" style="animation-delay: 0.1s;">Simon Sangla</div>
+    <p class="tagline eyebrow animate-fadeInUp" style="animation-delay: 0.2s;">Builder · Data + AI products · Lisbon</p>
+    <h1 class="animate-fadeInUp" style="animation-delay: 0.3s;">Ship the data <span class="serif">decision</span>,<br>not the <span class="serif">dashboard</span>.</h1>
+    <div class="paragraphs animate-fadeInUp" style="animation-delay: 0.4s;">
+      <p>I spent a decade turning behavioural, product and marketing data into self-service decisions — Mixpanel, Eppo, Snowflake at TripAdvisor Media Group scale.</p>
+      <p>Now I ship AI products in weeks. One operator, an agentic build loop, real Streamlit tools your team owns at handoff.</p>
+      <p>Engagements start at €15,000 per project.</p>
+    </div>
+    <div class="ctas animate-fadeInUp" style="animation-delay: 0.5s;">
+      <button class="btn btn-primary">Start the intake</button>
+      <button class="btn btn-secondary">See the proofs</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================== -->
+<!--                    MARQUEE                       -->
+<!-- =============================================== -->
+<div class="section-label">2 · Marquee</div>
+<div class="marquee marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">MetricPilot</div>
+    <div class="marquee-item alt-1">Refinr</div>
+    <div class="marquee-item alt-2">Prompto</div>
+    <div class="marquee-item alt-3">Snowflake · Eppo</div>
+    <div class="marquee-item">KPI decomp</div>
+    <div class="marquee-item alt-1">Change-point</div>
+    <div class="marquee-item alt-2">Streamlit</div>
+    <div class="marquee-item alt-3">Runbook</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item">MetricPilot</div>
+    <div class="marquee-item alt-1">Refinr</div>
+    <div class="marquee-item alt-2">Prompto</div>
+    <div class="marquee-item alt-3">Snowflake · Eppo</div>
+    <div class="marquee-item">KPI decomp</div>
+    <div class="marquee-item alt-1">Change-point</div>
+    <div class="marquee-item alt-2">Streamlit</div>
+    <div class="marquee-item alt-3">Runbook</div>
+  </div>
+</div>
+
+
+<!-- =============================================== -->
+<!--                    QUOTE                         -->
+<!-- =============================================== -->
+<div class="section-label">3 · Quote block</div>
+<section class="quote-section">
+  <div class="quote-inner">
+    <span class="quote-icon animate-fadeInUp" style="animation-delay: 0.1s;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+    </span>
+    <h2 class="quote-text animate-fadeInUp" style="animation-delay: 0.2s;">I left analytics-at-scale to build the <span class="serif">self-serve tool</span> every team wishes they'd started with.</h2>
+    <p class="quote-author animate-fadeInUp" style="animation-delay: 0.3s;">Simon Sangla</p>
+    <div class="quote-creds animate-fadeInUp" style="animation-delay: 0.4s;">
+      <span>TripAdvisor</span>
+      <span>Sorbonne</span>
+      <span>Eppo</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================== -->
+<!--                    PRICING                       -->
+<!-- =============================================== -->
+<div class="section-label">4 · Pricing cards</div>
+<section class="block">
+  <div class="pricing-grid">
+    <div class="card card-dark pricing-card animate-fadeInUp" style="animation-delay: 0.1s;">
+      <p class="eyebrow" style="color: var(--color-on-invert-soft);">MetricPilot</p>
+      <h3 class="title">Revenue Root Cause Engine</h3>
+      <p class="desc">Four weeks, fixed scope, async.<br>KPI decomposition + change-point report + Streamlit you keep.</p>
+      <div class="price-row">
+        <span class="price">€15–25K</span>
+        <span class="price-label">Fixed</span>
+      </div>
+      <div class="ctas">
+        <button class="btn btn-inverted">Start the intake</button>
+        <button class="btn btn-secondary" style="background: transparent; color: var(--color-on-invert); box-shadow: inset 0 0 0 1px rgba(247, 251, 248, 0.2);">How it works</button>
+      </div>
+    </div>
+    <div class="card card-light pricing-card animate-fadeInUp" style="animation-delay: 0.2s;">
+      <p class="eyebrow">Custom</p>
+      <h3 class="title">Scoped project</h3>
+      <p class="desc">Fixed scope, fixed timeline.<br>Same analyst discipline, data product at handoff.</p>
+      <div class="price-row">
+        <span class="price">€15,000</span>
+        <span class="price-label">Minimum</span>
+      </div>
+      <div class="ctas">
+        <button class="btn btn-primary">Start a chat</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================== -->
+<!--              TESTIMONIAL CAROUSEL                -->
+<!-- =============================================== -->
+<div class="section-label">5 · Testimonial carousel</div>
+<section class="testimonial-section">
+  <div class="testimonial-header">
+    <h2>What <span class="serif">builders</span> say</h2>
+    <div class="clutch">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,22 12,18 5,22 7,14 2,9 9,9"/></svg>
+      </div>
+      <span>LinkedIn · endorsements</span>
+    </div>
+  </div>
+  <div class="carousel">
+    <div class="carousel-track" id="carousel-track">
+      <article class="t-card">
+        <svg class="quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p class="body">[Placeholder] Simon untangled three quarters of revenue decline in two weeks. Change-point report was surgical.</p>
+        <div class="author-row"><div class="avatar"></div><div><div class="name">Prospect A</div><div class="role">→ VP Product, B2C scale-up</div></div></div>
+      </article>
+      <article class="t-card">
+        <svg class="quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p class="body">[Placeholder] The Streamlit dashboard is still the tool my team reaches for every Monday. Best €20K we spent.</p>
+        <div class="author-row"><div class="avatar"></div><div><div class="name">Prospect B</div><div class="role">→ Head of Data, SaaS platform</div></div></div>
+      </article>
+      <article class="t-card">
+        <svg class="quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p class="body">[Placeholder] Async from start to finish. No calls. Loom walkthroughs that our whole team could watch at 1.5×.</p>
+        <div class="author-row"><div class="avatar"></div><div><div class="name">Prospect C</div><div class="role">→ CPO, travel marketplace</div></div></div>
+      </article>
+      <article class="t-card">
+        <svg class="quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p class="body">[Placeholder] Handoff runbook meant day-28 was real. Not a 6-month consulting dependency.</p>
+        <div class="author-row"><div class="avatar"></div><div><div class="name">Prospect D</div><div class="role">→ Founder, fintech</div></div></div>
+      </article>
+    </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="btn-icon" aria-label="Previous" onclick="carouselPrev()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="btn-icon" aria-label="Next" onclick="carouselNext()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
+</section>
+
+
+<!-- =============================================== -->
+<!--              SECONDARY SURFACE                   -->
+<!-- =============================================== -->
+<div class="section-label">6 · Secondary surface (intake)</div>
+<section>
+  <div class="surface-secondary container-prose mx-auto" style="margin: var(--space-12) auto;">
+    <p class="eyebrow">One engagement. Fixed scope.</p>
+    <h3 class="serif" style="font-size: 28px; margin-top: var(--space-2);">Four-week intake</h3>
+    <p style="margin-top: var(--space-4); color: var(--color-muted);">Five questions, ten minutes. Scoped proposal within 48h. No calls.</p>
+    <div style="margin-top: var(--space-6);"><button class="btn btn-primary">Start the intake</button></div>
+  </div>
+</section>
+
+
+<!-- =============================================== -->
+<!--                    PROJECTS                      -->
+<!-- =============================================== -->
+<div class="section-label">7 · Projects</div>
+<section class="projects">
+  <article class="animate-fadeInUp" style="animation-delay: 0.1s;">
+    <div class="project-text">
+      <h3 class="project-name">MetricPilot</h3>
+      <p class="project-desc">Revenue Root Cause Engine. Four-week engagement, Snowflake + Streamlit, self-service after handoff.</p>
+    </div>
+    <div class="project-image">MetricPilot · Streamlit dashboard</div>
+  </article>
+  <article class="animate-fadeInUp" style="animation-delay: 0.1s;">
+    <div class="project-text">
+      <h3 class="project-name">Refinr</h3>
+      <p class="project-desc">Behavioural cohort explorer. Shipped in three weeks against a Snowflake event schema.</p>
+    </div>
+    <div class="project-image">Refinr · cohort explorer</div>
+  </article>
+  <article class="animate-fadeInUp" style="animation-delay: 0.1s;">
+    <div class="project-text">
+      <h3 class="project-name">Prompto</h3>
+      <p class="project-desc">Agentic build loop for spec-first product delivery. Claude Code + Codex + strict spec layer.</p>
+    </div>
+    <div class="project-image">Prompto · spec layer</div>
+  </article>
+</section>
+
+
+<!-- =============================================== -->
+<!--              PARTNER SECTION                     -->
+<!-- =============================================== -->
+<div class="section-label">8 · Partner headline</div>
+<section class="partner-section animate-fadeInUp" style="animation-delay: 0.1s;">
+  <h2>Partner with <span class="serif">me</span></h2>
+  <button class="partner-cta">
+    <span class="pcta-avatar"></span>
+    Start a chat with Simon
+  </button>
+</section>
+
+
+<!-- =============================================== -->
+<!--                    FOOTER                        -->
+<!-- =============================================== -->
+<div class="section-label">9 · Footer</div>
+<footer>
+  <div class="footer-row">
+    <div>
+      <button class="btn btn-primary">Start the intake</button>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <a href="#services">Services</a>
+        <a href="#proofs">Work</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer-col">
+        <a href="https://www.linkedin.com/in/simon-sangla-99182561" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/simonsangla" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:simonsangla@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="copyright">
+  <span>Simon Sangla · simonsangla.com</span>
+  <span>Lisbon, Portugal</span>
+</div>
+
+
+<!-- =============================================== -->
+<!--                  BOTTOM NAV                      -->
+<!-- =============================================== -->
+<nav class="bottom-nav" aria-label="Primary navigation">
+  <span class="monogram">S</span>
+  <button class="btn btn-primary">Start a chat</button>
+</nav>
+
+<div style="height: 96px;"></div>
+
+<script>
+  // Carousel — simple step + auto-advance every 3s
+  const track = document.getElementById('carousel-track');
+  let index = 0;
+  function updateCarousel() {
+    const card = track.querySelector('.t-card');
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--space-6')) * 16 || 24;
+    const step = card.getBoundingClientRect().width + gap;
+    const max = track.children.length - 1;
+    if (index < 0) index = max;
+    if (index > max) index = 0;
+    track.style.transform = `translateX(-${index * step}px)`;
+  }
+  function carouselNext() { index++; updateCarousel(); }
+  function carouselPrev() { index--; updateCarousel(); }
+
+  const interval = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--carousel-interval')) || 3000;
+  let auto = setInterval(carouselNext, interval);
+  const carouselEl = document.querySelector('.carousel');
+  carouselEl.addEventListener('mouseenter', () => clearInterval(auto));
+  carouselEl.addEventListener('mouseleave', () => auto = setInterval(carouselNext, interval));
+  window.addEventListener('resize', updateCarousel);
+</script>
+
+</body>
+</html>

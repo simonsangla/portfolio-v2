@@ -1,0 +1,27 @@
+[
+  {
+    "repo": "simonsangla/theme-forge",
+    "local": true,
+    "localPath": "content/proofs/theme-forge.mdx"
+  },
+  {
+    "repo": "simonsangla/prompto",
+    "local": true,
+    "localPath": "content/proofs/prompto.mdx"
+  },
+  {
+    "repo": "simonsangla/prompt-optimizer",
+    "local": true,
+    "localPath": "content/proofs/prompt-optimizer.mdx"
+  },
+  {
+    "repo": "dfrabik/metricpilot",
+    "local": true,
+    "localPath": "content/proofs/metricpilot.mdx"
+  },
+  {
+    "repo": "simonsangla/chatgpt-training",
+    "local": true,
+    "localPath": "content/proofs/chatgpt-training.mdx"
+  }
+]

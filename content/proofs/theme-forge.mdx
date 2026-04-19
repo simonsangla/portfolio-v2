@@ -1,0 +1,53 @@
+---
+slug: theme-forge
+name: Theme Forge
+tagline: Portfolio-grade visual theme editor — adjust tokens live, export in six formats.
+category: Tool
+promise: A static, browser-only React/TypeScript app that lets a user adjust color, typography, and spacing tokens in a sidebar, see a live preview across an 11-widget catalog, and export the finished theme in multiple developer-ready formats.
+business_value: Cuts theme handoff from "design tokens in a Figma file" to "six production-ready exports in one click" — JSON, CSS, TS, Tailwind, SCSS, Style Dictionary.
+status: in-progress
+protection_level: public
+date: 2026-04-16
+tech_stack: [Vite 8, React 19, TypeScript 6, Zod 4, Vitest 4]
+links:
+  - label: Source
+    url: https://github.com/simonsangla/theme-forge
+    primary: true
+role: solo
+highlights:
+  - 7-domain cavekit architecture with 55 requirements locked before code
+  - Simple / Advanced color mode contract frozen across Editor (R11) and Persistence (R8)
+  - 11-widget catalog themed live under the active tokens with light/dark variant toggle
+  - Six pure-function exporters — JSON, CSS, TS, Tailwind, SCSS, Style Dictionary
+  - Zod-validated theme schema; all state in localStorage, no backend, no routing
+metrics:
+  - label: Requirements
+    value: "55 across 7 domains"
+  - label: Widget catalog
+    value: "11 preview types"
+  - label: Export formats
+    value: "6"
+related: []
+---
+
+## Problem
+
+Design tokens usually live in a Figma file nobody can consume as code, or in a brittle design-system repo nobody can edit without a pull request. Either way, themeability is slow: a handoff meeting, a copy-paste pass, a round of "can you also export it as Tailwind?"
+
+## Approach
+
+theme-forge is a static, browser-only React/TypeScript app. Seven domains, specified as Cavekit requirements before any code:
+
+- **Product Boundary** — locks the product surface (no backend, no routing, no auth, no CMS, no marketplace).
+- **Schema** — canonical theme data model with a variant pair shape (light/dark) and Zod validation surface.
+- **Editor** — interactive token controls, built-in presets, undo/redo history, Simple/Advanced color mode.
+- **Preview** — live canvas rendering representative UI under the active theme with a light/dark toggle.
+- **Export** — pure serialization to JSON, CSS, TS, Tailwind, SCSS, Style Dictionary; copy and download.
+- **Persistence** — local-storage save/restore; import from JSON string or file.
+- **Widgets** — bounded manifest of 11 themed preview cards; selection persists alongside the active theme.
+
+Stack: Vite 8 + React 19 + strict TypeScript + Zod + Vitest. All state in `localStorage`. Nothing leaves the tab.
+
+## Outcome
+
+Batch B-arch (PR #24, 2026-04-16) locked the Simple/Advanced color mode contract across Editor (R11) and Persistence (R8) with zero source/test/schema changes — architecture-only. Coverage summary: 55 requirements across 7 domains. Widget catalog frozen at 11 IDs. All four validation gates green on merge.
