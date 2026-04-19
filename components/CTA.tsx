@@ -10,10 +10,10 @@ type Props = {
 
 export function CTA({ href, children, variant = "primary", external }: Props) {
   const base =
-    "group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm transition-colors";
+    "group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm transition-[background-color,color,transform] duration-150";
   const styles =
     variant === "primary"
-      ? "bg-[color:var(--color-ink)] text-[color:var(--color-bg)] shadow-primary hover:bg-[color:var(--color-accent)]"
+      ? "bg-[color:var(--color-ink)] text-[color:var(--color-bg)] shadow-primary hover:bg-[color:var(--color-accent)] hover:-translate-y-[1px]"
       : "bg-[color:var(--color-bg)] text-[color:var(--color-ink)] shadow-secondary";
 
   const content = (
