@@ -2,6 +2,10 @@
 
 Last updated: 2026-04-19
 
+## Recent batches
+
+- **2026-04-19 — `/fractional` page ([#13](https://github.com/simonsangla/portfolio-v2/pull/13), merged `db9eb0d`).** Added `app/fractional/page.tsx` (hero + what I do + 4-phase how-it-works + engagement card + fit/not-fit columns + background + final CTA). Reused `Container`/`CTA`/`SectionReveal` + existing tokens only — no new colors/fonts/inline CSS. Added `/fractional` to `app/sitemap.ts` (priority 0.9, monthly). Gates green (lint + typecheck + build). Live at `simonsangla-portfolio-v2.vercel.app/fractional` (HTTP 200). Custom domain `simonsangla.com` was unreachable from this session env — DNS or domain not yet bound; verify after next DNS edit.
+
 ## What was built (bootstrap)
 
 Bootstrap executed via `~/.claude/skills/repo-bootstrap/SKILL.md` (draft, Vite-oriented — adapted to Next.js). Three batches: root commit + security/CI PR + this handoff PR.
