@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>MetricPilot — Simon Sangla</title>
+<link rel="icon" href="assets/favicon.svg" />
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="#051A24"/>
+    <g transform="translate(120 120)" fill="none" stroke="#E7A76C" stroke-width="6" stroke-linecap="square">
+      <rect x="0" y="0" width="160" height="160" rx="4"/>
+      <path d="M24 120 L72 72 L104 104 L144 40"/>
+      <circle cx="72" cy="72" r="6" fill="#E7A76C" stroke="none"/>
+      <circle cx="104" cy="104" r="6" fill="#E7A76C" stroke="none"/>
+      <circle cx="144" cy="40" r="6" fill="#E7A76C" stroke="none"/>
+    </g>
+  </svg>
+</template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-ink: #051A24;
+  --color-ink-soft: #0D212C;
+  --color-muted: #273C46;
+  --color-muted-soft: #4a5d66;
+  --color-hairline: #E0EBF0;
+  --color-hairline-soft: #EEF4F7;
+  --color-surface-invert: #051A24;
+  --color-on-invert: #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+  --color-accent: #B8341A;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --inter-features: "ss01", "cv11", "cv05";
+
+  --shadow-primary:
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      inset 0 2px 8px 0 rgba(255,255,255,0.50);
+  --shadow-secondary: 0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 30px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-float: 0 8px 24px rgba(5,26,36,0.10), 0 2px 6px rgba(5,26,36,0.06);
+}
+
+* { box-sizing: border-box; }
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--inter-features);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+body { margin: 0; font-size: 17px; line-height: 1.6; letter-spacing: -0.005em; overflow-x: hidden; }
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+a { color: inherit; text-decoration: none; }
+p { margin: 0; text-wrap: pretty; }
+::selection { background: var(--color-ink); color: var(--color-bg); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; line-height: 1.2;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-muted); font-weight: 400;
+}
+
+/* ===== Nav ===== */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.nav .bar {
+  max-width: 1200px; margin: 0 auto; padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav .mark {
+  font-size: 15px; font-weight: 600; color: var(--color-ink-soft);
+  letter-spacing: -0.015em;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav .mark .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184,52,26,0.12);
+}
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav a { font-size: 14px; color: var(--color-muted); font-weight: 500; transition: color 150ms; }
+.nav a:hover { color: var(--color-ink); }
+.nav .cta-inline {
+  font-size: 13px; color: var(--color-ink); font-weight: 500;
+  padding: 8px 14px; border-radius: 9999px;
+  background: var(--color-hairline-soft); border: 1px solid var(--color-hairline);
+  transition: all 150ms; white-space: nowrap;
+}
+.nav .cta-inline:hover { background: var(--color-ink); color: var(--color-on-invert); border-color: var(--color-ink); }
+@media (max-width: 720px) { .nav ul li:not(:last-child) { display: none; } }
+
+main { max-width: 1200px; margin: 0 auto; padding: 40px 24px 0; }
+
+.crumb { font-size: 13px; color: var(--color-muted); margin-bottom: 8px; }
+.crumb a { transition: color 150ms; display: inline-flex; align-items: center; gap: 8px; }
+.crumb a:hover { color: var(--color-ink); }
+
+/* ===== Hero ===== */
+.hero { padding: 32px 0 24px; max-width: 860px; }
+.hero .meta {
+  margin-top: 6px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--color-muted);
+}
+.hero .meta .sep { color: var(--color-hairline); }
+.hero .status-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 10px; border-radius: 9999px;
+  border: 1px solid var(--color-hairline);
+  background: var(--color-hairline-soft);
+}
+.hero .status-tag .bullet {
+  width: 6px; height: 6px; border-radius: 50%; background: #d97706;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6.5vw, 72px);
+  letter-spacing: -0.03em; line-height: 1.02; margin: 24px 0 0;
+  font-weight: 500;
+}
+.hero .tag {
+  margin-top: 24px; max-width: 56ch;
+  font-size: clamp(18px, 1.8vw, 22px); line-height: 1.45;
+  color: var(--color-muted); font-weight: 400;
+}
+.hero .promise { margin-top: 32px; max-width: 62ch; font-size: 17px; line-height: 1.65; color: var(--color-ink-soft); }
+.hero .biz { margin-top: 16px; max-width: 62ch; font-size: 16px; line-height: 1.6; color: var(--color-muted); }
+
+.highlights { margin-top: 36px; max-width: 62ch; padding: 0; list-style: none; }
+.highlights li {
+  display: flex; gap: 14px; padding: 8px 0;
+  font-size: 16px; line-height: 1.55;
+  border-top: 1px solid var(--color-hairline-soft);
+}
+.highlights li:first-child { border-top: 0; }
+.highlights li .dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 9999px;
+  background: var(--color-accent); margin-top: 10px; flex-shrink: 0;
+}
+
+.chips { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--color-hairline);
+  border-radius: 9999px; padding: 4px 11px; font-size: 11px;
+  color: var(--color-muted); background: var(--color-bg);
+}
+
+.cta-row { margin-top: 40px; display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border-radius: 9999px; padding: 11px 20px;
+  font-size: 14px; line-height: 1; font-weight: 500;
+  font-family: var(--font-sans);
+  transition: all 150ms ease-out;
+  border: 0; cursor: pointer; text-decoration: none;
+}
+.btn.primary { background: var(--color-ink); color: var(--color-on-invert); box-shadow: var(--shadow-primary); }
+.btn.primary:hover { background: var(--color-accent); transform: translateY(-1px); }
+.btn.secondary { background: var(--color-bg); color: var(--color-ink); border: 1px solid var(--color-hairline); }
+.btn.secondary:hover { border-color: var(--color-ink); }
+.btn .arrow { transition: transform 150ms ease-out; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ===== Capture mock ===== */
+.capture {
+  margin-top: 72px;
+  width: 100%; aspect-ratio: 21 / 9;
+  border-radius: 16px;
+  box-shadow: var(--shadow-float);
+  background: linear-gradient(135deg, #0D212C 0%, #051A24 60%, #142a36 100%);
+  position: relative; overflow: hidden;
+}
+.capture .mock {
+  position: absolute; inset: 40px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  display: grid; grid-template-rows: auto auto 1fr; gap: 16px;
+  padding: 20px;
+}
+.capture .mock .topline {
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--color-on-invert-soft); font-size: 12px; font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+.capture .mock .topline .right { display: flex; gap: 16px; opacity: 0.7; }
+.capture .mock .kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  color: var(--color-on-invert);
+}
+.capture .mock .kpis .k-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; }
+.capture .mock .kpis .k-val { font-size: 24px; font-weight: 500; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.capture .mock .kpis .k-val .dlt { color: #6ad8a5; font-size: 12px; margin-left: 6px; }
+.capture .mock .chart {
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; align-items: end; height: 100%;
+  padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.capture .mock .chart div {
+  background: linear-gradient(180deg, var(--color-accent), rgba(184,52,26,0.3));
+  border-radius: 2px; opacity: 0.85;
+}
+
+/* ===== Article ===== */
+article {
+  margin: 80px auto 0; max-width: 680px;
+  color: var(--color-ink-soft); line-height: 1.7;
+}
+article h2 {
+  font-size: 26px; letter-spacing: -0.02em; font-weight: 500;
+  margin: 2.6em 0 0.7em;
+}
+article h2:first-child { margin-top: 0; }
+article p { margin: 1.1em 0; font-size: 17px; color: var(--color-muted-soft); }
+article p strong { color: var(--color-ink); font-weight: 500; }
+article ul { padding-left: 0; list-style: none; }
+article li {
+  margin: 8px 0; padding: 10px 0 10px 20px; font-size: 16px;
+  color: var(--color-muted-soft);
+  border-top: 1px solid var(--color-hairline-soft);
+  position: relative;
+}
+article li:first-child { border-top: 0; }
+article li::before {
+  content: ''; position: absolute; left: 0; top: 18px;
+  width: 8px; height: 1px; background: var(--color-accent);
+}
+article a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+article code {
+  font-family: var(--font-mono); font-size: 0.88em;
+  background: rgba(5,26,36,0.06); padding: 0.15em 0.4em; border-radius: 3px;
+}
+article blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding: 4px 0 4px 20px; color: var(--color-ink); font-size: 18px;
+  margin: 1.8em 0; font-weight: 500; letter-spacing: -0.01em;
+  line-height: 1.45;
+}
+
+/* ===== Metrics ===== */
+.metrics {
+  margin: 72px auto 0; max-width: 680px;
+  border: 1px solid var(--color-hairline);
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: var(--shadow-card);
+}
+.metrics .eye { margin: 0 0 20px; }
+.metrics dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 0; }
+.metrics dt { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-muted); }
+.metrics dd {
+  margin: 10px 0 0;
+  font-size: 36px; line-height: 1.05; letter-spacing: -0.025em;
+  color: var(--color-ink-soft); font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.metrics dd.phrase { font-size: 17px; line-height: 1.4; letter-spacing: -0.01em; font-weight: 500; }
+@media (max-width: 640px) {
+  .metrics dl { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ===== Related ===== */
+.related { margin: 96px auto 0; max-width: 680px; }
+.related h3 { font-size: 22px; margin: 0 0 24px; font-weight: 500; letter-spacing: -0.02em; }
+.related .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .related .grid { grid-template-columns: 1fr; } }
+.related a {
+  display: grid; gap: 6px; padding: 20px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  transition: all 150ms ease-out;
+}
+.related a:hover { border-color: var(--color-ink); background: var(--color-hairline-soft); }
+.related .name {
+  font-size: 18px; font-weight: 500; letter-spacing: -0.02em; color: var(--color-ink-soft);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.related .arrow { transition: transform 150ms ease-out; color: var(--color-muted); }
+.related a:hover .arrow { transform: translateX(4px); color: var(--color-accent); }
+.related .tagline { font-size: 14px; color: var(--color-muted); line-height: 1.5; }
+
+/* ===== Travel (prev/next) ===== */
+.travel {
+  margin: 56px auto 0; max-width: 680px;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 32px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.travel a {
+  padding: 16px; border-radius: 8px; display: grid; gap: 6px;
+  transition: background 150ms ease-out;
+}
+.travel a:hover { background: var(--color-hairline-soft); }
+.travel .dir {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--color-muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.travel .dir .arrow { transition: transform 150ms ease-out; }
+.travel a:hover[data-dir="prev"] .arrow { transform: translateX(-4px); color: var(--color-accent); }
+.travel a:hover[data-dir="next"] .arrow { transform: translateX(4px); color: var(--color-accent); }
+.travel .dir[data-dir="next"] { justify-content: flex-end; }
+.travel .name { font-size: 17px; font-weight: 500; letter-spacing: -0.015em; color: var(--color-ink-soft); }
+.travel a[data-dir="next"] .name { text-align: right; }
+
+/* ===== Footer ===== */
+footer {
+  margin-top: 112px; border-top: 1px solid var(--color-hairline);
+  padding: 48px 0; font-size: 14px; color: var(--color-muted);
+}
+footer .row {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px;
+}
+footer ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; margin: 0; padding: 0; }
+footer a:hover { color: var(--color-ink); }
+
+/* ===== Language switcher ===== */
+.lang-switch {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--color-hairline);
+  border-radius: 9999px;
+  padding: 3px;
+  background: var(--color-hairline-soft);
+  gap: 2px;
+  margin-left: 4px;
+}
+.lang-switch button {
+  border: 0; background: transparent;
+  padding: 5px 10px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-muted); cursor: pointer;
+  border-radius: 9999px;
+  transition: all 150ms;
+  font-weight: 500;
+}
+.lang-switch button.on { background: var(--color-ink); color: var(--color-on-invert); }
+.lang-switch button:hover:not(.on) { color: var(--color-ink); }
+@media (max-width: 720px) {
+  .nav ul li.lang-li { display: flex; }
+  .lang-switch button { padding: 5px 8px; font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="bar">
+    <a href="home.html" class="mark"><span class="dot"></span>Simon Sangla</a>
+    <ul>
+      <li><a href="home.html#proofs" data-i18n="nav.work">Work</a></li>
+      <li><a href="home.html#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="home.html#training" data-i18n="nav.training">Training</a></li>
+      <li><a href="home.html#about" data-i18n="nav.about">About</a></li>
+      <li><a class="cta-inline" href="home.html#services" data-i18n="nav.cta">Start intake →</a></li>
+      <li class="lang-li">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="on">EN</button>
+          <button type="button" data-lang="pt">PT</button>
+          <button type="button" data-lang="fr">FR</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <p class="crumb"><a href="home.html#proofs" data-i18n="proof.crumb">← All work</a></p>
+
+  <section class="hero">
+    <div class="meta">
+      <span class="status-tag"><span class="bullet"></span><span data-i18n="proof.status.inprogress">In progress</span></span>
+      <span data-i18n="proof.meta.engagement">Engagement</span>
+      <span class="sep">·</span>
+      <span data-i18n="proof.meta.solo">Solo builder</span>
+      <span class="sep">·</span>
+      <span data-i18n="proof.meta.public">Public</span>
+      <span class="sep">·</span>
+      <span>2026</span>
+    </div>
+    <h1>MetricPilot</h1>
+    <p class="tag" data-i18n="proof.mp.tag">Revenue root-cause engine. Point it at Snowflake, get a change-point report and a Streamlit dashboard your PMs actually re-run.</p>
+    <p class="promise" data-i18n="proof.mp.promise">A four-week engagement built for B2C scale-ups whose KPI moved and nobody can cleanly explain why. Statistical change-point detection over your event layer, decomposed by cohort, channel, and platform — written up as a decision-ready narrative.</p>
+    <p class="biz" data-i18n="proof.mp.biz">Deliverables are yours on day 28: the report, the dashboard, the runbook, versioned in your repo. No dependency on me after handoff.</p>
+
+    <ul class="highlights">
+      <li><span class="dot"></span><span data-i18n="proof.mp.hl1">Decomposes your target KPI into additive drivers, each with quantified contribution.</span></li>
+      <li><span class="dot"></span><span data-i18n="proof.mp.hl2">Detects change-points by cohort, channel, platform, geography — not just "traffic is down".</span></li>
+      <li><span class="dot"></span><span data-i18n="proof.mp.hl3">Ships a Streamlit explorer your team re-runs monthly without me in the loop.</span></li>
+      <li><span class="dot"></span><span data-i18n="proof.mp.hl4">Executive-ready narrative — what changed, why, what to do next — ranked by leverage.</span></li>
+    </ul>
+
+    <div class="chips">
+      <span class="chip">Snowflake</span>
+      <span class="chip">Streamlit</span>
+      <span class="chip">Cortex</span>
+      <span class="chip">dbt</span>
+      <span class="chip">Python</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="home.html#services"><span data-i18n="proof.cta1">Start an engagement</span><span class="arrow">→</span></a>
+      <a class="btn secondary" href="#"><span data-i18n="proof.cta2">Technical case study</span><span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- Capture -->
+  <div class="capture" aria-label="Dashboard preview">
+    <div class="mock">
+      <div class="topline">
+        <span>metricpilot · revenue decomposition · q3 2025</span>
+        <span class="right"><span>↗ 12 drivers</span><span>83% explained</span></span>
+      </div>
+      <div class="kpis">
+        <div><div class="k-label">MRR</div><div class="k-val">€1.42M<span class="dlt">+4.2%</span></div></div>
+        <div><div class="k-label">Paid conv.</div><div class="k-val">3.8%<span class="dlt">-0.6pp</span></div></div>
+        <div><div class="k-label">LTV:CAC</div><div class="k-val">2.9x<span class="dlt">+0.3x</span></div></div>
+        <div><div class="k-label">Churn</div><div class="k-val">5.1%<span class="dlt">+1.2pp</span></div></div>
+      </div>
+      <div class="chart" id="chart"></div>
+    </div>
+  </div>
+
+  <!-- Article -->
+  <article>
+    <h2 data-i18n="proof.art.h1">The problem</h2>
+    <p data-i18n-html="proof.art.p1">Scale-ups rarely lack data. They lack a framework for asking <strong>why a number moved</strong> that outlives the person who last looked at it. Analysts churn, dashboards rot, and six months later the CEO is asking the same question.</p>
+
+    <h2 data-i18n="proof.art.h2">The approach</h2>
+    <p data-i18n="proof.art.p2">Every engagement starts the same way: read-only access to your warehouse, a written intake, a target KPI. From there the engine decomposes the metric into its additive drivers and runs change-point detection per driver.</p>
+    <ul>
+      <li data-i18n="proof.art.li1">Schema assessment — what you have, what's clean, what needs backfill</li>
+      <li data-i18n="proof.art.li2">Decomposition model — fitted to your actuals, validated against a held-out month</li>
+      <li data-i18n="proof.art.li3">Change-point report — by cohort, channel, platform, geography</li>
+      <li data-i18n="proof.art.li4">Streamlit dashboard — the diagnostic becomes self-serve</li>
+    </ul>
+
+    <h2 data-i18n="proof.art.h3">What you keep</h2>
+    <p data-i18n-html="proof.art.p3">Everything versioned in your repo. A <code>runbook.md</code> that your next analyst can follow without me. The dashboard runs on your Snowflake warrant — I have no keys after day 28.</p>
+
+    <blockquote data-i18n="proof.art.quote">The point isn't to explain one quarter. It's to leave your team a tool that explains the next one without calling me.</blockquote>
+  </article>
+
+  <!-- Metrics -->
+  <section class="metrics">
+    <p class="eyebrow eye" style="color:var(--color-ink-soft); font-weight:500;" data-i18n="proof.metrics.eye">Proof</p>
+    <dl>
+      <div>
+        <dt data-i18n="proof.metrics.dt1">Engagement</dt>
+        <dd data-i18n="proof.metrics.dd1">4 wks</dd>
+      </div>
+      <div>
+        <dt data-i18n="proof.metrics.dt2">KPI variance explained</dt>
+        <dd>83%</dd>
+      </div>
+      <div>
+        <dt data-i18n="proof.metrics.dt3">Coverage</dt>
+        <dd class="phrase" data-i18n="proof.metrics.dd3">9 domains · 36 drivers mapped</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Related -->
+  <section class="related">
+    <h3 data-i18n="proof.related.h">Related work</h3>
+    <div class="grid">
+      <a href="#">
+        <span class="name">Prompto <span class="arrow">→</span></span>
+        <span class="tagline" data-i18n="proof.related.r1">Async prompt workspace — lints, versions, diffs across a codebase of agents.</span>
+      </a>
+      <a href="#">
+        <span class="name">Theme Forge <span class="arrow">→</span></span>
+        <span class="tagline" data-i18n="proof.related.r2">Design-system generator. JSON in, a full token sheet + preview out.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Prev/Next -->
+  <nav class="travel" aria-label="Proof traversal">
+    <a href="#" data-dir="prev">
+      <span class="dir" data-dir="prev"><span class="arrow">←</span> <span data-i18n="proof.travel.prev">Previous</span></span>
+      <span class="name" data-i18n="proof.travel.prevName">Experimentation backbone</span>
+    </a>
+    <a href="#" data-dir="next">
+      <span class="dir" data-dir="next"><span data-i18n="proof.travel.next">Next</span> <span class="arrow">→</span></span>
+      <span class="name">Prompto</span>
+    </a>
+  </nav>
+</main>
+
+<footer>
+  <div class="row">
+    <p data-i18n="footer.legal">© 2026 Simon Sangla · Lisbon, Portugal · Remote &amp; async</p>
+    <ul>
+      <li><a href="home.html#proofs" data-i18n="nav.work">Work</a></li>
+      <li><a href="home.html#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="home.html#training" data-i18n="nav.training">Training</a></li>
+      <li><a href="home.html#about" data-i18n="nav.about">About</a></li>
+      <li><a href="mailto:hi@simonsangla.com" data-i18n="footer.email">Email</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const chart = document.getElementById('chart');
+  const heights = [30, 45, 38, 60, 55, 72, 65, 85, 78, 90, 82, 95];
+  chart.innerHTML = heights.map(h => `<div style="height:${h}%"></div>`).join('');
+</script>
+<script src="i18n.js"></script>
+</body>
+</html>

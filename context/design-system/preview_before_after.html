@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Before / After — Proof Detail (DESIGN.md migration)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400..500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #FFFFFF;
+    --color-ink: #051A24;
+    --color-ink-soft: #0D212C;
+    --color-muted: #273C46;
+    --color-hairline: #E0EBF0;
+    --color-accent: #B8341A;
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-fraunces: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #F4F6F8;
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top spec bar */
+  .spec {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-hairline);
+    padding: 16px 24px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .spec b { color: var(--color-ink); font-weight: 500; letter-spacing: 0.16em; }
+
+  /* Split layout */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: calc(100vh - 58px);
+  }
+  @media (min-width: 1024px) { .split { grid-template-columns: 1fr 1fr; } }
+
+  .pane { padding: 32px 24px 80px; background: var(--color-bg); }
+  .pane + .pane { border-top: 1px solid var(--color-hairline); }
+  @media (min-width: 1024px) {
+    .pane + .pane { border-top: 0; border-left: 1px solid var(--color-hairline); }
+  }
+  .pane.before { background: #FAFBFC; }
+
+  .pane-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    margin: 0 0 28px;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 12px;
+    background: #fff;
+    border: 1px solid var(--color-hairline);
+    border-radius: 9999px;
+  }
+  .pane-label .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    background: var(--color-hairline);
+    color: var(--color-ink);
+  }
+  .pane-label.after .tag { background: var(--color-ink); color: #fff; }
+
+  /* --- shared content classes --- */
+  .eyebrow-row {
+    display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+  .eyebrow-row .status {
+    color: var(--color-ink); font-weight: 500; letter-spacing: 0.18em;
+  }
+  .eyebrow-row .sep { color: var(--color-hairline); }
+  .tagline { color: var(--color-muted); margin: 12px 0 0; max-width: 52ch; }
+  .promise { font-size: 18px; line-height: 1.6; color: var(--color-ink); margin: 20px 0 0; max-width: 60ch; }
+  .biz { font-size: 16px; line-height: 1.6; color: var(--color-muted); margin: 16px 0 0; max-width: 60ch; }
+  .highlights { list-style: none; padding: 0; margin: 24px 0 0; max-width: 60ch; }
+  .highlights li {
+    display: flex; gap: 12px; margin-bottom: 10px;
+    font-size: 16px; line-height: 1.55;
+  }
+  .highlights li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 4px; height: 4px; margin-top: 10px;
+    background: var(--color-accent);
+    border-radius: 9999px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .chip {
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid var(--color-hairline);
+    border-radius: 9999px;
+    color: var(--color-muted);
+  }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; font-size: 14px;
+    border-radius: 9999px; border: 0; cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--color-ink); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--color-ink); border: 1px solid var(--color-hairline); }
+
+  /* Proof metrics card */
+  .metrics {
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    background: var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+  .metrics-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--color-ink); font-weight: 500;
+    margin: 0 0 16px;
+  }
+  .metrics-grid {
+    display: grid; grid-template-columns: 1fr; gap: 24px;
+  }
+  @media (min-width: 640px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+  .metric dt {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+  .metric dd { margin: 8px 0 0; color: var(--color-ink-soft); }
+
+  /* ============================================================
+     BEFORE — Fraunces, font-serif, display-axis on h1
+     ============================================================ */
+  .before body-style { font-family: var(--font-inter); }
+  .before h1 {
+    font-family: var(--font-fraunces);
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-ink-soft);
+    margin: 12px 0 0;
+  }
+  .before .tagline { font-family: var(--font-inter); font-size: 19px; }
+  .before .promise, .before .biz, .before .highlights li { font-family: var(--font-inter); }
+  .before .metric dd {
+    font-family: var(--font-fraunces);
+    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .before .metric dd.long {
+    font-size: 22px; line-height: 1.2;
+  }
+  .before .btn { font-family: var(--font-inter); }
+  .before .eyebrow-row, .before .chip, .before .metrics-label { font-family: var(--font-inter); }
+
+  /* ============================================================
+     AFTER — Inter only, ss01 + cv11
+     ============================================================ */
+  .after {
+    font-family: var(--font-inter);
+    font-feature-settings: "ss01", "cv11";
+  }
+  .after h1 {
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--color-ink-soft);
+    margin: 12px 0 0;
+  }
+  .after .tagline { font-size: 19px; letter-spacing: -0.01em; }
+  .after .metric dd {
+    font-family: var(--font-inter);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .after .metric dd.long {
+    font-size: 22px; line-height: 1.2; letter-spacing: -0.015em;
+  }
+
+  /* global body copy defaults */
+  .pane { font-size: 16px; line-height: 1.6; letter-spacing: -0.005em; }
+
+  /* footer */
+  .foot {
+    padding: 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--color-muted);
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-hairline);
+  }
+  .foot a { color: var(--color-ink); text-decoration: none; }
+  .foot a + a { margin-left: 20px; }
+</style>
+</head>
+<body>
+
+  <div class="spec">
+    <span><b>Step 1–3 migration</b> · layout.tsx · globals.css · 5 components</span>
+    <span>Real content: content/proofs/metricpilot.mdx</span>
+  </div>
+
+  <div class="split">
+
+    <!-- ============ BEFORE ============ -->
+    <section class="pane before">
+      <span class="pane-label"><span class="tag">BEFORE</span> Fraunces + Inter · font-variation-settings · 440px</span>
+
+      <div class="eyebrow-row">
+        <span class="status">In progress</span>
+        <span class="sep">•</span>
+        <span>Engagement</span>
+        <span class="sep">•</span>
+        <span>Solo</span>
+        <span class="sep">•</span>
+        <span>Public</span>
+        <span class="sep">•</span>
+        <span>2026</span>
+      </div>
+
+      <h1>MetricPilot</h1>
+      <p class="tagline">Revenue Root Cause Engine for B2C scale-ups on Snowflake.</p>
+
+      <p class="promise">Productized four-week engagement that explains why a revenue metric moved and leaves a Streamlit workbook your team keeps.</p>
+      <p class="biz">Turns a two-week analyst scramble into a fixed-scope, fully-async, outcome-priced consulting loop anchored on a self-serve tool.</p>
+
+      <ul class="highlights">
+        <li>Fixed-scope four-week engagement anchored on a self-serve Streamlit workbook</li>
+        <li>Additive KPI decomposition — the metric moved by X, driver A contributed +Y, driver B contributed &minus;Z</li>
+        <li>Change-point detection via Theil-Sen slopes + STL decomposition</li>
+        <li>Precursor system at TripAdvisor cut KPI investigation time by 80%</li>
+      </ul>
+
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">Streamlit</span>
+        <span class="chip">Snowflake</span><span class="chip">STL</span>
+        <span class="chip">Theil-Sen</span>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="#">Start intake</a>
+        <a class="btn btn-ghost" href="#">Demo factory (public) &#8599;</a>
+      </div>
+
+      <div class="metrics">
+        <p class="metrics-label">Proof</p>
+        <dl class="metrics-grid">
+          <div class="metric">
+            <dt>Engagement</dt>
+            <dd>4 weeks</dd>
+          </div>
+          <div class="metric">
+            <dt>Price (fixed)</dt>
+            <dd>&euro;15&ndash;25K</dd>
+          </div>
+          <div class="metric">
+            <dt>Precursor at TripAdvisor</dt>
+            <dd class="long">&minus;80% investigation time</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ AFTER ============ -->
+    <section class="pane after">
+      <span class="pane-label after"><span class="tag">AFTER</span> Inter only · ss01 + cv11 · weights 400/500/600</span>
+
+      <div class="eyebrow-row">
+        <span class="status">In progress</span>
+        <span class="sep">•</span>
+        <span>Engagement</span>
+        <span class="sep">•</span>
+        <span>Solo</span>
+        <span class="sep">•</span>
+        <span>Public</span>
+        <span class="sep">•</span>
+        <span>2026</span>
+      </div>
+
+      <h1>MetricPilot</h1>
+      <p class="tagline">Revenue Root Cause Engine for B2C scale-ups on Snowflake.</p>
+
+      <p class="promise">Productized four-week engagement that explains why a revenue metric moved and leaves a Streamlit workbook your team keeps.</p>
+      <p class="biz">Turns a two-week analyst scramble into a fixed-scope, fully-async, outcome-priced consulting loop anchored on a self-serve tool.</p>
+
+      <ul class="highlights">
+        <li>Fixed-scope four-week engagement anchored on a self-serve Streamlit workbook</li>
+        <li>Additive KPI decomposition — the metric moved by X, driver A contributed +Y, driver B contributed &minus;Z</li>
+        <li>Change-point detection via Theil-Sen slopes + STL decomposition</li>
+        <li>Precursor system at TripAdvisor cut KPI investigation time by 80%</li>
+      </ul>
+
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">Streamlit</span>
+        <span class="chip">Snowflake</span><span class="chip">STL</span>
+        <span class="chip">Theil-Sen</span>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="#">Start intake</a>
+        <a class="btn btn-ghost" href="#">Demo factory (public) &#8599;</a>
+      </div>
+
+      <div class="metrics">
+        <p class="metrics-label">Proof</p>
+        <dl class="metrics-grid">
+          <div class="metric">
+            <dt>Engagement</dt>
+            <dd>4 weeks</dd>
+          </div>
+          <div class="metric">
+            <dt>Price (fixed)</dt>
+            <dd>&euro;15&ndash;25K</dd>
+          </div>
+          <div class="metric">
+            <dt>Precursor at TripAdvisor</dt>
+            <dd class="long">&minus;80% investigation time</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    <a href="DESIGN.md">DESIGN.md</a>
+    <a href="preview_hero_practitioner.html">hero preview</a>
+    <a href="migration/app/layout.tsx">migration files &rarr;</a>
+  </div>
+
+</body>
+</html>

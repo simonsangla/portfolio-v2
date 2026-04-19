@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Simon Sangla — Data + AI products that ship</title>
+<link rel="icon" href="assets/favicon.svg" />
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="#051A24"/>
+    <g transform="translate(120,120)">
+      <circle cx="80" cy="80" r="80" fill="#B8341A" opacity="0.95"/>
+      <path d="M20 110 L60 70 L90 100 L140 40" stroke="#F6FCFF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="140" cy="40" r="8" fill="#F6FCFF"/>
+    </g>
+    <text x="200" y="340" text-anchor="middle" fill="#F6FCFF" font-family="system-ui, sans-serif" font-size="22" font-weight="600" letter-spacing="-0.02em">Simon Sangla</text>
+  </svg>
+</template>
+<style>
+/* ============================================================
+   simonsangla.com — Inter-only system
+   (Fraunces removed; Inter handles display + body + nav; JetBrains Mono for eyebrows/meta.)
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-ink: #051A24;
+  --color-ink-soft: #0D212C;
+  --color-muted: #273C46;
+  --color-muted-soft: #4a5d66;
+  --color-hairline: #E0EBF0;
+  --color-hairline-soft: #EEF4F7;
+  --color-surface-invert: #051A24;
+  --color-on-invert: #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+  --color-accent: #B8341A;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --inter-features: "ss01", "cv11", "cv05";
+
+  --shadow-primary:
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      0 17px 7px 0 rgba(5,26,36,0.01),
+      inset 0 2px 8px 0 rgba(255,255,255,0.50);
+  --shadow-secondary:
+      0 0 0 0.5px rgba(0,0,0,0.05),
+      0 4px 30px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-float:
+      0 8px 24px rgba(5,26,36,0.10),
+      0 2px 6px rgba(5,26,36,0.06);
+
+  --radius-pill: 9999px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+* { box-sizing: border-box; }
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--inter-features);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0; font-size: 17px; line-height: 1.6;
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--color-ink-soft);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+a { color: inherit; text-decoration: none; }
+p { margin: 0; text-wrap: pretty; }
+::selection { background: var(--color-ink); color: var(--color-bg); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; line-height: 1.2;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-muted); font-weight: 400;
+}
+@media (min-width: 768px) { .eyebrow { font-size: 12px; } }
+
+/* ============================================================
+   Nav
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.nav .bar {
+  max-width: 1200px; margin: 0 auto; padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav .mark {
+  font-size: 15px; font-weight: 600; color: var(--color-ink-soft);
+  letter-spacing: -0.015em;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav .mark .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184,52,26,0.12);
+}
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav a { font-size: 14px; color: var(--color-muted); font-weight: 500; transition: color 150ms; }
+.nav a:hover { color: var(--color-ink); }
+.nav .cta-inline {
+  font-size: 13px; color: var(--color-ink); font-weight: 500;
+  padding: 8px 14px; border-radius: var(--radius-pill);
+  background: var(--color-hairline-soft); border: 1px solid var(--color-hairline);
+  transition: all 150ms;
+  white-space: nowrap;
+}
+.nav .cta-inline:hover { background: var(--color-ink); color: var(--color-on-invert); border-color: var(--color-ink); }
+@media (max-width: 720px) { .nav ul li:not(:last-child) { display: none; } }
+
+main { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(56px, 10vw, 112px) 0 clamp(48px, 8vw, 96px);
+  max-width: var(--hero-width, 920px);
+}
+.hero .status {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 14px 6px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-hairline-soft);
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-muted); margin-bottom: 28px;
+  white-space: nowrap;
+}
+.hero .status .pulse {
+  position: relative; width: 8px; height: 8px; border-radius: 50%;
+  background: #2e9a5e;
+}
+.hero .status .pulse::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid #2e9a5e; opacity: 0.4;
+  animation: pulse 2.2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.7); opacity: 0.6; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7.2vw, 80px);
+  line-height: 0.98; letter-spacing: -0.03em;
+  font-weight: 500;
+  margin: 0;
+}
+.hero h1 .dim { color: var(--color-muted); font-weight: 400; }
+
+.hero .lead {
+  margin-top: 28px; max-width: 54ch;
+  font-size: clamp(17px, 1.6vw, 20px); line-height: 1.55;
+  color: var(--color-muted);
+}
+.hero .lead strong { color: var(--color-ink); font-weight: 500; }
+
+.hero .ctas { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+.hero .signals {
+  margin-top: 48px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 24px;
+}
+.hero .signals > div {
+  padding-right: 24px;
+}
+.hero .signals .k {
+  font-size: 28px; font-weight: 500; letter-spacing: -0.02em;
+  color: var(--color-ink-soft); font-variant-numeric: tabular-nums;
+}
+.hero .signals .v {
+  margin-top: 4px; font-size: 13px; color: var(--color-muted); line-height: 1.45;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border-radius: var(--radius-pill);
+  padding: 11px 20px;
+  font-size: 14px; line-height: 1; font-weight: 500;
+  font-family: var(--font-sans);
+  transition: all 150ms ease-out;
+  border: 0; cursor: pointer; text-decoration: none;
+}
+.btn.primary { background: var(--color-ink); color: var(--color-on-invert); box-shadow: var(--shadow-primary); }
+.btn.primary:hover { background: var(--color-accent); transform: translateY(-1px); }
+.btn.secondary {
+  background: var(--color-bg); color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+}
+.btn.secondary:hover { border-color: var(--color-ink); }
+.btn .arrow { transition: transform 150ms ease-out; display: inline-block; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Square CTA variant */
+body[data-cta-style="square"] .btn { border-radius: 6px; }
+
+/* ============================================================
+   Sections
+   ============================================================ */
+.section { border-top: 1px solid var(--color-hairline); padding: clamp(64px, 9vw, 112px) 0; }
+.section-head {
+  display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
+  gap: 16px; margin-bottom: 48px;
+}
+.section-head h2 {
+  font-size: clamp(32px, 4.4vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.04; margin: 12px 0 0;
+  font-weight: 500; max-width: 20ch;
+}
+.section-head .count { font-size: 13px; color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+/* ============================================================
+   Proof list (default) — dense row layout
+   ============================================================ */
+.artifacts.list { display: block; }
+.artifacts.list .artifact {
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid var(--color-hairline);
+  text-decoration: none; color: inherit;
+  transition: all 150ms ease-out;
+  position: relative;
+}
+.artifacts.list .artifact:last-child { border-bottom: 1px solid var(--color-hairline); }
+.artifacts.list .artifact::before {
+  content: ''; position: absolute; inset: 0 -16px;
+  background: var(--color-hairline-soft); opacity: 0; border-radius: 8px;
+  transition: opacity 150ms; z-index: -1;
+}
+.artifacts.list .artifact:hover::before { opacity: 1; }
+.artifacts.list .artifact h3 {
+  font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.02em; line-height: 1.1;
+  font-weight: 500; margin: 4px 0 0;
+  transition: color 150ms ease-out;
+}
+.artifacts.list .artifact:hover h3 { color: var(--color-accent); }
+.artifacts.list .artifact .tag {
+  margin-top: 10px; max-width: 58ch; color: var(--color-muted); font-size: 16px; line-height: 1.55;
+}
+.artifacts.list .artifact .meta {
+  margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+.artifacts.list .artifact .meta .sep { color: var(--color-hairline); }
+.artifacts.list .artifact .arrow {
+  font-size: 22px; color: var(--color-muted); align-self: center;
+  transition: transform 150ms ease-out, color 150ms ease-out;
+}
+.artifacts.list .artifact:hover .arrow { transform: translateX(4px); color: var(--color-accent); }
+
+/* Proof grid variant */
+.artifacts.grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+@media (max-width: 720px) { .artifacts.grid { grid-template-columns: 1fr; } }
+.artifacts.grid .artifact {
+  display: flex; flex-direction: column; gap: 0;
+  padding: 28px; border-radius: var(--radius-xl);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-bg);
+  text-decoration: none; color: inherit;
+  transition: all 200ms ease-out;
+  min-height: 280px;
+}
+.artifacts.grid .artifact:hover {
+  border-color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+.artifacts.grid .artifact h3 {
+  font-size: 24px; font-weight: 500; letter-spacing: -0.02em; margin: 12px 0 0;
+}
+.artifacts.grid .artifact .tag { margin-top: 10px; color: var(--color-muted); font-size: 15px; line-height: 1.55; flex: 1; }
+.artifacts.grid .artifact .meta {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-hairline-soft);
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+/* ============================================================
+   Proof carousel variant
+   ============================================================ */
+.artifacts.carousel { display: block; position: relative; }
+.artifacts.carousel .track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(440px, 82vw);
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 24px;
+  padding: 4px 24px 24px;
+  margin: 0 -24px;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+}
+.artifacts.carousel .track::-webkit-scrollbar { display: none; }
+.artifacts.carousel .artifact {
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  padding: 32px; border-radius: var(--radius-xl);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-bg);
+  text-decoration: none; color: inherit;
+  transition: all 200ms ease-out;
+  min-height: 340px;
+  position: relative;
+  overflow: hidden;
+}
+.artifacts.carousel .artifact::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(184,52,26,0.05) 0%, transparent 40%);
+  opacity: 0; transition: opacity 250ms; pointer-events: none;
+}
+.artifacts.carousel .artifact:hover {
+  border-color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+.artifacts.carousel .artifact:hover::after { opacity: 1; }
+.artifacts.carousel .artifact h3 {
+  font-size: 26px; font-weight: 500; letter-spacing: -0.02em; margin: 16px 0 0;
+}
+.artifacts.carousel .artifact .tag {
+  margin-top: 12px; color: var(--color-muted);
+  font-size: 15px; line-height: 1.55; flex: 1;
+}
+.artifacts.carousel .artifact .meta {
+  margin-top: 24px; padding-top: 18px;
+  border-top: 1px solid var(--color-hairline-soft);
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.artifacts.carousel .artifact .arrow {
+  position: absolute; top: 28px; right: 28px;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--color-hairline);
+  display: grid; place-items: center;
+  font-size: 14px; color: var(--color-muted);
+  transition: all 200ms ease-out;
+}
+.artifacts.carousel .artifact:hover .arrow {
+  background: var(--color-ink); color: var(--color-on-invert);
+  border-color: var(--color-ink); transform: translateX(3px);
+}
+
+/* Carousel controls */
+.carousel-chrome {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px; gap: 16px;
+}
+.artifacts:not(.carousel) ~ .carousel-chrome { display: none; }
+.carousel-chrome .dots {
+  display: flex; gap: 6px; align-items: center;
+}
+.carousel-chrome .dots button {
+  width: 24px; height: 4px; border-radius: 9999px;
+  border: 0; padding: 0; cursor: pointer;
+  background: var(--color-hairline);
+  transition: all 200ms;
+}
+.carousel-chrome .dots button.on {
+  background: var(--color-ink); width: 36px;
+}
+.carousel-chrome .dots button:hover { background: var(--color-muted); }
+.carousel-chrome .nav-btns { display: flex; gap: 8px; }
+.carousel-chrome .nav-btn {
+  width: 40px; height: 40px; border-radius: 9999px;
+  border: 1px solid var(--color-hairline);
+  background: var(--color-bg);
+  display: grid; place-items: center;
+  cursor: pointer; color: var(--color-ink);
+  font-size: 16px; transition: all 150ms;
+}
+.carousel-chrome .nav-btn:hover:not(:disabled) {
+  background: var(--color-ink); color: var(--color-on-invert);
+  border-color: var(--color-ink);
+}
+.carousel-chrome .nav-btn:disabled {
+  opacity: 0.35; cursor: not-allowed;
+}
+.carousel-chrome .progress {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chip {
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-pill); padding: 3px 9px;
+  font-size: 10.5px; font-family: var(--font-sans);
+  text-transform: none; letter-spacing: 0;
+  color: var(--color-muted);
+  background: var(--color-bg);
+}
+
+.artifact .eye {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--color-muted);
+}
+.artifact .eye .bullet {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #d97706;
+}
+.artifact[data-status="shipped"] .eye .bullet { background: #2e9a5e; }
+
+/* ============================================================
+   Services
+   ============================================================ */
+.narrow { max-width: 780px; margin: 0 auto; }
+
+.services h2 {
+  font-size: clamp(32px, 4.4vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.04; margin: 12px 0 0;
+  font-weight: 500;
+}
+.services .desc {
+  font-size: clamp(17px, 1.6vw, 20px); line-height: 1.55;
+  color: var(--color-muted); margin-top: 20px; max-width: 60ch;
+}
+
+/* Pricing (split — default) */
+.price-panel {
+  margin-top: 48px;
+  border: 1px solid var(--color-hairline);
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+}
+body[data-pricing="split"] .price-pair {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--color-hairline);
+}
+body[data-pricing="split"] .price-pair .val {
+  font-size: 44px; line-height: 1.02; letter-spacing: -0.025em;
+  color: var(--color-ink-soft); margin: 10px 0 6px; font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+body[data-pricing="split"] .price-pair .note { font-size: 13px; color: var(--color-muted); }
+
+/* Pricing (stacked) */
+body[data-pricing="stacked"] .price-pair {
+  display: flex; flex-direction: column; gap: 20px;
+  padding-bottom: 28px; border-bottom: 1px solid var(--color-hairline);
+}
+body[data-pricing="stacked"] .price-pair > div {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; padding-bottom: 16px;
+  border-bottom: 1px dashed var(--color-hairline);
+}
+body[data-pricing="stacked"] .price-pair > div:last-child { border-bottom: 0; padding-bottom: 0; }
+body[data-pricing="stacked"] .price-pair .eyebrow { flex-shrink: 0; }
+body[data-pricing="stacked"] .price-pair .val {
+  font-size: 36px; font-weight: 500; letter-spacing: -0.025em;
+  color: var(--color-ink-soft); font-variant-numeric: tabular-nums;
+}
+body[data-pricing="stacked"] .price-pair .note { display: none; }
+
+/* Pricing (minimal — inline line) */
+body[data-pricing="minimal"] .price-panel {
+  padding: 28px 32px; background: var(--color-hairline-soft); box-shadow: none;
+}
+body[data-pricing="minimal"] .price-pair {
+  display: flex; align-items: baseline; gap: 32px; padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-hairline); flex-wrap: wrap;
+}
+body[data-pricing="minimal"] .price-pair > div { display: flex; align-items: baseline; gap: 10px; }
+body[data-pricing="minimal"] .price-pair .val {
+  font-size: 24px; font-weight: 500; letter-spacing: -0.02em;
+  color: var(--color-ink-soft); font-variant-numeric: tabular-nums;
+}
+body[data-pricing="minimal"] .price-pair .note { display: none; }
+body[data-pricing="minimal"] .price-pair .eyebrow { font-size: 11px; }
+
+.price-cta {
+  margin-top: 28px; display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.price-cta .meta { font-size: 13px; color: var(--color-muted); }
+
+.who { margin-top: 56px; }
+.who h3 { font-size: 22px; letter-spacing: -0.02em; font-weight: 500; }
+.who ul { margin: 16px 0 0; padding: 0; list-style: none; }
+.who li {
+  padding: 10px 0; font-size: 16px; color: var(--color-muted-soft);
+  border-top: 1px solid var(--color-hairline-soft);
+  display: flex; gap: 12px; align-items: baseline;
+}
+.who li:first-child { border-top: 0; }
+.who li::before {
+  content: ''; width: 14px; height: 1px; background: var(--color-hairline);
+  display: inline-block; flex-shrink: 0; transform: translateY(-4px);
+}
+
+details.acc {
+  margin-top: 40px;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 24px;
+}
+details.acc summary {
+  font-size: 20px; letter-spacing: -0.02em; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; list-style: none; color: var(--color-ink-soft);
+}
+details.acc summary::-webkit-details-marker { display: none; }
+details.acc summary .plus {
+  color: var(--color-muted); transition: transform 200ms;
+  font-size: 22px; line-height: 1; font-weight: 400;
+}
+details.acc[open] summary .plus { transform: rotate(45deg); }
+details.acc .body { margin-top: 20px; }
+details.acc .item {
+  padding: 18px 0; border-top: 1px solid var(--color-hairline-soft);
+}
+details.acc .item:first-child { border-top: 1px solid var(--color-hairline); }
+details.acc .item h4 { font-size: 17px; letter-spacing: -0.015em; margin: 0; font-weight: 500; }
+details.acc .item p { margin: 6px 0 0; color: var(--color-muted); font-size: 15px; line-height: 1.6; }
+
+/* ============================================================
+   About
+   ============================================================ */
+.about h2 {
+  font-size: clamp(32px, 4.4vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.04; margin: 12px 0 0;
+  font-weight: 500;
+}
+.about .prose { margin-top: 28px; max-width: 62ch; }
+.about .prose p { margin: 0 0 1.1em; line-height: 1.75; color: var(--color-muted-soft); font-size: 17px; }
+.about .prose strong { color: var(--color-ink); font-weight: 500; }
+
+.about .toolbelt {
+  margin-top: 32px; padding-top: 32px;
+  border-top: 1px solid var(--color-hairline);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+}
+.about .toolbelt h4 { font-size: 12px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-muted); font-weight: 400; margin-bottom: 10px; }
+.about .toolbelt ul { list-style: none; padding: 0; margin: 0; }
+.about .toolbelt li { padding: 3px 0; font-size: 14px; color: var(--color-ink-soft); }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  margin-top: clamp(64px, 10vw, 128px);
+  border-top: 1px solid var(--color-hairline);
+  padding: 48px 0; font-size: 14px; color: var(--color-muted);
+}
+footer .row {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px;
+}
+footer ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; margin: 0; padding: 0; }
+footer a:hover { color: var(--color-ink); }
+
+/* ============================================================
+   Tweaks panel
+   ============================================================ */
+#tweaks {
+  position: fixed; bottom: 20px; right: 20px; z-index: 100;
+  width: 300px; background: var(--color-bg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-float);
+  font-family: var(--font-sans); display: none;
+  max-height: calc(100vh - 40px); overflow: auto;
+}
+#tweaks.open { display: block; }
+#tweaks .hd {
+  padding: 14px 18px; border-bottom: 1px solid var(--color-hairline);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; font-family: var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted);
+}
+#tweaks .hd button { background: none; border: 0; color: var(--color-muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 0; }
+#tweaks .body { padding: 16px 18px; }
+#tweaks .row-t {
+  padding: 12px 0; border-top: 1px solid var(--color-hairline-soft);
+}
+#tweaks .row-t:first-child { border-top: 0; padding-top: 0; }
+#tweaks label { display: block; font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-muted); margin-bottom: 8px; }
+#tweaks .seg {
+  display: flex; border: 1px solid var(--color-hairline);
+  border-radius: 8px; overflow: hidden; background: var(--color-hairline-soft);
+}
+#tweaks .seg button {
+  flex: 1; border: 0; background: transparent;
+  padding: 7px 4px; font-family: var(--font-sans); font-size: 12px;
+  color: var(--color-muted); cursor: pointer;
+  border-right: 1px solid var(--color-hairline);
+  transition: all 120ms;
+}
+#tweaks .seg button:last-child { border-right: 0; }
+#tweaks .seg button.on { background: var(--color-ink); color: var(--color-on-invert); }
+#tweaks .range { display: flex; align-items: center; gap: 10px; }
+#tweaks input[type="range"] { flex: 1; accent-color: var(--color-accent); }
+#tweaks .range span { font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); min-width: 48px; text-align: right; }
+
+/* Hidden by default (no tweaks toggle) */
+.hero-headline { display: none; }
+.hero-headline.on { display: inline; }
+
+/* ============================================================
+   Language switcher (in nav)
+   ============================================================ */
+.lang-switch {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  background: var(--color-hairline-soft);
+  gap: 2px;
+  margin-left: 4px;
+}
+.lang-switch button {
+  border: 0; background: transparent;
+  padding: 5px 10px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-muted); cursor: pointer;
+  border-radius: var(--radius-pill);
+  transition: all 150ms;
+  font-weight: 500;
+}
+.lang-switch button.on {
+  background: var(--color-ink); color: var(--color-on-invert);
+}
+.lang-switch button:hover:not(.on) { color: var(--color-ink); }
+@media (max-width: 720px) {
+  .lang-switch { margin-left: 0; }
+  .lang-switch button { padding: 5px 8px; font-size: 10px; }
+}
+
+/* Mobile-friendly nav: show lang switch even when other items hide */
+@media (max-width: 720px) {
+  .nav ul li:last-child,
+  .nav ul li.lang-li { display: flex; }
+}
+
+/* Tame ChatGPT training block */
+.training-block {
+  margin-top: 64px; padding-top: 64px;
+  border-top: 1px solid var(--color-hairline);
+}
+.training-block .eyebrow-row {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.training-block .badge-new {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--color-accent);
+  padding: 3px 9px; border-radius: var(--radius-pill);
+  background: rgba(184,52,26,0.08);
+  border: 1px solid rgba(184,52,26,0.18);
+}
+.training-block h2 {
+  font-size: clamp(32px, 4.4vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.04;
+  margin: 12px 0 0; font-weight: 500;
+}
+.training-block .desc {
+  font-size: clamp(17px, 1.6vw, 20px); line-height: 1.55;
+  color: var(--color-muted); margin-top: 20px; max-width: 60ch;
+}
+.training-block .price-panel {
+  margin-top: 40px;
+}
+.training-block .price-pair > div { display: flex; align-items: baseline; gap: 10px; }
+.training-block .price-pair .val {
+  font-size: clamp(28px, 3vw, 36px); font-weight: 500;
+  letter-spacing: -0.02em; color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body data-pricing="split" data-proof="list" data-cta-style="pill">
+
+<header class="nav">
+  <div class="bar">
+    <a href="#" class="mark"><span class="dot"></span>Simon Sangla</a>
+    <ul>
+      <li><a href="#proofs" data-i18n="nav.work">Work</a></li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#training" data-i18n="nav.training">Training</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a class="cta-inline" href="#services" data-i18n="nav.cta">Start intake →</a></li>
+      <li class="lang-li">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="en" class="on">EN</button>
+          <button type="button" data-lang="pt">PT</button>
+          <button type="button" data-lang="fr">FR</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="status">
+      <span class="pulse"></span>
+      <span data-i18n="hero.status">Lisbon · Remote · Booking Feb 2026</span>
+    </div>
+
+    <h1>
+      <span class="hero-headline" data-id="h1" data-i18n-html="hero.h1">Data + AI products,<br><span class="dim">shipped in weeks.</span></span>
+      <span class="hero-headline" data-id="h2" data-i18n-html="hero.h2">I ship the <span class="dim">revenue-diagnostics</span> tool your&nbsp;analysts&nbsp;keep.</span>
+      <span class="hero-headline" data-id="h3" data-i18n-html="hero.h3">Ten years of analytics,<br>compressed into <span class="dim">four-week engagements.</span></span>
+    </h1>
+
+    <p class="lead" data-i18n-html="hero.lead">
+      I build the <strong>revenue root-cause tool your team re-runs monthly</strong> — statistical change-point detection on your warehouse, a Streamlit explorer your PMs actually open, and a runbook your next analyst can follow without me.
+    </p>
+
+    <div class="ctas">
+      <a class="btn primary" href="#services"><span data-i18n="hero.cta1">Start the intake</span><span class="arrow">→</span></a>
+      <a class="btn secondary" href="#proofs"><span data-i18n="hero.cta2">See the work</span><span class="arrow">→</span></a>
+    </div>
+
+    <div class="signals">
+      <div><div class="k" data-i18n="hero.sig1k">4 wks</div><div class="v" data-i18n="hero.sig1v">Kick-off to full handoff</div></div>
+      <div><div class="k" data-i18n="hero.sig2k">€15–25K</div><div class="v" data-i18n="hero.sig2v">Fixed fee, agreed up front</div></div>
+      <div><div class="k" data-i18n="hero.sig3k">0</div><div class="v" data-i18n="hero.sig3v">Calls. Written briefs only.</div></div>
+      <div><div class="k" data-i18n="hero.sig4k">10 yrs</div><div class="v" data-i18n="hero.sig4v">Behavioural + product analytics</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PROOFS ============ -->
+  <section id="proofs" class="section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" data-i18n="proofs.eyebrow">Shipped, not pitched</p>
+        <h2 data-i18n="proofs.h2">Work in the warehouse.</h2>
+      </div>
+      <p class="count" data-i18n="proofs.count">04 · each one shipped</p>
+    </div>
+
+    <div class="artifacts list" id="artifacts">
+
+      <a class="artifact" href="proof.html" data-status="shipped">
+        <div>
+          <span class="eye"><span class="bullet"></span><span data-i18n="proof.a1.status">Shipped · TripAdvisor MG</span></span>
+          <h3 data-i18n="proof.a1.title">Experimentation backbone</h3>
+          <p class="tag" data-i18n="proof.a1.tag">Eppo on Snowflake event layer. Replaced a patchwork of GA exports with one source of truth powering weekly ship reviews across four product squads.</p>
+          <div class="meta">
+            <span data-i18n="proof.a1.type">Platform</span><span class="sep">·</span><span>2024</span><span class="sep">·</span>
+            <span class="chip">Snowflake</span><span class="chip">dbt</span><span class="chip">Eppo</span><span class="chip">Mixpanel</span>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="artifact" href="proof.html">
+        <div>
+          <span class="eye"><span class="bullet"></span><span data-i18n="proof.a2.status">In progress · 2026</span></span>
+          <h3 data-i18n="proof.a2.title">MetricPilot</h3>
+          <p class="tag" data-i18n="proof.a2.tag">Revenue root-cause engine. Point it at Snowflake, get a change-point report and a Streamlit dashboard your PMs actually re-run.</p>
+          <div class="meta">
+            <span data-i18n="proof.a2.type">Engagement</span><span class="sep">·</span><span>2026</span><span class="sep">·</span>
+            <span class="chip">Snowflake</span><span class="chip">Streamlit</span><span class="chip">Cortex</span>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="artifact" href="proof.html">
+        <div>
+          <span class="eye"><span class="bullet"></span><span data-i18n="proof.a3.status">In progress · 2026</span></span>
+          <h3 data-i18n="proof.a3.title">Prompto</h3>
+          <p class="tag" data-i18n="proof.a3.tag">Async prompt workspace for agent teams. Lints, versions, and diffs system prompts across a codebase of agents — Git for your model layer.</p>
+          <div class="meta">
+            <span data-i18n="proof.a3.type">App</span><span class="sep">·</span><span>2026</span><span class="sep">·</span>
+            <span class="chip">TypeScript</span><span class="chip">Postgres</span><span class="chip">Claude</span>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="artifact" href="proof.html">
+        <div>
+          <span class="eye"><span class="bullet"></span><span data-i18n="proof.a4.status">In progress · 2026</span></span>
+          <h3 data-i18n="proof.a4.title">Theme Forge</h3>
+          <p class="tag" data-i18n="proof.a4.tag">Design-system generator. One JSON in, a full token sheet + preview out — ready to drop into any Tailwind v4 app on day one.</p>
+          <div class="meta">
+            <span data-i18n="proof.a4.type">Tool</span><span class="sep">·</span><span>2026</span><span class="sep">·</span>
+            <span class="chip">Next.js</span><span class="chip">Tailwind v4</span><span class="chip">Zod</span>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+
+    <!-- Carousel chrome (shown only when carousel mode is active) -->
+    <div class="carousel-chrome" id="carouselChrome" hidden>
+      <div class="dots" id="carouselDots"></div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <span class="progress" id="carouselProgress">01 / 04</span>
+        <div class="nav-btns">
+          <button class="nav-btn" id="carouselPrev" aria-label="Previous">←</button>
+          <button class="nav-btn" id="carouselNext" aria-label="Next">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="services" class="section services">
+    <div class="narrow">
+      <p class="eyebrow" data-i18n="services.eyebrow">One engagement · Fixed scope</p>
+      <h2 data-i18n="services.h2">Revenue Root-Cause Engine.</h2>
+      <p class="desc" data-i18n="services.desc">Four weeks. €15,000–€25,000. Zero calls. You end up knowing why your KPI moved — and owning the Streamlit tool your team re-runs the next time it moves again.</p>
+
+      <div class="price-panel">
+        <div class="price-pair">
+          <div>
+            <p class="eyebrow" data-i18n="services.priceLabel">Price</p>
+            <p class="val">€15–25K</p>
+            <p class="note" data-i18n="services.priceNote">Fixed · Agreed before kick-off</p>
+          </div>
+          <div>
+            <p class="eyebrow" data-i18n="services.timelineLabel">Timeline</p>
+            <p class="val" data-i18n="services.timelineVal">4 weeks</p>
+            <p class="note" data-i18n="services.timelineNote">Kick-off to handoff</p>
+          </div>
+        </div>
+        <div class="price-cta">
+          <a class="btn primary" href="#"><span data-i18n="services.cta">Start the intake</span><span class="arrow">→</span></a>
+          <p class="meta" data-i18n="services.ctaMeta">Five questions · 10 minutes · proposal back in 48h.</p>
+        </div>
+      </div>
+
+      <div class="who">
+        <h3 data-i18n="services.whoTitle">Who it's for</h3>
+        <ul>
+          <li data-i18n="services.who1">B2C scale-ups in the €5M–€100M ARR range</li>
+          <li data-i18n="services.who2">Data warehoused on Snowflake — or ready to land there</li>
+          <li data-i18n="services.who3">A KPI that moved and nobody can cleanly explain why</li>
+          <li data-i18n="services.who4">Comfortable working async, in writing, with decision-led hand-offs</li>
+        </ul>
+      </div>
+
+      <details class="acc" open>
+        <summary><span data-i18n="services.getTitle">What you get</span><span class="plus">+</span></summary>
+        <div class="body">
+          <div class="item"><h4 data-i18n="services.get1h">KPI decomposition</h4><p data-i18n="services.get1p">Break the target metric into its additive drivers. Quantify each driver's contribution to the regression.</p></div>
+          <div class="item"><h4 data-i18n="services.get2h">Change-point report</h4><p data-i18n="services.get2p">Statistical detection of when and where the break happened — by cohort, channel, platform, geography.</p></div>
+          <div class="item"><h4 data-i18n="services.get3h">Streamlit dashboard</h4><p data-i18n="services.get3p">Self-serve explorer you keep. Re-run the diagnostic monthly without me in the loop.</p></div>
+          <div class="item"><h4 data-i18n="services.get4h">Root-cause narrative</h4><p data-i18n="services.get4p">A short, executive-ready document. What changed, why, what to do next — ranked by leverage.</p></div>
+          <div class="item"><h4 data-i18n="services.get5h">Handoff + runbook</h4><p data-i18n="services.get5p">Everything versioned in your repo. Your team owns the tool on day 28.</p></div>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span data-i18n="services.qTitle">Questions</span><span class="plus">+</span></summary>
+        <div class="body">
+          <div class="item"><h4 data-i18n="services.q1h">Why no calls?</h4><p data-i18n="services.q1p">Calls compress low-bandwidth information into high-cost blocks. Async written briefs force clarity, create a searchable record, and let both sides think before committing.</p></div>
+          <div class="item"><h4 data-i18n="services.q2h">What does async look like?</h4><p data-i18n="services.q2p">You submit the intake. I reply within 48h with a scoped proposal. Weekly Looms, shared Notion log, PRs in your repo. No Zoom.</p></div>
+          <div class="item"><h4 data-i18n="services.q3h">What if my KPI hasn't moved?</h4><p data-i18n="services.q3p">Then we're not a fit. This is a diagnostic engagement — wait until something actually breaks.</p></div>
+          <div class="item"><h4 data-i18n="services.q4h">Do you sign NDAs?</h4><p data-i18n="services.q4p">Yes, standard mutual NDA included in the intake packet.</p></div>
+        </div>
+      </details>
+
+      <!-- ============ TRAINING: TAME CHATGPT ============ -->
+      <div id="training" class="training-block">
+        <div class="eyebrow-row">
+          <p class="eyebrow" data-i18n="training.eyebrow">One session · Fixed price</p>
+          <span class="badge-new" data-i18n="training.badge">New · €249</span>
+        </div>
+        <h2 data-i18n="training.h2">Tame ChatGPT.</h2>
+        <p class="desc" data-i18n="training.desc">A 90-minute working session plus two weeks of async follow-up, designed for operators who are done wrestling with ChatGPT and want it producing real output before the week ends.</p>
+
+        <div class="price-panel">
+          <div class="price-pair">
+            <div>
+              <p class="eyebrow" data-i18n="training.priceLabel">Price</p>
+              <p class="val">€249</p>
+              <p class="note" data-i18n="training.priceNote">One-off · No subscription</p>
+            </div>
+            <div>
+              <p class="eyebrow" data-i18n="training.formatLabel">Format</p>
+              <p class="val" data-i18n="training.formatVal">90 min · +2 wks async</p>
+              <p class="note" data-i18n="training.formatNote">One video call, then written-only</p>
+            </div>
+          </div>
+          <div class="price-cta">
+            <a class="btn primary" href="#"><span data-i18n="training.cta">Book the session</span><span class="arrow">→</span></a>
+            <p class="meta" data-i18n="training.ctaMeta">Intake form · Proposal back in 24h · Booked within the week.</p>
+          </div>
+        </div>
+
+        <div class="who">
+          <h3 data-i18n="training.whoTitle">Who it's for</h3>
+          <ul>
+            <li data-i18n="training.who1">Founders, PMs, analysts — operators who don't want a fluff course</li>
+            <li data-i18n="training.who2">People who've tried ChatGPT, hit the wall, and want their prompts to actually work</li>
+            <li data-i18n="training.who3">Teams who need one person fluent enough to make the rest fluent</li>
+            <li data-i18n="training.who4">Anyone tired of paying a subscription for a model they don't know how to drive</li>
+          </ul>
+        </div>
+
+        <details class="acc" open>
+          <summary><span data-i18n="training.getTitle">What you leave with</span><span class="plus">+</span></summary>
+          <div class="body">
+            <div class="item"><h4 data-i18n="training.get1h">A live diagnostic of your current prompts</h4><p data-i18n="training.get1p">We open your actual ChatGPT history. I show you exactly where it's slipping — and why the model is ignoring half of what you write.</p></div>
+            <div class="item"><h4 data-i18n="training.get2h">A prompt system you'll actually reuse</h4><p data-i18n="training.get2p">Role, context, constraints, output spec. A six-part scaffold you apply to every task. No more blank-page prompt anxiety.</p></div>
+            <div class="item"><h4 data-i18n="training.get3h">Three of your real workflows, rebuilt</h4><p data-i18n="training.get3p">Pick three tasks you do weekly. We rebuild them as ChatGPT workflows during the session. You walk out with them running.</p></div>
+            <div class="item"><h4 data-i18n="training.get4h">Two weeks of async backup</h4><p data-i18n="training.get4p">Stuck on a prompt? Send it. I reply within a working day. Fourteen days of unblocking, included.</p></div>
+            <div class="item"><h4 data-i18n="training.get5h">Your personal cheat-sheet</h4><p data-i18n="training.get5p">A one-page PDF with the patterns that matter — yours to keep, pinned above your monitor.</p></div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section about">
+    <div class="narrow">
+      <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+      <h2 data-i18n="about.h2">I turn data signals into products.</h2>
+      <div class="prose">
+        <p data-i18n-html="about.p1">I'm Simon. Based in Lisbon, working remote and async with teams anywhere. For the last decade I've been the person teams call when <strong>a number moved and nobody can say why</strong> — and the person they keep around to leave a tool behind so they don't have to call again.</p>
+        <p data-i18n-html="about.p2">I built the analytics and experimentation backbone at <strong>TripAdvisor Media Group</strong> — Mixpanel and Eppo on a Snowflake event layer, powering four product squads. Before that, ten years of behavioural, product and marketing data across ad-tech, travel, and consumer subscription.</p>
+        <p data-i18n-html="about.p3">Now I ship AI products in weeks using an agentic build loop. Master's in Statistics &amp; Econometrics, Paris I Panthéon-Sorbonne.</p>
+      </div>
+
+      <div class="toolbelt">
+        <div>
+          <h4 data-i18n="about.toolbelt.warehouse">Warehouse</h4>
+          <ul><li>Snowflake</li><li>dbt</li><li>BigQuery</li><li>Redshift</li></ul>
+        </div>
+        <div>
+          <h4 data-i18n="about.toolbelt.product">Product</h4>
+          <ul><li>Mixpanel</li><li>Amplitude</li><li>Eppo</li><li>Statsig</li></ul>
+        </div>
+        <div>
+          <h4 data-i18n="about.toolbelt.stack">Stack</h4>
+          <ul><li>Python · SQL</li><li>Streamlit</li><li>Next.js · TS</li><li>Claude · OpenAI</li></ul>
+        </div>
+      </div>
+
+      <div class="ctas" style="margin-top:40px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn primary" href="#services"><span data-i18n="about.cta1">Start the intake</span><span class="arrow">→</span></a>
+        <a class="btn secondary" href="mailto:hi@simonsangla.com"><span>hi@simonsangla.com</span><span class="arrow">→</span></a>
+        <a class="btn secondary" href="#"><span data-i18n="about.cta3">LinkedIn</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="row">
+    <p data-i18n="footer.legal">© 2026 Simon Sangla · Lisbon, Portugal · Remote &amp; async</p>
+    <ul>
+      <li><a href="#proofs" data-i18n="nav.work">Work</a></li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#training" data-i18n="nav.training">Training</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="mailto:hi@simonsangla.com" data-i18n="footer.email">Email</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS PANEL ============ -->
+<div id="tweaks" role="dialog" aria-label="Tweaks">
+  <div class="hd">
+    <span>Tweaks</span>
+    <button id="tweaksClose" aria-label="Close">×</button>
+  </div>
+  <div class="body">
+    <div class="row-t">
+      <label>Hero headline</label>
+      <div class="seg" data-tweak="headline">
+        <button data-v="h1">Product</button>
+        <button data-v="h2">Outcome</button>
+        <button data-v="h3">Credential</button>
+      </div>
+    </div>
+
+    <div class="row-t">
+      <label>Hero width</label>
+      <div class="range">
+        <input type="range" id="heroWidth" min="640" max="1200" step="20" />
+        <span id="heroWidthV">920px</span>
+      </div>
+    </div>
+
+    <div class="row-t">
+      <label>Proof layout</label>
+      <div class="seg" data-tweak="proof">
+        <button data-v="list">Rows</button>
+        <button data-v="grid">Grid</button>
+        <button data-v="carousel">Carousel</button>
+      </div>
+    </div>
+
+    <div class="row-t">
+      <label>Pricing treatment</label>
+      <div class="seg" data-tweak="pricing">
+        <button data-v="split">Split</button>
+        <button data-v="stacked">Stacked</button>
+        <button data-v="minimal">Minimal</button>
+      </div>
+    </div>
+
+    <div class="row-t">
+      <label>CTA shape</label>
+      <div class="seg" data-tweak="cta">
+        <button data-v="pill">Pill</button>
+        <button data-v="square">Squared</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Tweaks — persisted defaults (survive reload via host)
+   ============================================================ */
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "headline": "h2",
+  "heroWidth": 640,
+  "proof": "carousel",
+  "pricing": "minimal",
+  "cta": "pill"
+}/*EDITMODE-END*/;
+
+const state = {...TWEAKS};
+
+function apply() {
+  // headline
+  document.querySelectorAll('.hero-headline').forEach(el => {
+    el.classList.toggle('on', el.dataset.id === state.headline);
+  });
+  // hero width
+  document.documentElement.style.setProperty('--hero-width', state.heroWidth + 'px');
+  const wv = document.getElementById('heroWidthV'); if (wv) wv.textContent = state.heroWidth + 'px';
+  const wi = document.getElementById('heroWidth'); if (wi && wi.value != state.heroWidth) wi.value = state.heroWidth;
+  // proof
+  const artifacts = document.getElementById('artifacts');
+  artifacts.classList.remove('list', 'grid', 'carousel');
+  artifacts.classList.add(state.proof);
+  setupCarousel(state.proof === 'carousel');
+  // pricing + cta via body data attrs
+  document.body.dataset.pricing = state.pricing;
+  document.body.dataset.ctaStyle = state.cta;
+  // segmented active states
+  document.querySelectorAll('#tweaks .seg').forEach(seg => {
+    const k = seg.dataset.tweak === 'cta' ? 'cta' : seg.dataset.tweak;
+    seg.querySelectorAll('button').forEach(b => {
+      b.classList.toggle('on', b.dataset.v === String(state[k]));
+    });
+  });
+}
+
+function persist() {
+  try { window.parent.postMessage({type:'__edit_mode_set_keys', edits: state}, '*'); } catch(e){}
+}
+
+/* ============================================================
+   Carousel — wraps .artifact cards in a .track on activation,
+   unwraps on deactivation. Dots + prev/next + progress.
+   ============================================================ */
+let carouselEls = null;
+function setupCarousel(active) {
+  const artifacts = document.getElementById('artifacts');
+  const chrome    = document.getElementById('carouselChrome');
+  const dotsWrap  = document.getElementById('carouselDots');
+  const progress  = document.getElementById('carouselProgress');
+  const prevBtn   = document.getElementById('carouselPrev');
+  const nextBtn   = document.getElementById('carouselNext');
+  if (!artifacts || !chrome) return;
+
+  // Deactivate: flatten track back to direct children, hide chrome
+  if (!active) {
+    const track = artifacts.querySelector('.track');
+    if (track) {
+      while (track.firstChild) artifacts.appendChild(track.firstChild);
+      track.remove();
+    }
+    chrome.hidden = true;
+    carouselEls = null;
+    return;
+  }
+
+  // Activate: wrap cards in .track if not already
+  let track = artifacts.querySelector('.track');
+  if (!track) {
+    track = document.createElement('div');
+    track.className = 'track';
+    const cards = Array.from(artifacts.querySelectorAll(':scope > .artifact'));
+    cards.forEach(c => track.appendChild(c));
+    artifacts.appendChild(track);
+  }
+  chrome.hidden = false;
+
+  const cards = Array.from(track.querySelectorAll('.artifact'));
+  // Build dots
+  dotsWrap.innerHTML = '';
+  cards.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to artifact ' + (i + 1));
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+  function currentIndex() {
+    // End-of-scroll clamp: if we've hit the right edge, last card is active
+    // even though its offsetLeft would exceed scrollLeft + clientWidth.
+    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) {
+      return cards.length - 1;
+    }
+    const padL = parseInt(getComputedStyle(track).paddingLeft || 0, 10);
+    let best = 0, bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft - padL - track.scrollLeft);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    return best;
+  }
+  function update() {
+    const idx = currentIndex();
+    dotsWrap.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === idx));
+    progress.textContent = pad(idx + 1) + ' / ' + pad(cards.length);
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx >= cards.length - 1;
+  }
+  function goTo(i) {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    const target = cards[i];
+    const padL = parseInt(getComputedStyle(track).paddingLeft || 0, 10);
+    track.scrollTo({ left: target.offsetLeft - padL, behavior: 'smooth' });
+  }
+
+  prevBtn.onclick = () => goTo(currentIndex() - 1);
+  nextBtn.onclick = () => goTo(currentIndex() + 1);
+
+  // Scroll listener (debounced)
+  let sT;
+  track.onscroll = () => { clearTimeout(sT); sT = setTimeout(update, 60); };
+
+  // Keyboard nav when focus is inside section
+  track.tabIndex = 0;
+  track.onkeydown = (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(currentIndex() - 1); }
+  };
+
+  carouselEls = { track, cards, update };
+  update();
+}
+
+/* Wire segmented buttons */
+document.querySelectorAll('#tweaks .seg').forEach(seg => {
+  seg.addEventListener('click', e => {
+    const btn = e.target.closest('button'); if (!btn) return;
+    const tweak = seg.dataset.tweak;
+    const key = tweak === 'cta' ? 'cta' : tweak;
+    state[key] = btn.dataset.v;
+    apply(); persist();
+  });
+});
+
+/* Hero width slider */
+const hw = document.getElementById('heroWidth');
+if (hw) {
+  hw.addEventListener('input', e => {
+    state.heroWidth = parseInt(e.target.value, 10);
+    apply();
+  });
+  hw.addEventListener('change', persist);
+}
+
+/* Close button */
+document.getElementById('tweaksClose').addEventListener('click', () => {
+  document.getElementById('tweaks').classList.remove('open');
+  window.parent.postMessage({type:'__deactivate_edit_mode'}, '*');
+});
+
+/* Host protocol — listener FIRST, announce SECOND */
+window.addEventListener('message', e => {
+  if (!e.data) return;
+  if (e.data.type === '__activate_edit_mode') {
+    document.getElementById('tweaks').classList.add('open');
+  } else if (e.data.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaks').classList.remove('open');
+  }
+});
+
+apply();
+
+try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+</script>
+<script src="i18n.js"></script>
+
+</body>
+</html>

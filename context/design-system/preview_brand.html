@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Brand — simonsangla.com</title>
+<link rel="icon" href="assets/favicon.svg" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-ink: #051A24;
+  --color-ink-soft: #0D212C;
+  --color-muted: #273C46;
+  --color-hairline: #E0EBF0;
+  --color-surface-invert: #051A24;
+  --color-on-invert: #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+  --color-accent: #B8341A;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --inter-features: "ss01", "cv11";
+  --shadow-primary:
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      0 17px 7px 0 rgba(5,26,36,0.01),
+      0 26px 7px 0 rgba(5,26,36,0.00),
+      inset 0 2px 8px 0 rgba(255,255,255,0.50);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; }
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--inter-features);
+  -webkit-font-smoothing: antialiased;
+}
+body { margin: 0; font-size: 17px; line-height: 1.6; letter-spacing: -0.005em; padding: 64px 64px 96px; }
+h1, h2, h3, h4 { font-family: var(--font-sans); font-weight: 500; color: var(--color-ink-soft); letter-spacing: -0.02em; line-height: 1.15; margin: 0; }
+
+.wrap { max-width: 1072px; margin: 0 auto; }
+h1.page {
+  font-size: 44px; font-weight: 600; line-height: 1.05;
+  letter-spacing: -0.025em; margin: 0 0 10px;
+}
+.t-eyebrow {
+  font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-muted);
+}
+.sub { color: var(--color-muted); max-width: 58ch; margin: 0 0 48px; font-size: 17px; line-height: 1.55; }
+
+.group { margin-top: 56px; }
+.group > header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; padding-bottom: 12px; margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-hairline);
+}
+.group > header h2 {
+  font-family: var(--font-mono); font-size: 12px;
+  font-weight: 400; color: var(--color-ink);
+  text-transform: uppercase; letter-spacing: 0.14em;
+  margin: 0;
+}
+.group > header .h-note { font-size: 13px; color: var(--color-muted); }
+
+/* Mark */
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.logo-cell {
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 240px;
+  background: var(--color-bg);
+}
+.logo-cell.dark { background: var(--color-surface-invert); }
+.logo-cell .note { font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); margin-top: 24px; letter-spacing: 0.02em; }
+.logo-cell.dark .note { color: var(--color-on-invert-soft); }
+
+.wordmark {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 40px; letter-spacing: -0.025em; line-height: 1;
+  color: var(--color-ink-soft);
+}
+.wordmark .dot { color: var(--color-accent); }
+.logo-cell.dark .wordmark { color: var(--color-on-invert); }
+
+.monogram {
+  width: 96px; height: 96px; border-radius: 18px;
+  background: var(--color-ink);
+  color: var(--color-on-invert);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 56px; line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* Voice */
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.voice-cell {
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 24px 28px;
+  background: var(--color-bg);
+}
+.voice-cell .label {
+  font-family: var(--font-mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--color-muted); margin: 0 0 12px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.voice-cell .label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 9999px;
+  background: var(--color-ink);
+}
+.voice-cell .label.no::before { background: var(--color-accent); }
+.voice-cell .line {
+  font-size: 17px; line-height: 1.5; color: var(--color-ink);
+  margin: 10px 0 0; font-weight: 400; letter-spacing: -0.005em;
+}
+.voice-cell .line.muted { color: var(--color-muted); }
+.voice-cell .line .strike { text-decoration: line-through; text-decoration-color: rgba(184,52,26,0.5); text-decoration-thickness: 2px; }
+
+/* Principles */
+.principles {
+  background: var(--color-surface-invert); color: var(--color-on-invert);
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: var(--shadow-primary);
+}
+.principles h3 {
+  color: var(--color-on-invert); margin: 0 0 20px;
+  font-size: 24px; font-weight: 500; letter-spacing: -0.02em;
+}
+.principles ul { list-style: none; padding: 0; margin: 0; }
+.principles li {
+  padding: 16px 0;
+  border-top: 1px solid rgba(224,235,240,0.15);
+  display: grid; grid-template-columns: 180px 1fr; gap: 24px;
+  color: var(--color-on-invert-soft); font-size: 15px; line-height: 1.55;
+}
+.principles li:first-child { border-top: 0; }
+.principles li b {
+  font-family: var(--font-sans);
+  font-weight: 500; color: var(--color-on-invert);
+  font-size: 16px; letter-spacing: -0.01em;
+}
+
+/* Numerals */
+.num-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.num-cell {
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: 28px 24px;
+  background: var(--color-bg);
+}
+.num-cell .eye { font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.16em; margin: 0 0 14px; }
+.num-cell .val {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 44px; line-height: 1; letter-spacing: -0.025em;
+  color: var(--color-ink-soft);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+.num-cell.phrase .val { font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; font-weight: 500; }
+.num-cell .note { font-size: 13px; color: var(--color-muted); margin-top: 10px; letter-spacing: -0.005em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="t-eyebrow" style="margin:0 0 14px">§1 · Brand</p>
+  <h1 class="page">Brand</h1>
+  <p class="sub">A practitioner, not a studio. Copy is direct, verb-first, written like a well-designed technical README. One typeface, one accent, one dot — and that dot only spends itself on focus rings and this brand mark's period.</p>
+
+  <section class="group">
+    <header>
+      <h2>Mark</h2>
+      <span class="h-note">Inter 600 · tracking −0.025em</span>
+    </header>
+    <div class="logo-grid">
+      <div class="logo-cell">
+        <span class="wordmark">Simon Sangla<span class="dot">.</span></span>
+        <span class="note">Wordmark — Inter 600, accent period</span>
+      </div>
+      <div class="logo-cell dark">
+        <span class="wordmark">Simon Sangla<span class="dot">.</span></span>
+        <span class="note">On ink — same form, same accent</span>
+      </div>
+      <div class="logo-cell">
+        <div class="monogram">S</div>
+        <span class="note">Monogram — favicon + bottom-nav pill</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Voice</h2>
+      <span class="h-note">Verb-first · numbers beat adjectives</span>
+    </header>
+    <div class="voice-grid">
+      <div class="voice-cell">
+        <p class="label">Write</p>
+        <p class="line">Four weeks. €15,000–€25,000. Zero meetings.</p>
+        <p class="line">A KPI moved and nobody can cleanly explain why.</p>
+      </div>
+      <div class="voice-cell">
+        <p class="label no">Don't write</p>
+        <p class="line muted"><span class="strike">Transform your business with next-gen AI!</span></p>
+        <p class="line muted"><span class="strike">Reach out today and let's hop on a quick call 🚀</span></p>
+      </div>
+      <div class="voice-cell">
+        <p class="label">Write</p>
+        <p class="line">I built the analytics backbone at TripAdvisor Media Group — Mixpanel and Eppo on a Snowflake event layer.</p>
+      </div>
+      <div class="voice-cell">
+        <p class="label no">Don't write</p>
+        <p class="line muted"><span class="strike">Passionate, results-driven data leader with a proven track record of synergy.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Principles</h2>
+      <span class="h-note">How to write for this site</span>
+    </header>
+    <div class="principles">
+      <h3>Five rules. Nothing else.</h3>
+      <ul>
+        <li><b>One verb</b><span>Lead with a verb. Skim-first audience. "Start the intake" beats "Begin your journey with us today".</span></li>
+        <li><b>Numbers win</b><span>Concrete beats adjective. "€15–25K, 4 weeks" not "competitive pricing, flexible timelines".</span></li>
+        <li><b>Written record</b><span>Every claim has a paper trail. If you can't point at the repo, the MDX, or the dashboard, don't claim it.</span></li>
+        <li><b>No calls</b><span>Async is the product. Copy never invites a call — it invites an intake, a brief, or a Loom.</span></li>
+        <li><b>No exclamation</b><span>And no emoji. Energy comes from specificity, not punctuation.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Proof numerals</h2>
+      <span class="h-note">Inter 500 · tabular-nums · phrase-safe step-down</span>
+    </header>
+    <div class="num-grid">
+      <div class="num-cell">
+        <p class="eye">Artifacts</p>
+        <p class="val">4</p>
+        <p class="note">each one shipped &amp; public</p>
+      </div>
+      <div class="num-cell">
+        <p class="eye">Engagement</p>
+        <p class="val">4 wks</p>
+        <p class="note">kick-off to handoff</p>
+      </div>
+      <div class="num-cell phrase">
+        <p class="eye">Coverage</p>
+        <p class="val">9 domains · 36 tasks</p>
+        <p class="note">longer values drop a step, stay Inter 500</p>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

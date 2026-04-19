@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practitioner Hero — DESIGN.md §1 §3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #FFFFFF;
+    --color-ink: #051A24;
+    --color-ink-soft: #0D212C;
+    --color-muted: #273C46;
+    --color-hairline: #E0EBF0;
+    --color-surface-invert: #051A24;
+    --color-on-invert: #F6FCFF;
+    --color-on-invert-soft: #E0EBF0;
+    --color-accent: #B8341A;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    --shadow-primary: 0 1px 2px 0 rgba(5,26,36,0.10), 0 4px 4px 0 rgba(5,26,36,0.09), 0 9px 6px 0 rgba(5,26,36,0.05), 0 17px 7px 0 rgba(5,26,36,0.01), 0 26px 7px 0 rgba(5,26,36,0.00), inset 0 2px 8px 0 rgba(255,255,255,0.50);
+    --shadow-secondary: 0 0 0 0.5px rgba(0,0,0,0.05), 0 4px 30px rgba(0,0,0,0.08);
+    --shadow-float: 0 8px 24px rgba(5,26,36,0.10), 0 2px 6px rgba(5,26,36,0.06);
+  }
+
+  html { font-feature-settings: "ss01", "cv11"; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Spec banner */
+  .spec {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    border-bottom: 1px solid var(--color-hairline);
+    padding: 14px 24px;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .spec b { color: var(--color-ink); font-weight: 500; letter-spacing: 0.16em; }
+
+  /* Hero — DESIGN.md §1 + §4.3 hero variant + §5 hero container */
+  .hero {
+    margin: 0 auto;
+    padding: 96px 24px 120px;
+    max-width: 640px;
+  }
+  @media (min-width: 1024px) {
+    .hero { max-width: 960px; padding: 128px 24px 160px; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    margin: 0 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px; border-radius: 9999px;
+    background: var(--color-accent);
+    display: inline-block;
+  }
+
+  /* Display-L — Inter 600, -0.025em, 1.05 */
+  h1.display {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--color-ink-soft);
+    margin: 0 0 28px;
+    text-wrap: balance;
+  }
+  @media (min-width: 768px)  { h1.display { font-size: 48px; } }
+  @media (min-width: 1024px) { h1.display { font-size: 56px; } }
+
+  h1.display em {
+    font-style: normal;
+    color: var(--color-ink);
+  }
+
+  /* Lead */
+  .lead {
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--color-muted);
+    margin: 0 0 36px;
+    max-width: 640px;
+  }
+  @media (min-width: 1024px) { .lead { font-size: 20px; } }
+
+  /* Meta row — mono facts */
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+    margin: 0 0 44px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 8px 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .meta dt { color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; }
+  .meta dd { margin: 0; color: var(--color-ink); }
+  @media (min-width: 768px) { .meta { grid-template-columns: repeat(4, minmax(0, max-content)); } }
+
+  /* CTAs */
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary { background: var(--color-ink); color: var(--color-on-invert); box-shadow: var(--shadow-primary); }
+  .btn-secondary { background: var(--color-bg); color: var(--color-ink); box-shadow: var(--shadow-secondary); }
+  .btn:hover { opacity: .9; }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .btn .arrow { display: inline-block; transform: translateY(-1px); }
+
+  /* Compare panel — shows the OLD editorial hero vs NEW */
+  .compare {
+    border-top: 1px solid var(--color-hairline);
+    padding: 48px 24px 96px;
+    background: #FAFBFC;
+  }
+  .compare-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; gap: 24px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) { .compare-inner { grid-template-columns: 1fr 1fr; } }
+
+  .card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    margin: 0 0 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card-label .tag {
+    background: var(--color-hairline);
+    color: var(--color-ink-soft);
+    padding: 3px 8px;
+    border-radius: 9999px;
+    font-size: 10px;
+  }
+  .card-label.now .tag { background: var(--color-ink); color: var(--color-on-invert); }
+
+  .mini-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--color-muted); margin: 0 0 16px;
+  }
+
+  /* OLD mock — editorial, Fraunces-ish via Georgia fallback, 440px column */
+  .old-hero { max-width: 440px; }
+  .old-hero h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-ink-soft);
+    margin: 0 0 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .old-hero p { font-size: 16px; line-height: 1.65; color: var(--color-ink); margin: 0 0 20px; }
+
+  /* NEW mock — Inter, wider */
+  .new-hero h2 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--color-ink-soft);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .new-hero p { font-size: 17px; line-height: 1.6; color: var(--color-muted); margin: 0 0 20px; }
+
+  .footer {
+    padding: 32px 24px 64px;
+    border-top: 1px solid var(--color-hairline);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-muted);
+    text-align: center;
+  }
+  .footer a { color: var(--color-ink); text-decoration: none; }
+</style>
+</head>
+<body>
+
+  <div class="spec">
+    <span><b>DESIGN.md</b> §1 Visual Theme · §3 Typography · §4.3 Display heading · §5 Hero container</span>
+    <span>Inter only · weights 400/500/600 · hero max-w 640 / lg 960</span>
+  </div>
+
+  <!-- ============================================================
+       HERO — new practitioner variant
+       ============================================================ -->
+  <section class="hero">
+    <p class="eyebrow">Available for Q3 engagements</p>
+
+    <h1 class="display">
+      Data &amp; AI systems for B2C scale-ups &mdash; <em>shipped in four weeks, measured for six months.</em>
+    </h1>
+
+    <p class="lead">
+      I&rsquo;m Simon. I build revenue-root-cause engines, MDX-driven pricing pages, and internal agents for product teams who treat data as a build target, not a dashboard.
+    </p>
+
+    <dl class="meta">
+      <dt>Stack</dt><dd>Next.js · Python · dbt</dd>
+      <dt>Shipped</dt><dd>17 engagements</dd>
+      <dt>Base</dt><dd>Paris &mdash; remote-first</dd>
+      <dt>Response</dt><dd>&lt; 24 h weekdays</dd>
+    </dl>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="#intake">
+        Start a chat
+        <span class="arrow" aria-hidden="true">&#8599;</span>
+      </a>
+      <a class="btn btn-secondary" href="#work">See recent work</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPARE — old editorial vs new practitioner
+       ============================================================ -->
+  <section class="compare">
+    <div class="compare-inner">
+
+      <article class="card">
+        <p class="card-label"><span class="tag">BEFORE</span> editorial · Fraunces · 440px</p>
+        <div class="old-hero">
+          <p class="mini-eyebrow">&mdash; quiet practitioner</p>
+          <h2>Revenue, clarified.</h2>
+          <p>A Swiss design quarterly laid on a white desk. Narrow hero, serif display, restrained motion.</p>
+          <button class="btn btn-primary" style="font-size:14px; padding:12px 22px;">Start a chat</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="card-label now"><span class="tag">AFTER</span> practitioner · Inter · 640 / 960</p>
+        <div class="new-hero">
+          <p class="mini-eyebrow">Available for Q3</p>
+          <h2>Data &amp; AI systems for B2C scale-ups.</h2>
+          <p>A builder&rsquo;s landing page. Wider column, one typeface, facts in mono, CTAs that act like commands.</p>
+          <button class="btn btn-primary" style="font-size:14px; padding:12px 22px;">Start a chat</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <p class="footer">
+    Live per DESIGN.md &mdash; resize to compare 640 · 768 · 1024 breakpoints &middot;
+    <a href="preview_all.html">&larr; back to design system</a>
+  </p>
+
+</body>
+</html>

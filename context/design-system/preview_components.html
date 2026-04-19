@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Components — simonsangla.com</title>
+<link rel="icon" href="assets/favicon.svg" />
+<style>
+/* ============================================================
+   simonsangla.com — Design tokens
+   Mirror of app/globals.css + app/theme.generated.css in the
+   source repo. Drop-in for any preview or prototype page.
+
+   Inter-only. One typeface across the whole scale — weight
+   drives hierarchy. Mono is reserved for eyebrows, meta rows,
+   numeric labels, and code.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* ---------- Core palette ---------- */
+  --color-bg: #FFFFFF;
+  --color-ink: #051A24;
+  --color-ink-soft: #0D212C;
+  --color-muted: #273C46;
+  --color-hairline: #E0EBF0;
+
+  /* ---------- Inverted surfaces ---------- */
+  --color-surface-invert: #051A24;
+  --color-on-invert: #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+
+  /* ---------- Accent (focus + MDX inline link only) ---------- */
+  --color-accent: #B8341A;
+
+  /* ---------- Typography ---------- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system,
+               'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular,
+               Menlo, Monaco, monospace;
+
+  /* Inter disambiguated alternates — applied globally on html. */
+  --inter-features: "ss01", "cv11";
+
+  /* ---------- Shadows (exactly four) ---------- */
+  --shadow-primary:
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      0 17px 7px 0 rgba(5,26,36,0.01),
+      0 26px 7px 0 rgba(5,26,36,0.00),
+      inset 0 2px 8px 0 rgba(255,255,255,0.50);
+  --shadow-secondary:
+      0 0 0 0.5px rgba(0,0,0,0.05),
+      0 4px 30px rgba(0,0,0,0.08);
+  --shadow-card:
+      0 4px 16px rgba(0,0,0,0.08);
+  --shadow-float:
+      0 8px 24px rgba(5,26,36,0.10),
+      0 2px 6px rgba(5,26,36,0.06);
+
+  /* ---------- Radii ---------- */
+  --radius-pill: 9999px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;  /* secondary surfaces (price panel, intake box) */
+  --radius-xl: 16px;  /* marquee, project images */
+  --radius-card: 32px;   /* cards (mobile) */
+  --radius-card-lg: 40px; /* cards (md+) */
+
+  /* ---------- Spacing scale (×4px) ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+  --s-32: 128px;
+  --s-48: 192px;
+
+  /* ---------- Container widths ---------- */
+  --container-hero: 640px;       /* base / md */
+  --container-hero-lg: 960px;    /* lg */
+  --container-prose: 42rem;      /* 672px */
+  --container-content: 1200px;
+  --container-pricing: 56rem;    /* max-w-4xl */
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+* { box-sizing: border-box; }
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--inter-features);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  letter-spacing: -0.005em;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--color-ink); color: var(--color-bg); }
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Type scale utilities (DESIGN.md §3)
+   Inter across the whole scale. Weight = hierarchy.
+   ============================================================ */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+@media (min-width: 768px) { .t-eyebrow { font-size: 12px; } }
+
+.t-body-sm {
+  font-size: 14px; line-height: 1.55; letter-spacing: -0.005em;
+  font-weight: 400;
+}
+@media (min-width: 768px) { .t-body-sm { font-size: 15px; } }
+
+.t-body {
+  font-size: 16px; line-height: 1.6; letter-spacing: -0.005em;
+  font-weight: 400;
+}
+@media (min-width: 768px) { .t-body { font-size: 17px; } }
+
+.t-lead {
+  font-size: 18px; line-height: 1.5; letter-spacing: -0.01em;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+@media (min-width: 768px) { .t-lead { font-size: 20px; } }
+
+.t-display-s {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px; line-height: 1.2; letter-spacing: -0.015em;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 768px) { .t-display-s { font-size: 22px; } }
+
+.t-display-m {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 28px; line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 768px) { .t-display-m { font-size: 36px; } }
+@media (min-width: 1024px) { .t-display-m { font-size: 40px; } }
+
+.t-display-l {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 40px; line-height: 1.05; letter-spacing: -0.025em;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 768px) { .t-display-l { font-size: 48px; } }
+@media (min-width: 1024px) { .t-display-l { font-size: 56px; } }
+
+.t-mono { font-family: var(--font-mono); }
+
+/* Numeric labels (e.g. €15–25K, metric values) — Inter with tabular nums. */
+.t-numeral {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+}
+
+/* ============================================================
+   Shadow utilities
+   ============================================================ */
+.shadow-primary  { box-shadow: var(--shadow-primary); }
+.shadow-secondary{ box-shadow: var(--shadow-secondary); }
+.shadow-card     { box-shadow: var(--shadow-card); }
+.shadow-float    { box-shadow: var(--shadow-float); }
+
+/* ============================================================
+   Surface utilities
+   ============================================================ */
+.surface-invert {
+  background: var(--color-surface-invert);
+  color: var(--color-on-invert);
+}
+
+/* ============================================================
+   Motion — respects prefers-reduced-motion
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out both; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+</style>
+<style>
+  body { padding: 64px 64px 96px; }
+  .wrap { max-width: 1072px; margin: 0 auto; }
+  h1.page { font-size: 44px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 10px; }
+  .sub { color: var(--color-muted); max-width: 58ch; margin: 0 0 48px; font-size: 17px; line-height: 1.55; }
+  .group { margin-top: 56px; }
+  .group > header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; padding-bottom: 12px; margin-bottom: 24px;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .group > header h2 {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-ink);
+    margin: 0;
+  }
+  .group > header .spec { font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); letter-spacing: 0.02em; }
+  code { font-family: var(--font-mono); font-size: 12px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border-radius: 9999px;
+    padding: 12px 28px;
+    font-size: 15px; line-height: 1;
+    font-family: var(--font-sans); font-weight: 500;
+    transition: all 150ms ease-out;
+    border: 0; cursor: pointer;
+  }
+  .btn.primary {
+    background: var(--color-ink);
+    color: var(--color-on-invert);
+    box-shadow: var(--shadow-primary);
+  }
+  .btn.primary:hover { opacity: 0.9; }
+  .btn.secondary {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-secondary);
+  }
+  .btn.tertiary {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-card);
+    padding: 8px 22px;
+    font-size: 14px;
+  }
+  .btn .arrow { transition: transform 150ms ease-out; display: inline-block; }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .btn.active { transform: translateY(1px); }
+  .btn.disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+  .btn-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(5, 1fr);
+    gap: 20px;
+    align-items: center;
+  }
+  .btn-grid .rhead {
+    font-size: 15px; font-weight: 500; letter-spacing: -0.01em;
+    color: var(--color-ink-soft);
+  }
+  .btn-grid .chead {
+    font-family: var(--font-mono); font-size: 11px; color: var(--color-muted);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    justify-self: center;
+  }
+  .btn-cell { justify-self: center; }
+
+  /* Cards */
+  .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card-light {
+    background: var(--color-bg);
+    border-radius: 32px;
+    box-shadow: var(--shadow-card);
+    padding: 12px 40px 40px;
+  }
+  .card-dark {
+    background: var(--color-surface-invert);
+    color: var(--color-on-invert);
+    border-radius: 32px;
+    box-shadow: var(--shadow-primary);
+    padding: 12px 40px 40px;
+  }
+  .card-light .quote-icon, .card-dark .quote-icon {
+    width: 24px; height: 24px; margin-top: 24px;
+  }
+  .card-light .quote-icon { color: var(--color-ink); }
+  .card-dark .quote-icon { color: var(--color-on-invert); }
+  .card-light .body {
+    margin-top: 20px;
+    font-size: 20px; line-height: 1.5; letter-spacing: -0.01em;
+    color: var(--color-ink);
+    max-width: 38ch;
+  }
+  .card-light .author-row {
+    margin-top: 24px; display: flex; align-items: center; gap: 12px;
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 9999px;
+    background: linear-gradient(135deg, #E0EBF0, #273C46);
+  }
+  .card-light .name {
+    color: var(--color-ink-soft); font-size: 15px; font-weight: 500;
+  }
+  .card-light .role {
+    font-size: 14px; color: var(--color-muted);
+  }
+
+  /* Pricing card */
+  .price-row { display: flex; align-items: baseline; gap: 10px; margin-top: 28px; }
+  .price-num {
+    font-size: 36px; font-weight: 500; line-height: 1; letter-spacing: -0.02em;
+    color: var(--color-on-invert);
+    font-variant-numeric: tabular-nums;
+  }
+  .price-label {
+    font-family: var(--font-mono);
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--color-on-invert-soft);
+  }
+  .bullets { margin-top: 20px; padding: 0; list-style: none; }
+  .bullets li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 15px; line-height: 1.5;
+    color: var(--color-on-invert-soft);
+    padding: 4px 0;
+  }
+  .bullets svg { width: 16px; height: 16px; color: var(--color-on-invert); flex-shrink: 0; margin-top: 3px; }
+  .inv-cta {
+    margin-top: 20px;
+    background: var(--color-on-invert);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Chips */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--color-hairline);
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--color-muted);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* Eyebrow */
+  .eye-example {
+    display: flex; flex-direction: column; gap: 16px;
+    padding: 24px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+  }
+  .eye-example.dark { background: var(--color-surface-invert); }
+  .eye-example .eye-title { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; color: var(--color-ink-soft); margin: 0; }
+  .eye-example.dark .eye-title { color: var(--color-on-invert); font-variant-numeric: tabular-nums; }
+
+  /* Icons */
+  .icon-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .icon-cell {
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .icon-cell svg { width: 24px; height: 24px; color: var(--color-ink); }
+  .icon-cell .nm { font-family: var(--font-mono); font-size: 11px; color: var(--color-muted); }
+
+  /* Bottom nav */
+  .nav-pill-wrap {
+    padding: 40px;
+    background: linear-gradient(180deg, #F6FCFF, var(--color-bg));
+    border: 1px solid var(--color-hairline);
+    border-radius: 16px;
+    display: flex; justify-content: center;
+  }
+  .nav-pill {
+    background: var(--color-bg);
+    border-radius: 9999px;
+    padding: 8px 12px 8px 24px;
+    box-shadow: var(--shadow-float);
+    display: inline-flex; align-items: center; gap: 24px;
+  }
+  .nav-pill .mono {
+    font-size: 20px; font-weight: 600; letter-spacing: -0.025em;
+    color: var(--color-ink-soft);
+  }
+
+  /* Secondary surface */
+  .surface {
+    background: var(--color-bg);
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .surface .eye { margin: 0 0 12px; }
+  .surface .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .surface .v {
+    font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1;
+    color: var(--color-ink-soft); margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .surface .note { font-size: 13px; color: var(--color-muted); margin-top: 8px; }
+
+  /* Input */
+  .field {
+    display: flex; flex-direction: column; gap: 6px; max-width: 420px;
+  }
+  .field label {
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+  .field input {
+    border: 1px solid var(--color-hairline);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--color-ink);
+    background: var(--color-bg);
+    outline: none;
+  }
+  .field input:focus-visible {
+    border-color: var(--color-ink);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="t-eyebrow" style="margin:0 0 14px">§4 · Components</p>
+  <h1 class="page">Components</h1>
+  <p class="sub">Every component below is a composition of tokens. Minimum 44×44 hit targets. Focus rings are <code>--color-accent</code>. Never invent new chrome.</p>
+
+  <section class="group">
+    <header>
+      <h2>Button</h2>
+      <span class="spec">rounded-full · px-7 py-3 · text-[15px] · transition 150ms</span>
+    </header>
+    <div class="btn-grid">
+      <span></span>
+      <span class="chead">Default</span>
+      <span class="chead">Hover</span>
+      <span class="chead">Focus</span>
+      <span class="chead">Active</span>
+      <span class="chead">Disabled</span>
+
+      <span class="rhead">Primary</span>
+      <div class="btn-cell"><button class="btn primary"><span>Start a chat</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn primary" style="opacity:0.9"><span>Start a chat</span><span class="arrow" style="transform:translateX(4px)">→</span></button></div>
+      <div class="btn-cell"><button class="btn primary" style="outline:2px solid var(--color-accent); outline-offset:3px"><span>Start a chat</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn primary active"><span>Start a chat</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn primary disabled"><span>Start a chat</span><span class="arrow">→</span></button></div>
+
+      <span class="rhead">Secondary</span>
+      <div class="btn-cell"><button class="btn secondary"><span>Work with me</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn secondary" style="opacity:0.9"><span>Work with me</span><span class="arrow" style="transform:translateX(4px)">→</span></button></div>
+      <div class="btn-cell"><button class="btn secondary" style="outline:2px solid var(--color-accent); outline-offset:3px"><span>Work with me</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn secondary active"><span>Work with me</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn secondary disabled"><span>Work with me</span><span class="arrow">→</span></button></div>
+
+      <span class="rhead">Tertiary</span>
+      <div class="btn-cell"><button class="btn tertiary"><span>Next</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn tertiary" style="opacity:0.9"><span>Next</span><span class="arrow" style="transform:translateX(4px)">→</span></button></div>
+      <div class="btn-cell"><button class="btn tertiary" style="outline:2px solid var(--color-accent); outline-offset:3px"><span>Next</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn tertiary active"><span>Next</span><span class="arrow">→</span></button></div>
+      <div class="btn-cell"><button class="btn tertiary disabled"><span>Next</span><span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Eyebrow</h2>
+      <span class="spec">mono · 11/12 · 0.16em · uppercase</span>
+    </header>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div class="eye-example">
+        <p class="t-eyebrow">Shipped, not pitched</p>
+        <p class="eye-title">Work</p>
+      </div>
+      <div class="eye-example dark">
+        <p class="t-eyebrow" style="color:var(--color-on-invert-soft)">Minimum</p>
+        <p class="eye-title">€15–25K</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Cards</h2>
+      <span class="spec">rounded-[32px]→[40px] · shadow-card | shadow-primary</span>
+    </header>
+    <div class="cards-grid">
+      <article class="card-light">
+        <svg class="quote-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c3 0 7-1 7-8V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"/><path d="M15 21c3 0 7-1 7-8V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"/></svg>
+        <p class="body">Simon turned six months of analyst back-and-forth into a single Streamlit tool our PMs still run every Monday. Async, scoped, finished on time.</p>
+        <div class="author-row">
+          <div class="avatar"></div>
+          <div>
+            <p class="name" style="margin:0">Emilia Rossi</p>
+            <p class="role" style="margin:0">VP Product, B2C scale-up</p>
+          </div>
+        </div>
+      </article>
+      <article class="card-dark">
+        <p class="t-eyebrow" style="color:var(--color-on-invert-soft); margin-top:28px;">Revenue Root Cause Engine</p>
+        <div class="price-row">
+          <span class="price-num">€15–25K</span>
+          <span class="price-label">Minimum</span>
+        </div>
+        <ul class="bullets">
+          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><span>KPI decomposition into additive drivers</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><span>Change-point report, by cohort and channel</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><span>Streamlit dashboard you keep</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><span>Handoff + runbook at day 28</span></li>
+        </ul>
+        <button class="btn inv-cta"><span>Book intake</span><span class="arrow">→</span></button>
+      </article>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Tech chip</h2>
+      <span class="spec">hairline border · 11px · muted · max 3 on card</span>
+    </header>
+    <div class="chips">
+      <span class="chip">Snowflake</span>
+      <span class="chip">Streamlit</span>
+      <span class="chip">dbt</span>
+      <span class="chip">Next.js</span>
+      <span class="chip">Tailwind v4</span>
+      <span class="chip">MDX</span>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Icons</h2>
+      <span class="spec">Lucide · stroke 1.5 · curated set only</span>
+    </header>
+    <div class="icon-grid">
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"/><path d="M15 21c3 0 7-1 7-8V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"/></svg>
+        <span class="nm">Quote</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="nm">Star</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <span class="nm">ArrowUpRight</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span class="nm">ChevronLeft</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="nm">ChevronRight</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Secondary surface</h2>
+      <span class="spec">hairline border · rounded-xl · no shadow</span>
+    </header>
+    <div class="surface">
+      <p class="t-eyebrow eye">Price · Timeline</p>
+      <div class="pair">
+        <div>
+          <p class="t-eyebrow" style="font-size:11px">Price</p>
+          <p class="v">€15–25K</p>
+          <p class="note">Fixed. Agreed before kick-off.</p>
+        </div>
+        <div>
+          <p class="t-eyebrow" style="font-size:11px">Timeline</p>
+          <p class="v">4 wks</p>
+          <p class="note">Kick-off to handoff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Input</h2>
+      <span class="spec">hairline border · rounded-xl · focus ring uses --color-accent</span>
+    </header>
+    <div class="field">
+      <label for="e">Email</label>
+      <input id="e" type="email" placeholder="you@company.com" />
+    </div>
+  </section>
+
+  <section class="group">
+    <header>
+      <h2>Bottom nav pill</h2>
+      <span class="spec">fixed · shadow-float · monogram + primary CTA</span>
+    </header>
+    <div class="nav-pill-wrap">
+      <div class="nav-pill">
+        <span class="mono">S</span>
+        <button class="btn primary"><span>Start a chat</span><span class="arrow">→</span></button>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

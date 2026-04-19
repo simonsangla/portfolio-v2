@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>simonsangla.com — Design System</title>
+<link rel="icon" href="assets/favicon.svg" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-ink: #051A24;
+  --color-ink-soft: #0D212C;
+  --color-muted: #273C46;
+  --color-hairline: #E0EBF0;
+  --color-surface-invert: #051A24;
+  --color-on-invert: #F6FCFF;
+  --color-on-invert-soft: #E0EBF0;
+  --color-accent: #B8341A;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  --inter-features: "ss01", "cv11";
+  --shadow-primary:
+      0 1px 2px 0 rgba(5,26,36,0.10),
+      0 4px 4px 0 rgba(5,26,36,0.09),
+      0 9px 6px 0 rgba(5,26,36,0.05),
+      0 17px 7px 0 rgba(5,26,36,0.01),
+      0 26px 7px 0 rgba(5,26,36,0.00),
+      inset 0 2px 8px 0 rgba(255,255,255,0.50);
+  --shadow-secondary:
+      0 0 0 0.5px rgba(0,0,0,0.05),
+      0 4px 30px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-float:
+      0 8px 24px rgba(5,26,36,0.10),
+      0 2px 6px rgba(5,26,36,0.06);
+}
+
+* { box-sizing: border-box; }
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: var(--inter-features);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--color-ink); color: var(--color-bg); }
+
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 1.2;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.hero-wrap {
+  padding: 96px 24px 72px;
+  max-width: 1072px; margin: 0 auto;
+}
+.hero-wrap .tag {
+  font-family: var(--font-mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--color-muted);
+  margin: 0 0 20px;
+}
+.hero-wrap h1 {
+  font-weight: 600;
+  font-size: clamp(44px, 6.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  max-width: 900px;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+.hero-wrap .lead {
+  margin: 24px 0 0;
+  max-width: 58ch;
+  font-size: 20px; line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.hero-wrap .meta {
+  margin-top: 28px;
+  display: flex; flex-wrap: wrap; gap: 24px;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--color-muted);
+  letter-spacing: 0.06em;
+}
+.hero-wrap .meta span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-wrap .meta b {
+  font-family: var(--font-sans); font-weight: 500;
+  color: var(--color-ink-soft);
+  text-transform: none; letter-spacing: -0.01em;
+  font-size: 14px;
+}
+
+.grid {
+  max-width: 1072px; margin: 0 auto; padding: 24px;
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.tile {
+  border: 1px solid var(--color-hairline);
+  border-radius: 16px;
+  background: var(--color-bg);
+  padding: 28px;
+  display: grid; gap: 10px;
+  text-decoration: none; color: inherit;
+  transition: background 150ms ease-out, border-color 150ms ease-out;
+  position: relative;
+}
+.tile:hover {
+  background: rgba(224,235,240,0.28);
+  border-color: rgba(5,26,36,0.25);
+}
+.tile .eye { margin: 0; }
+.tile h3 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 4px 0 0;
+}
+.tile p { margin: 0; color: var(--color-muted); font-size: 15px; line-height: 1.55; }
+.tile .arr {
+  font-family: var(--font-sans);
+  font-size: 18px; color: var(--color-muted);
+  margin-top: 6px;
+  transition: transform 150ms ease-out, color 150ms ease-out;
+}
+.tile:hover .arr { transform: translateX(4px); color: var(--color-ink); }
+
+footer {
+  margin: 96px auto 48px;
+  max-width: 1072px;
+  padding: 32px 24px 0;
+  border-top: 1px solid var(--color-hairline);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+footer code { font-family: var(--font-mono); font-size: 12.5px; color: var(--color-ink); }
+</style>
+</head>
+<body>
+  <section class="hero-wrap">
+    <p class="tag">simonsangla.com · Design system · v1</p>
+    <h1>A builder's landing page. One typeface, five radii, four shadows.</h1>
+    <p class="lead">Direct, utilitarian, evidence-first. Inter across the whole scale — weight drives hierarchy. No serif, no ornament. Every token here mirrors the source repo verbatim. Click any card to open its spec.</p>
+    <div class="meta">
+      <span>Inter · <b>400 / 500 / 600</b></span>
+      <span>Mono · <b>JetBrains Mono</b></span>
+      <span>Ink · <b>#051A24</b></span>
+      <span>Accent · <b>#B8341A</b></span>
+    </div>
+  </section>
+
+  <section class="grid">
+    <a class="tile" href="preview_palette.html">
+      <p class="t-eyebrow eye">§2 · Color</p>
+      <h3>Palette</h3>
+      <p>Core, inverted, and the one accent that earns its focus ring.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_type.html">
+      <p class="t-eyebrow eye">§3 · Type</p>
+      <h3>Type scale</h3>
+      <p>Inter 400/500/600 across body and display. Mono for eyebrows and code.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_spacing.html">
+      <p class="t-eyebrow eye">§5 · §6 · Rhythm</p>
+      <h3>Spacing &amp; elevation</h3>
+      <p>Fourteen spacing stops, five radii, four shadow recipes.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_components.html">
+      <p class="t-eyebrow eye">§4 · Components</p>
+      <h3>Components</h3>
+      <p>Buttons, cards, chips, icons, input, nav pill.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_brand.html">
+      <p class="t-eyebrow eye">§1 · Brand</p>
+      <h3>Brand</h3>
+      <p>Mark, voice samples, proof numerals.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_hero_practitioner.html">
+      <p class="t-eyebrow eye">§1 · Atmosphere</p>
+      <h3>Hero — practitioner</h3>
+      <p>Wide hero column, two-line h1, meta row, primary pill CTA.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="preview_before_after.html">
+      <p class="t-eyebrow eye">§7 · Voice</p>
+      <h3>Before / after</h3>
+      <p>Rewrites from agency-gloss to practitioner voice.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="home.html">
+      <p class="t-eyebrow eye">Final · Page</p>
+      <h3>Homepage</h3>
+      <p>Full landing page. Nav, hero, work index, services + pricing, about, footer. Tweakable.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="proof.html">
+      <p class="t-eyebrow eye">Final · Page</p>
+      <h3>Proof detail</h3>
+      <p>Engagement write-up. Hero, dashboard mock, prose, metrics panel, related + prev/next.</p>
+      <span class="arr">→</span>
+    </a>
+    <a class="tile" href="README.md">
+      <p class="t-eyebrow eye">Docs</p>
+      <h3>README</h3>
+      <p>Company, content, visual fundamentals, icon rules.</p>
+      <span class="arr">→</span>
+    </a>
+  </section>
+
+  <footer>
+    Tokens mirror <code>app/globals.css</code> + <code>lib/theme.json</code> in the source repo. Inter-only, per DESIGN.md §3. Never <code>#000</code>, never Fraunces, never a sixth radius.
+  </footer>
+</body>
+</html>
