@@ -412,6 +412,43 @@ export default async function HomePage() {
             </p>
           </div>
 
+          {/* Toolbelt — 3-col grid */}
+          <div className="mt-10 grid grid-cols-2 gap-8 border-t border-[color:var(--color-hairline)] pt-8 sm:grid-cols-3">
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.14em] text-[color:var(--color-muted)] sm:text-xs">
+                Warehouse
+              </h4>
+              <ul className="mt-2 space-y-1 text-sm text-[color:var(--color-ink-soft)]">
+                <li>Snowflake</li>
+                <li>dbt</li>
+                <li>BigQuery</li>
+                <li>Redshift</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.14em] text-[color:var(--color-muted)] sm:text-xs">
+                Product
+              </h4>
+              <ul className="mt-2 space-y-1 text-sm text-[color:var(--color-ink-soft)]">
+                <li>Mixpanel</li>
+                <li>Amplitude</li>
+                <li>Eppo</li>
+                <li>Statsig</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-medium uppercase tracking-[0.14em] text-[color:var(--color-muted)] sm:text-xs">
+                Stack
+              </h4>
+              <ul className="mt-2 space-y-1 text-sm text-[color:var(--color-ink-soft)]">
+                <li>Python · SQL</li>
+                <li>Streamlit</li>
+                <li>Next.js · TS</li>
+                <li>Claude · OpenAI</li>
+              </ul>
+            </div>
+          </div>
+
           {/* Contact surfaces directly */}
           <div className="mt-8 flex flex-wrap gap-3">
             <CTA href="#services">Start the intake</CTA>
