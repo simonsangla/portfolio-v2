@@ -66,7 +66,7 @@ export function ArtifactCard({
   return (
     <Link
       href={`/proofs/${artifact.slug}`}
-      className="group flex items-start justify-between gap-6 border-t border-[color:var(--color-hairline)] py-6 transition-colors hover:bg-[color:var(--color-hairline)]/30 sm:gap-10 sm:py-7"
+      className="artifact-row group flex items-start justify-between gap-6 border-t border-[color:var(--color-hairline)] py-6 sm:gap-10 sm:py-7"
     >
       <div className="min-w-0 flex-1">
         {eyebrow}

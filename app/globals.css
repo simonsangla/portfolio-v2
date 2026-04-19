@@ -92,6 +92,21 @@
   50%      { transform: scale(1.15); opacity: 0.7; }
 }
 
+/* artifact-row — soft inset highlight on hover */
+.artifact-row { position: relative; isolation: isolate; }
+.artifact-row::before {
+  content: "";
+  position: absolute;
+  inset: 0.5rem -0.5rem;
+  background: var(--color-hairline-soft);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+  z-index: -1;
+  pointer-events: none;
+}
+.artifact-row:hover::before { opacity: 1; }
+
 /* who-list — hairline rule marker in place of em-dash prefix */
 .who-list {
   list-style: none;
