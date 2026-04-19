@@ -7,6 +7,9 @@
 export const site = {
   name: "Simon Sangla",
   tagline: "Revenue root causes, shipped in four weeks.",
+  heroTitleLine1: "Data + AI products,",
+  heroTitleLine2: "shipped in weeks.",
+  heroStatus: "Lisbon · Remote · Booking May 2026",
   description:
     "Practitioner landing page for Simon Sangla — data & AI builder. Fixed-scope engagements: revenue root cause diagnostics for B2C scale-ups on Snowflake. Registry of shipped proofs.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://simonsangla.com",

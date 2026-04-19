@@ -18,7 +18,7 @@ export function ArtifactCard({
     </p>
   );
   const title = (
-    <h3 className="mt-2 font-serif text-[1.7rem] leading-[1.08] tracking-tight text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)] sm:text-[2rem]">
+    <h3 className="mt-2 text-[1.7rem] font-medium leading-[1.08] tracking-[-0.02em] text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)] sm:text-[2rem]">
       {artifact.name}
     </h3>
   );
@@ -33,7 +33,7 @@ export function ArtifactCard({
       {chips.map((c) => (
         <span
           key={c}
-          className="rounded-full border border-[color:var(--color-hairline)] px-2.5 py-0.5 text-[10px] normal-case tracking-normal text-[color:var(--color-muted)]"
+          className="rounded-full border border-[color:var(--color-hairline)] bg-[color:var(--color-bg)] px-2.5 py-0.5 text-[10.5px] font-normal normal-case tracking-normal text-[color:var(--color-muted)]"
         >
           {c}
         </span>
@@ -55,7 +55,7 @@ export function ArtifactCard({
         {meta}
         <span
           aria-hidden
-          className="mt-5 font-serif text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
+          className="mt-5 text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
         >
           →
         </span>
@@ -66,7 +66,7 @@ export function ArtifactCard({
   return (
     <Link
       href={`/proofs/${artifact.slug}`}
-      className="group flex items-start justify-between gap-6 border-t border-[color:var(--color-hairline)] py-6 transition-colors hover:bg-[color:var(--color-hairline)]/30 sm:gap-10 sm:py-7"
+      className="artifact-row group flex items-start justify-between gap-6 border-t border-[color:var(--color-hairline)] py-6 sm:gap-10 sm:py-7"
     >
       <div className="min-w-0 flex-1">
         {eyebrow}
@@ -78,7 +78,7 @@ export function ArtifactCard({
       </div>
       <span
         aria-hidden
-        className="mt-3 shrink-0 font-serif text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)] sm:mt-4"
+        className="mt-3 shrink-0 text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)] sm:mt-4"
       >
         →
       </span>

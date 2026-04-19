@@ -123,7 +123,7 @@ export default async function ArtifactDetailPage({
             >
               <span
                 aria-hidden
-                className="mt-1 font-serif text-xl text-[color:var(--color-muted)] transition-transform group-hover:-translate-x-1 group-hover:text-[color:var(--color-accent)]"
+                className="mt-1 text-xl text-[color:var(--color-muted)] transition-transform group-hover:-translate-x-1 group-hover:text-[color:var(--color-accent)]"
               >
                 ←
               </span>
@@ -131,7 +131,7 @@ export default async function ArtifactDetailPage({
                 <span className="block text-[10px] uppercase tracking-[0.16em]">
                   Previous
                 </span>
-                <span className="mt-1.5 block font-serif text-xl tracking-tight text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
+                <span className="mt-1.5 block text-xl font-medium tracking-[-0.02em] text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
                   {prev.name}
                 </span>
               </span>
@@ -148,13 +148,13 @@ export default async function ArtifactDetailPage({
                 <span className="block text-[10px] uppercase tracking-[0.16em]">
                   Next
                 </span>
-                <span className="mt-1.5 block font-serif text-xl tracking-tight text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
+                <span className="mt-1.5 block text-xl font-medium tracking-[-0.02em] text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
                   {next.name}
                 </span>
               </span>
               <span
                 aria-hidden
-                className="mt-1 font-serif text-xl text-[color:var(--color-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
+                className="mt-1 text-xl text-[color:var(--color-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
               >
                 →
               </span>

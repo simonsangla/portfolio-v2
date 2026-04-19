@@ -20,7 +20,7 @@ export function ArtifactHero({ artifact }: { artifact: Artifact }) {
         <span aria-hidden className="text-[color:var(--color-hairline)]">•</span>
         <span>{yearFromDate(artifact.date)}</span>
       </div>
-      <h1 className="display-axis mt-3 font-serif text-[2.25rem] leading-[1.05] tracking-tight text-[color:var(--color-ink-soft)] sm:mt-5 sm:text-6xl">
+      <h1 className="mt-3 text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.025em] text-[color:var(--color-ink-soft)] sm:mt-5 sm:text-6xl">
         {artifact.name}
       </h1>
       <p className="mt-3 max-w-[52ch] text-xl text-[color:var(--color-muted)] sm:mt-5 sm:text-2xl">
