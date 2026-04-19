@@ -3,14 +3,15 @@ import { Container } from "./Container";
 import { site } from "@/lib/site";
 
 const links = [
-  { href: "/#proofs", label: "Proofs" },
+  { href: "/#proofs", label: "Work" },
   { href: "/#services", label: "Services" },
+  { href: "/#training", label: "Training" },
   { href: "/#about", label: "About" },
 ];
 
 export function Nav() {
   return (
-    <header className="border-b border-[color:var(--color-hairline)]">
+    <header className="sticky top-0 z-10 border-b border-[color:var(--color-hairline)] bg-[color:var(--color-bg)]/85 backdrop-blur [backdrop-filter:saturate(180%)_blur(12px)]">
       <Container>
         <nav className="flex items-center justify-between py-5">
           <Link
