@@ -1,8 +1,8 @@
 import type { Artifact } from "@/lib/artifacts";
 
-// Values up to this length render as display-serif proof figures.
+// Values up to this length render as display proof figures.
 // Longer values (phrases like "9 domains · 36 tasks mapped") drop to a
-// smaller serif treatment with balanced wrapping so the grid column can hold.
+// smaller treatment with balanced wrapping so the grid column can hold.
 const DISPLAY_VALUE_MAX_CHARS = 10;
 
 export function ArtifactMetrics({ artifact }: { artifact: Artifact }) {
@@ -25,8 +25,8 @@ export function ArtifactMetrics({ artifact }: { artifact: Artifact }) {
                 <dd
                   className={
                     isDisplay
-                      ? "mt-2 font-serif text-[2.25rem] leading-[1.05] tracking-tight tabular-nums text-[color:var(--color-ink-soft)] sm:text-[2.75rem]"
-                      : "mt-2 font-serif text-[1.375rem] leading-[1.25] tracking-tight text-[color:var(--color-ink-soft)] sm:text-[1.5rem] [text-wrap:balance]"
+                      ? "mt-2 text-[2.25rem] font-medium leading-[1.05] tracking-[-0.025em] tabular-nums text-[color:var(--color-ink-soft)] sm:text-[2.75rem]"
+                      : "mt-2 text-[1.375rem] font-medium leading-[1.25] tracking-[-0.02em] text-[color:var(--color-ink-soft)] sm:text-[1.5rem] [text-wrap:balance]"
                   }
                 >
                   {m.value}

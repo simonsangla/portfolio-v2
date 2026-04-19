@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -10,17 +10,6 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-// DESIGN.md §3 — Fraunces variable with axes opsz 144, SOFT 50, WONK 1.
-// opsz is Fraunces' default axis; SOFT/WONK are registered here and pinned via
-// font-variation-settings in globals.css.
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: "variable",
-  axes: ["SOFT", "WONK"],
-  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -64,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="flex min-h-screen flex-col">
         <Nav />
         <main className="flex-1">{children}</main>

@@ -58,7 +58,7 @@ export default async function HomePage() {
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[color:var(--color-ink)] sm:text-xs">
             {site.location} · Remote · Async
           </p>
-          <h1 className="display-axis mt-6 font-serif text-[clamp(2.75rem,10.5vw,6rem)] leading-[0.96] tracking-tight">
+          <h1 className="mt-6 text-[clamp(2.75rem,10.5vw,6rem)] font-semibold leading-[0.96] tracking-[-0.025em]">
             {site.name}.
             <br />
             {site.tagline}
@@ -89,7 +89,7 @@ export default async function HomePage() {
                 Shipped, not pitched
               </p>
               <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-                <h2 className="font-serif text-4xl leading-[1.02] tracking-tight sm:text-5xl">
+                <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.025em] sm:text-5xl">
                   Work
                 </h2>
                 <p className="text-sm text-[color:var(--color-muted)]">
@@ -130,7 +130,7 @@ export default async function HomePage() {
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[color:var(--color-ink)] sm:text-xs">
             One engagement. Fixed scope.
           </p>
-          <h2 className="mt-4 font-serif text-4xl leading-[1.02] tracking-tight sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-medium leading-[1.02] tracking-[-0.025em] sm:text-5xl">
             Revenue Root Cause Engine.
           </h2>
           <p className="mt-5 text-lg text-[color:var(--color-muted)] sm:text-xl">
@@ -146,7 +146,7 @@ export default async function HomePage() {
                 <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
                   Price
                 </p>
-                <p className="mt-3 font-serif text-[2.5rem] leading-[1.02] tracking-tight text-[color:var(--color-ink-soft)] sm:text-[3rem]">
+                <p className="mt-3 text-[2.5rem] font-medium leading-[1.02] tracking-[-0.025em] tabular-nums text-[color:var(--color-ink-soft)] sm:text-[3rem]">
                   €15–25K
                 </p>
                 <p className="mt-2 text-sm text-[color:var(--color-muted)]">
@@ -157,7 +157,7 @@ export default async function HomePage() {
                 <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
                   Timeline
                 </p>
-                <p className="mt-3 font-serif text-[2.5rem] leading-[1.02] tracking-tight text-[color:var(--color-ink-soft)] sm:text-[3rem]">
+                <p className="mt-3 text-[2.5rem] font-medium leading-[1.02] tracking-[-0.025em] tabular-nums text-[color:var(--color-ink-soft)] sm:text-[3rem]">
                   4 wks
                 </p>
                 <p className="mt-2 text-sm text-[color:var(--color-muted)]">
@@ -177,7 +177,7 @@ export default async function HomePage() {
 
           {/* Who — stays visible */}
           <div className="mt-10">
-            <h3 className="font-serif text-xl tracking-tight sm:text-2xl">
+            <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               Who it&rsquo;s for
             </h3>
             <ul className="mt-3 space-y-1.5 text-[color:var(--color-ink)]/85">
@@ -190,7 +190,7 @@ export default async function HomePage() {
 
           {/* Deliverables collapsed */}
           <details className="group mt-8 border-t border-[color:var(--color-hairline)] pt-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-4 font-serif text-xl tracking-tight sm:text-2xl">
+            <summary className="flex cursor-pointer items-center justify-between gap-4 text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               <span>What you get</span>
               <span className="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">
                 +
@@ -199,7 +199,7 @@ export default async function HomePage() {
             <div className="mt-4 divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
               {deliverables.map((d) => (
                 <div key={d.title} className="py-4">
-                  <h4 className="font-serif text-lg tracking-tight">
+                  <h4 className="text-lg font-medium tracking-[-0.015em]">
                     {d.title}
                   </h4>
                   <p className="mt-1.5 text-[color:var(--color-muted)]">
@@ -212,7 +212,7 @@ export default async function HomePage() {
 
           {/* FAQ collapsed */}
           <details className="group mt-6 border-t border-[color:var(--color-hairline)] pt-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-4 font-serif text-xl tracking-tight sm:text-2xl">
+            <summary className="flex cursor-pointer items-center justify-between gap-4 text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               <span>Questions</span>
               <span className="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">
                 +
@@ -221,7 +221,7 @@ export default async function HomePage() {
             <div className="mt-4 divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
               {faqs.map((f) => (
                 <details key={f.q} className="group/faq py-4">
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 font-serif text-base tracking-tight sm:text-lg">
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-medium tracking-[-0.015em] sm:text-lg">
                     <span>{f.q}</span>
                     <span className="text-[color:var(--color-muted)] transition-transform group-open/faq:rotate-45">
                       +
@@ -246,7 +246,7 @@ export default async function HomePage() {
             <p className="text-[11px] uppercase tracking-[0.16em] text-[color:var(--color-muted)] sm:text-xs">
             About
           </p>
-          <h2 className="mt-3 font-serif text-4xl leading-[1.02] tracking-tight sm:text-5xl">
+          <h2 className="mt-3 text-4xl font-medium leading-[1.02] tracking-[-0.025em] sm:text-5xl">
             I turn data signals into products.
           </h2>
 
@@ -277,7 +277,7 @@ export default async function HomePage() {
           </div>
 
           <details className="group mt-10 border-t border-[color:var(--color-hairline)] pt-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-4 font-serif text-xl tracking-tight sm:text-2xl">
+            <summary className="flex cursor-pointer items-center justify-between gap-4 text-xl font-medium tracking-[-0.02em] sm:text-2xl">
               <span>More on how I work</span>
               <span className="text-[color:var(--color-muted)] transition-transform group-open:rotate-45">
                 +

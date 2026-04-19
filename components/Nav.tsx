@@ -15,7 +15,7 @@ export function Nav() {
         <nav className="flex items-center justify-between py-5">
           <Link
             href="/"
-            className="font-serif text-lg tracking-tight hover:text-[color:var(--color-accent)] transition-colors"
+            className="text-[15px] font-semibold tracking-[-0.015em] text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-accent)] transition-colors"
             aria-label={`${site.name} — home`}
           >
             {site.name}

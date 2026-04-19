@@ -18,7 +18,7 @@ export function ArtifactCard({
     </p>
   );
   const title = (
-    <h3 className="mt-2 font-serif text-[1.7rem] leading-[1.08] tracking-tight text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)] sm:text-[2rem]">
+    <h3 className="mt-2 text-[1.7rem] font-medium leading-[1.08] tracking-[-0.02em] text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)] sm:text-[2rem]">
       {artifact.name}
     </h3>
   );
@@ -55,7 +55,7 @@ export function ArtifactCard({
         {meta}
         <span
           aria-hidden
-          className="mt-5 font-serif text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
+          className="mt-5 text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
         >
           →
         </span>
@@ -78,7 +78,7 @@ export function ArtifactCard({
       </div>
       <span
         aria-hidden
-        className="mt-3 shrink-0 font-serif text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)] sm:mt-4"
+        className="mt-3 shrink-0 text-2xl text-[color:var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)] sm:mt-4"
       >
         →
       </span>

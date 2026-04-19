@@ -33,7 +33,7 @@ export function ArtifactRelated({
               className="group flex items-start gap-3 rounded-md p-3 transition-colors hover:bg-[color:var(--color-hairline)]/30 sm:p-4"
             >
               <span className="min-w-0 flex-1">
-                <span className="block font-serif text-xl tracking-tight text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
+                <span className="block text-xl font-medium tracking-[-0.02em] text-[color:var(--color-ink-soft)] transition-colors group-hover:text-[color:var(--color-accent)]">
                   {a.name}
                 </span>
                 <span className="mt-1 block text-sm text-[color:var(--color-muted)]">
@@ -42,7 +42,7 @@ export function ArtifactRelated({
               </span>
               <span
                 aria-hidden
-                className="mt-1 shrink-0 font-serif text-xl text-[color:var(--color-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
+                className="mt-1 shrink-0 text-xl text-[color:var(--color-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[color:var(--color-accent)]"
               >
                 →
               </span>
