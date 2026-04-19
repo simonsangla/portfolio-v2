@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import withSerwistInit from "@serwist/next";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const withSerwist = withSerwistInit({
   swSrc: "app/sw.ts",
@@ -10,6 +14,9 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Pin workspace root to this repo — stops Next from inferring it from
+  // an ambient parent lockfile (e.g. ~/pnpm-lock.yaml).
+  outputFileTracingRoot: __dirname,
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "**" },
