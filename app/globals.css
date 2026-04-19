@@ -8,7 +8,9 @@
   --color-ink: var(--tf-color-ink);
   --color-ink-soft: var(--tf-color-ink-soft);
   --color-muted: var(--tf-color-muted);
+  --color-muted-soft: var(--tf-color-muted-soft);
   --color-hairline: var(--tf-color-hairline);
+  --color-hairline-soft: var(--tf-color-hairline-soft);
   --color-accent: var(--tf-color-accent);
 
   /* Inverted surfaces */
