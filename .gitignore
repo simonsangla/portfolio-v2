@@ -50,3 +50,11 @@ next-env.d.ts
 
 # claude code local-only settings
 .claude/settings.local.json
+
+# local recordings / transcripts (not for public repo)
+public/zyp-zqmq-zif*
+*.mp4
+*.Transcript.txt
+
+# claude code local artifacts
+.claude/*.local.*
