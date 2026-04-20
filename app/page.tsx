@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { CTA } from "@/components/CTA";
 import { ArtifactCard } from "@/components/ArtifactCard";
@@ -131,6 +132,32 @@ export default async function HomePage() {
                   <ArtifactCard artifact={a} />
                 </ArtifactCardTracker>
               ))}
+            </div>
+
+            {/* Case-study proof callout */}
+            <div className="mt-8 rounded-xl border border-[color:var(--color-hairline)] bg-[color:var(--color-bg)] p-5 shadow-secondary sm:mt-10 sm:p-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[color:var(--color-muted)]">
+                    Case study
+                  </p>
+                  <p className="mt-2 text-base text-[color:var(--color-ink)] sm:text-lg">
+                    <span className="font-medium">
+                      80% reduction in KPI investigation time
+                    </span>{" "}
+                    <span className="text-[color:var(--color-muted)]">
+                      · 10 years in production · 5 product teams
+                    </span>
+                  </p>
+                </div>
+                <Link
+                  href="/case-studies/tripadvisor-precursor"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-accent)]"
+                >
+                  <span>Read the case study</span>
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
             </div>
           </Container>
         </SectionReveal>
