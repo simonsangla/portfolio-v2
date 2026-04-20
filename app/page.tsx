@@ -78,6 +78,9 @@ export default async function HomePage() {
             </CTA>
           </div>
           <HeroSignals />
+          <p className="mt-4 font-mono text-[11px] tracking-[0.12em] text-[color:var(--color-muted)]">
+            {site.differentiator}
+          </p>
         </Container>
       </section>
 
