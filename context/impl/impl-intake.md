@@ -10,7 +10,7 @@ Replace the placeholder `mailto:` intake with a single env-driven Tally URL used
 
 - Provider: Tally. URL held in `NEXT_PUBLIC_TALLY_URL`, not hard-coded.
 - Open in same tab (no `target="_blank"`). Preserves referrer for Tally attribution.
-- Build-time assertion: `lib/site.ts` throws at module load in production if the env is missing.
+- Build-time assertion: `lib/site.ts` throws at module load when `VERCEL_ENV === "production"` and the env is missing. CI + Vercel preview builds skip the guard (they fall back to `https://tally.so`).
 - Every intake CTA fires `intake_open` with a location-specific `source` string.
 
 ## Changes

@@ -6,9 +6,12 @@
 
 const tallyUrl = process.env.NEXT_PUBLIC_TALLY_URL;
 
-if (process.env.NODE_ENV === "production" && !tallyUrl) {
+// Gate on Vercel's production environment flag, not NODE_ENV, so CI builds
+// and Vercel preview builds don't trip when the env only needs to live in the
+// production environment.
+if (process.env.VERCEL_ENV === "production" && !tallyUrl) {
   throw new Error(
-    "NEXT_PUBLIC_TALLY_URL must be set in production. Add it to the Vercel environment.",
+    "NEXT_PUBLIC_TALLY_URL must be set in the Vercel production environment.",
   );
 }
 
