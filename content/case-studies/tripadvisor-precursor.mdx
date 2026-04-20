@@ -1,0 +1,79 @@
+---
+slug: tripadvisor-precursor
+title: "TripAdvisor: the precursor to MetricPilot"
+client: "TripAdvisor Media Group"
+role: "Lead Analyst, Experimentation & Metrics"
+period: "2018–2023"
+headline_metric: "80% reduction in KPI investigation time across 5 product teams"
+tags: [analytics, diagnostics, snowflake, experimentation, b2c]
+summary: "The Business Metric Wizard — an internal diagnostic system that turned weekly KPI reviews from an analyst-week into a 20-minute read. Ran for a decade at scale."
+featured: true
+related_products: [metricpilot]
+---
+
+## Problem
+
+Every Monday, five product teams across the TripAdvisor group met to review the previous week's KPIs. Before those meetings, a rotating analyst spent the better part of a week assembling the same artifact: a deck of charts, bullet points, and tentative causal claims about why bookings, conversion, or repeat rate had moved.
+
+The work was slow, and worse, it was unreliable. By the time the analyst had decomposed the headline metric by cohort, channel, and platform, the analyst-hours were spent and the meeting had started. Root causes were often missed. Early-warning signals — drops in a precursor metric that would predict a booking dip two weeks out — were ignored because nobody had time to look at them. Clustering signals across surfaces were invisible to any single analyst.
+
+The teams kept making decisions. The decisions kept being half-informed. The cost compounded.
+
+## Approach
+
+I built a system — internally called the **Business Metric Wizard** — that automated the weekly diagnostic end-to-end. The structural intuition was simple: the work humans were doing by hand was mostly mechanical. Decompose the metric, detect the change-point, describe the result in plain English. Machines could do all three, and do them more consistently than an analyst working against a deadline.
+
+Three components, glued together:
+
+1. **Additive KPI decomposition** — break the headline metric into its additive drivers (volume × conversion × AOV × return rate, applied at the cohort level). Rank drivers by absolute contribution to the week-over-week delta.
+2. **Statistical change-point detection** — Theil–Sen slope estimators plus STL seasonal-trend decomposition to isolate *when* and *where* a driver broke, with cohort / channel / platform / geography as the slicers.
+3. **Natural-language summarization** — a template layer that turned the ranked driver list plus change-point output into a short written brief: "Repeat-guest bookings are down 4.3%. 82% of the drop is concentrated in mobile-web in FR + IT, starting week of 2020-W14."
+
+All of it ran nightly inside the Snowflake warehouse. Zero data left the perimeter. The LLM summarization layer (added in 2022) ran on a locally-hosted model.
+
+## Stack
+
+- **Warehouse:** Snowflake (event + orders layer modeled in dbt)
+- **Transforms:** Python (`pandas`, `statsmodels`) + `STL` decomposition
+- **Change-point:** Theil–Sen slope + CUSUM for narrow windows
+- **Orchestration:** Airflow, nightly DAG
+- **Delivery:** auto-generated Notion pages per team, plus a slim Streamlit explorer for the driver drill-down
+- **Summarization layer:** locally-hosted LLM (no vendor round-trip on production data)
+
+## Metrics before
+
+- Average analyst-hours spent per weekly review across the five teams: **~40 hours/week** (roughly one senior analyst-week).
+- Root-cause diagnosis: analyst-led, inconsistent across teams, often contradicted week-over-week.
+- Precursor-metric surveillance: **zero** — no team was monitoring lead indicators.
+- Cross-team clustering: invisible. Two teams seeing the same driver break never found out until an ad-hoc cross-org review.
+
+## Metrics after
+
+- Analyst-hours per weekly review: **~8 hours/week**, used for interpreting the auto-brief rather than building it.
+- Investigation time: **−80%**. The diagnostic was ready by 06:00 Monday.
+- Precursor surveillance went from zero to a standing weekly briefing across all five teams.
+- Downstream: the system seeded a self-service Insight Bot that grew to **500+ queries/month** across the org, still in use.
+- The Wizard ran in production for ten years and survived a full warehouse migration.
+
+## What I built
+
+- The decomposition + change-point library (internal).
+- The summarization templating layer + evaluation set.
+- The Notion + Slack delivery layer.
+- A training rollout: two hour-long workshops per team on how to read the auto-brief and when to override it.
+- An escalation path: if the brief flagged a cross-team cluster, it automatically notified the relevant team leads.
+
+## What I'd do differently
+
+- **Ship the summarization layer sooner.** The first two years were decomposition-only; teams had to interpret a table of drivers. Once the natural-language layer landed, adoption jumped. I should have treated the text output as the product from week one.
+- **Build the explorer before the batch pipeline.** I led with the nightly run and bolted on a self-serve layer later; the reverse would have let analysts pull ad-hoc questions into the system faster.
+- **Write the evaluation set earlier.** We had qualitative "the brief feels right" for too long before I built a ground-truth set of historical incidents to regression-test against.
+
+## Lessons
+
+- **Structural problems beat heroic workflows.** The analyst-week wasn't a staffing problem; it was a tooling gap. Any team with the same diagnostic cadence and the same warehouse shape is paying the same cost.
+- **Determinism earns trust.** The moment the auto-brief produced one confidently wrong answer, the team stopped trusting every brief. Tight evaluation, narrow confidence claims, and a "show the decomposition underneath" escape hatch are non-negotiable.
+- **Local models clear the blast-radius conversation in one sentence.** "No data leaves the warehouse" made the security review ten minutes instead of ten weeks.
+- **The engine is portable; the organizational pattern is not.** The Wizard survived at TripAdvisor because the weekly-review ritual existed and had teeth. Deploying the same engine into a team without that ritual would have been a museum piece.
+
+This is the engine that MetricPilot now ships as a fixed-scope engagement for B2C scale-ups on Snowflake. Same decomposition, same change-point detection, same local-only summarization — productized, documented, and handed off to the client's team at day 28.
