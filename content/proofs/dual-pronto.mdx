@@ -1,9 +1,9 @@
 ---
-slug: prompto
-name: Prompto
+slug: dual-pronto
+name: Dual Pronto
 tagline: Daily training app for practical prompting.
 category: App
-promise: Short daily missions with instant scoring and a visible progress loop — a Duolingo-style practice surface for prompt engineering.
+promise: Short daily missions with instant scoring and a visible progress track — a Duolingo-style practice surface for prompt engineering.
 business_value: Turns an abstract meta-skill into a compounding habit. The highest-leverage skill of the decade, taught through behaviour design instead of lecture videos.
 status: in-progress
 protection_level: limited
@@ -18,11 +18,11 @@ links:
 role: solo
 highlights:
   - 9-domain cavekit with 36 tasks mapped before code
-  - Daily mission loop with client-side rubric scoring
+  - Daily mission with client-side rubric scoring
   - Hash-based routing keeps the bundle tiny; no backend, no account
   - Progress persists entirely in localStorage — fresh browser, fresh state
 metrics:
-  - label: Core loop
+  - label: Core cadence
     value: Daily
   - label: Spec coverage
     value: 9 domains · 36 tasks mapped
@@ -37,23 +37,23 @@ related:
 
 ## Problem
 
-Prompt engineering is arguably the highest-leverage skill of the decade and almost nobody is teaching it well. The existing material is either six-hour YouTube lectures or glorified cheat sheets. Neither builds intuition. Neither makes you come back tomorrow.
+Prompt engineering is arguably the highest-leverage skill of the decade and almost nobody is teaching it well. Existing material is either six-hour YouTube lectures or glorified cheat sheets. Neither builds intuition. Neither makes you come back tomorrow.
 
 Duolingo solved this for languages using behaviour design, not content volume. Prompt engineering deserves the same treatment.
 
 ## Approach
 
-Prompto is a mobile-first daily training app. The whole shell is React 18 + Vite 5 + strict TypeScript — no CSS framework, no router dependency, no backend. Progress lives entirely in `localStorage`.
+Dual Pronto is a mobile-first daily training app. The shell is React 18 + Vite 5 + strict TypeScript — no CSS framework, no router dependency, no backend. Progress lives entirely in `localStorage`.
 
-The loop is deliberately small:
+The mission format is deliberately small:
 
 - **Daily mission** — five minutes, one concept, one measurable attempt.
-- **Instant scoring** — the mission ships with a structured rubric the app runs client-side.
-- **Retry** — you get the same scaffold back with diffable feedback on what moved the score.
+- **Instant scoring** — each mission ships with a structured rubric the app runs client-side.
+- **Retry** — the same scaffold comes back with diffable feedback on what moved the score.
 - **Streak** — visible progress so tomorrow costs less willpower than today.
 
 Hash-based routing keeps the bundle tiny; Vitest keeps the core scoring logic deterministic.
 
 ## Outcome
 
-Public beta at [prompto-iota.vercel.app](https://prompto-iota.vercel.app). The repo is now scaffolded with Cavekit — 9 domain kits (5 reverse-engineered from Loop 1, 4 drafted for Loop 2: AI scoring seam, mission history, streak calendar, CI) and a 36-task build site with full acceptance-criteria coverage. Next: freemium monetization — free daily missions, Pro unlocks red-team mode and "Explain My Error."
+Public beta at [prompto-iota.vercel.app](https://prompto-iota.vercel.app). The repo is scaffolded with Cavekit — 9 domain kits (5 reverse-engineered from the first build, 4 drafted for the next: AI scoring seam, mission history, streak calendar, CI) and a 36-task build site with full acceptance-criteria coverage. Next: freemium tier — free daily missions, Pro unlocks red-team mode and "Explain My Error."

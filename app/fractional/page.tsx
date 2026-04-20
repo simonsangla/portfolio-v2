@@ -68,7 +68,7 @@ const engagement = [
   "2–3 days/week.",
   "3–6 months typical.",
   "€8–12K/month retainer (depending on cadence).",
-  "Async-first, written, no standing calls.",
+  "Kickoff call to align priorities · async updates via Slack / shared docs · one 1-hour weekly status check.",
   "Fixed in writing before kickoff.",
 ];
 

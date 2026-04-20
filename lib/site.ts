@@ -20,6 +20,7 @@ export const site = {
   // Services #services anchor on the homepage is the default intake target.
   // Swap to a Tally/Typeform URL when live.
   intakeUrl: "mailto:simonsangla@gmail.com?subject=Intake%20—%20Revenue%20Root%20Cause%20Engine",
+  differentiator: "100% offline · local-only · no data leak",
 } as const;
 
 export type Site = typeof site;

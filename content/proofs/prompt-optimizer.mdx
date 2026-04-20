@@ -25,18 +25,20 @@ demo:
   kind: iframe
   url: https://promptoptim.vercel.app
 related:
-  - prompto
+  - dual-pronto
 ---
 
 ## Problem
 
-Prompt tooling forces three frictions: create an account, store your API key server-side, commit to one provider. Most "optimizer" apps are also black-box rubrics you can't audit or tune.
+Paste a rough prompt, get a sharper one back — without creating an account, storing your key server-side, or locking into a vendor.
+
+Prompt tooling forces three frictions: account creation, server-side key storage, provider lock-in. Most "optimizer" apps are also black-box rubrics you can't audit or tune.
 
 ## Approach
 
 Vite + React 19 PWA. Multi-turn chat UI coaches the prompt live, streaming Gemini tokens through a thin Vercel Edge SSE handler at `/api/chat`. The user's key travels as a Bearer header, never stored server-side. All state (chats, key) persists in `localStorage` — fresh browser = fresh state.
 
-The loop is small:
+The interactive flow is small:
 
 - Paste a draft prompt.
 - Chat with the coach model until the prompt is sharp.
