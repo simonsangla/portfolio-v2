@@ -1,6 +1,8 @@
 import { Container } from "@/components/Container";
 import { CTA } from "@/components/CTA";
 import { ArtifactCard } from "@/components/ArtifactCard";
+import { ArtifactCardTracker } from "@/components/ArtifactCardTracker";
+import { DifferentiatorObserver } from "@/components/DifferentiatorObserver";
 import { HeroSignals } from "@/components/HeroSignals";
 import { HeroStatus } from "@/components/HeroStatus";
 import { ProofsCarousel } from "@/components/ProofsCarousel";
@@ -72,15 +74,19 @@ export default async function HomePage() {
             agentic build workflow.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href="#proofs">See the work</CTA>
-            <CTA href="#services" variant="ghost">
+            <CTA href="#proofs" onTrack={["hero_cta_click", { variant: "products" }]}>
+              See the work
+            </CTA>
+            <CTA href="#services" variant="ghost" onTrack={["hero_cta_click", { variant: "products" }]}>
               Work with me
             </CTA>
           </div>
           <HeroSignals />
-          <p className="mt-4 font-mono text-[11px] tracking-[0.12em] text-[color:var(--color-muted)]">
-            {site.differentiator}
-          </p>
+          <DifferentiatorObserver>
+            <p className="mt-4 font-mono text-[11px] tracking-[0.12em] text-[color:var(--color-muted)]">
+              {site.differentiator}
+            </p>
+          </DifferentiatorObserver>
         </Container>
       </section>
 
@@ -109,14 +115,20 @@ export default async function HomePage() {
             <ProofsCarousel
               items={artifacts.map((a) => ({
                 key: a.slug,
-                node: <ArtifactCard artifact={a} variant="card" />,
+                node: (
+                  <ArtifactCardTracker slug={a.slug}>
+                    <ArtifactCard artifact={a} variant="card" />
+                  </ArtifactCardTracker>
+                ),
               }))}
             />
 
             {/* Desktop: vertical comparison list */}
             <div className="hidden border-b border-[color:var(--color-hairline)] md:block">
               {artifacts.map((a) => (
-                <ArtifactCard key={a.slug} artifact={a} />
+                <ArtifactCardTracker key={a.slug} slug={a.slug}>
+                  <ArtifactCard artifact={a} />
+                </ArtifactCardTracker>
               ))}
             </div>
           </Container>
