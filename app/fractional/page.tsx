@@ -109,7 +109,7 @@ export default function FractionalPage() {
             a dependency.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href={intakeHref} external>
+            <CTA href={intakeHref} external onTrack={["fractional_cta_click", { position: "hero" }]}>
               Start the intake
             </CTA>
             <CTA href="/#proofs" variant="ghost">
@@ -333,7 +333,7 @@ export default function FractionalPage() {
                 Ready to stop guessing why the number moved?
               </h2>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <CTA href={intakeHref} external>
+                <CTA href={intakeHref} external onTrack={["fractional_cta_click", { position: "footer" }]}>
                   Start the intake
                 </CTA>
                 <p className="text-sm text-[color:var(--color-muted)]">
