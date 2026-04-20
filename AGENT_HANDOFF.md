@@ -1,8 +1,10 @@
 # AGENT_HANDOFF — portfolio-v2
 
-Last updated: 2026-04-19
+Last updated: 2026-04-20
 
 ## Recent batches
+
+- **2026-04-20 — Wave 1 (Stages 0–3, [#17](https://github.com/simonsangla/portfolio-v2/pull/17)–[#20](https://github.com/simonsangla/portfolio-v2/pull/20), main at `54c734f`).** Stage 0: gitignore local recordings/claude artifacts; `DESIGN.md` 9-section skeleton (tokens from `theme.generated.css`). Stage 1 (T-1): `differentiator` field in `lib/site.ts`; hero strip wired; `prompto.mdx` → `dual-pronto.mdx` (permanent 308 redirect); `metricpilot.mdx` audience field + ≤1 TripAdvisor mention; fractional engagement copy updated to kickoff+async+1hr/week. Stage 2 (T-3): `lib/analytics.ts` typed 12-event taxonomy; `CTA.tsx` extended with `onTrack` prop; `DifferentiatorObserver` client component; `ArtifactCardTracker` client wrapper; hero + fractional CTAs wired; `[analytics]` dead-code eliminated in prod. Stage 3 (T-2): `ProofsCarousel.tsx` `scroll-padding-left:1.5rem` + `last:mr-6`; hero video stub comment (no product demo asset in repo — deferred). All 4 stage PRs: lint ✅ · typecheck ✅ · build ✅ · Vercel ✅.
 
 - **2026-04-19 — `/fractional` page ([#13](https://github.com/simonsangla/portfolio-v2/pull/13), merged `db9eb0d`).** Added `app/fractional/page.tsx` (hero + what I do + 4-phase how-it-works + engagement card + fit/not-fit columns + background + final CTA). Reused `Container`/`CTA`/`SectionReveal` + existing tokens only — no new colors/fonts/inline CSS. Added `/fractional` to `app/sitemap.ts` (priority 0.9, monthly). Gates green (lint + typecheck + build). Live at `simonsangla-portfolio-v2.vercel.app/fractional` (HTTP 200). Custom domain `simonsangla.com` was unreachable from this session env — DNS or domain not yet bound; verify after next DNS edit.
 
