@@ -1,0 +1,15 @@
+---
+slug: data-security
+question: Where is my data stored? Is it safe?
+tags: [security]
+order: 50
+updated: 2026-04-20
+---
+
+Your data stays in **your** warehouse. I never copy it out.
+
+For the Revenue Root Cause Engine and fractional engagements, I work via **read-only Snowflake access** against your account. Every query, every model, every Streamlit panel executes inside your environment — no extract, no staging bucket on my side, no cloud "workspace" that holds your rows. When the engagement wraps, revoke my role and nothing about your data leaves with me.
+
+For the ChatGPT training, nothing sensitive goes to a model — we work on your prompts' structure, not on your real production data.
+
+Products I ship publicly (Prompt Optimizer, Dual Pronto, Theme Forge) are explicitly **local-only / bring-your-own-key**: the app runs in your browser, your inputs hit the LLM API with your own key, and no data round-trips through my servers. That's what the "100% offline · local-only · no data leak" line under the hero refers to.
