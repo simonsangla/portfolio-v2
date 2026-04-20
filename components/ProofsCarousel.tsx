@@ -82,10 +82,10 @@ export function ProofsCarousel({
         tabIndex={0}
         onKeyDown={onKeyDown}
         aria-label="Artifacts carousel"
-        className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden"
+        className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scroll-padding-left:1.5rem] [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden"
       >
         {items.map((it) => (
-          <li key={it.key} className="w-[82%] shrink-0 snap-start last:mr-2">
+          <li key={it.key} className="w-[82%] shrink-0 snap-start last:mr-6">
             {it.node}
           </li>
         ))}
