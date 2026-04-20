@@ -26,11 +26,14 @@ async function listMdxFiles(): Promise<string[]> {
 }
 
 function toPlain(markdown: string): string {
+  // Strip fenced code blocks wholesale (not search-valuable).
+  // Keep inline code *contents* so searches for technical terms still match.
+  // Preserve hyphens so compound words like "pre-sales" stay intact.
   return markdown
     .replace(/```[\s\S]*?```/g, " ")
-    .replace(/`[^`]*`/g, " ")
-    .replace(/[#>*_~\-]+/g, " ")
+    .replace(/`([^`]+)`/g, "$1")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[#>*_~]+/g, " ")
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();

@@ -33,22 +33,24 @@ export function FaqSearch({ entries, allTags, intakeUrl }: Props) {
     return entries.filter((e) => {
       if (tag && !e.tags.includes(tag)) return false;
       if (qLower) {
-        const haystack = `${e.question.toLowerCase()} ${e.tags.join(
-          " ",
-        )} ${e.bodyPlain}`;
+        const haystack = `${e.question.toLowerCase()} ${e.tags
+          .join(" ")
+          .toLowerCase()} ${e.bodyPlain}`;
         if (!haystack.includes(qLower)) return false;
       }
       return true;
     });
   }, [q, tag, entries]);
 
-  // Mirror state to URL (debounced, shallow) so deep-links are shareable.
+  // Mirror state to URL (debounced). Preserves unrelated params (e.g. UTM).
   useEffect(() => {
     if (!hydrated.current) return;
     const handle = setTimeout(() => {
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(window.location.search);
       if (q) params.set("q", q);
+      else params.delete("q");
       if (tag) params.set("tag", tag);
+      else params.delete("tag");
       const qs = params.toString();
       const next = qs ? `/faq?${qs}` : "/faq";
       if (window.location.pathname + window.location.search !== next) {
@@ -58,15 +60,13 @@ export function FaqSearch({ entries, allTags, intakeUrl }: Props) {
     return () => clearTimeout(handle);
   }, [q, tag]);
 
-  // Debounced faq_search event. Skip the initial render and empty queries.
-  const firstRun = useRef(true);
+  // Fire faq_search only when the user actively types — not on URL hydration
+  // and not on reloads of deep-linked `?q=`. Track the last user-typed value.
+  const lastTypedQ = useRef<string | null>(null);
   const resultsRef = useRef(filtered.length);
   resultsRef.current = filtered.length;
   useEffect(() => {
-    if (firstRun.current) {
-      firstRun.current = false;
-      return;
-    }
+    if (lastTypedQ.current === null) return; // never typed this session
     const qTrim = q.trim();
     if (!qTrim) return;
     const handle = setTimeout(() => {
@@ -97,7 +97,10 @@ export function FaqSearch({ entries, allTags, intakeUrl }: Props) {
           <input
             type="search"
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => {
+              lastTypedQ.current = e.target.value;
+              setQ(e.target.value);
+            }}
             placeholder="Try “pricing”, “security”, “training”…"
             className="w-full rounded-md border border-[color:var(--color-hairline)] bg-[color:var(--color-bg)] px-3 py-2 text-base text-[color:var(--color-ink)] placeholder:text-[color:var(--color-muted)] focus:border-[color:var(--color-accent)] focus:outline-none"
             aria-label="Search FAQ"
