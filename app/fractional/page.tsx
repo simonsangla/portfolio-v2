@@ -8,7 +8,7 @@ const title = "Fractional Head of Analytics — Simon Sangla";
 const description =
   "Fractional Head of Analytics for Snowflake scale-ups. 2–3 days/week, €8–12K/month, async-first. Build the metric tree, train the analyst, leave a self-serve tool behind.";
 const pageUrl = `${site.url}/fractional`;
-const intakeHref = `mailto:${site.email}?subject=Fractional%20Head%20of%20Analytics%20intake`;
+const intakeHref = site.intakeUrl;
 
 export const metadata: Metadata = {
   title,
@@ -109,7 +109,12 @@ export default function FractionalPage() {
             a dependency.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href={intakeHref} external onTrack={["fractional_cta_click", { position: "hero" }]}>
+            <CTA
+              href={intakeHref}
+              external
+              intakeSource="fractional-hero"
+              onTrack={["fractional_cta_click", { position: "hero" }]}
+            >
               Start the intake
             </CTA>
             <CTA href="/#proofs" variant="ghost">
@@ -333,7 +338,12 @@ export default function FractionalPage() {
                 Ready to stop guessing why the number moved?
               </h2>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <CTA href={intakeHref} external onTrack={["fractional_cta_click", { position: "footer" }]}>
+                <CTA
+                  href={intakeHref}
+                  external
+                  intakeSource="fractional-engagement"
+                  onTrack={["fractional_cta_click", { position: "footer" }]}
+                >
                   Start the intake
                 </CTA>
                 <p className="text-sm text-[color:var(--color-muted)]">

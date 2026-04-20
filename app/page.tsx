@@ -182,7 +182,11 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
-              <CTA href={site.intakeUrl} external>
+              <CTA
+                href={site.intakeUrl}
+                external
+                intakeSource="home-services"
+              >
                 Start the intake
               </CTA>
               <p className="text-sm text-[color:var(--color-muted)]">

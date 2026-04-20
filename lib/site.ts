@@ -1,8 +1,19 @@
 // Site metadata. All strings consumed by layout.tsx, Nav.tsx, Footer.tsx,
 // page.tsx, opengraph-image.tsx, sitemap.ts, robots.ts.
 //
-// RECONSTRUCTED from README.md + component references (Simon's best-guess fill).
-// Override NEXT_PUBLIC_SITE_URL at build time in Vercel env to avoid hardcoding.
+// Override NEXT_PUBLIC_SITE_URL + NEXT_PUBLIC_TALLY_URL in Vercel env before
+// production deploy. Build asserts NEXT_PUBLIC_TALLY_URL is set in prod.
+
+const tallyUrl = process.env.NEXT_PUBLIC_TALLY_URL;
+
+// Gate on Vercel's production environment flag, not NODE_ENV, so CI builds
+// and Vercel preview builds don't trip when the env only needs to live in the
+// production environment.
+if (process.env.VERCEL_ENV === "production" && !tallyUrl) {
+  throw new Error(
+    "NEXT_PUBLIC_TALLY_URL must be set in the Vercel production environment.",
+  );
+}
 
 export const site = {
   name: "Simon Sangla",
@@ -17,9 +28,7 @@ export const site = {
   email: "simonsangla@gmail.com",
   github: "https://github.com/simonsangla",
   linkedin: "https://www.linkedin.com/in/simonsangla/",
-  // Services #services anchor on the homepage is the default intake target.
-  // Swap to a Tally/Typeform URL when live.
-  intakeUrl: "mailto:simonsangla@gmail.com?subject=Intake%20—%20Revenue%20Root%20Cause%20Engine",
+  intakeUrl: tallyUrl ?? "https://tally.so",
   differentiator: "100% offline · local-only · no data leak",
 } as const;
 

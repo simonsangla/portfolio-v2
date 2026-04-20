@@ -10,13 +10,26 @@ type Props = {
   variant?: "primary" | "ghost";
   external?: boolean;
   onTrack?: [AnalyticsEvent, AnalyticsEventProps[AnalyticsEvent]];
+  // When set, fires intake_open with the given source and opens in the same
+  // tab so the Tally referrer is preserved for attribution.
+  intakeSource?: string;
 };
 
-export function CTA({ href, children, variant = "primary", external, onTrack }: Props) {
+export function CTA({
+  href,
+  children,
+  variant = "primary",
+  external,
+  onTrack,
+  intakeSource,
+}: Props) {
   function handleClick() {
     if (onTrack) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       track(onTrack[0] as any, onTrack[1] as any);
+    }
+    if (intakeSource) {
+      track("intake_open", { source: intakeSource });
     }
   }
   const base =
@@ -39,11 +52,12 @@ export function CTA({ href, children, variant = "primary", external, onTrack }: 
   );
 
   if (external || href.startsWith("http") || href.startsWith("mailto:")) {
+    const openInNewTab = href.startsWith("http") && !intakeSource;
     return (
       <a
         href={href}
-        target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noreferrer" : undefined}
+        target={openInNewTab ? "_blank" : undefined}
+        rel={openInNewTab ? "noreferrer" : undefined}
         className={`${base} ${styles}`}
         onClick={handleClick}
       >
