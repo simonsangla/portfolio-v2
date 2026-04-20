@@ -87,6 +87,7 @@ export default async function HomePage() {
               {site.differentiator}
             </p>
           </DifferentiatorObserver>
+          {/* TODO(T-2-video): embed hero demo when asset lands — see AGENT_HANDOFF */}
         </Container>
       </section>
 
